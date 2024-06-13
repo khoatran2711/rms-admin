@@ -1,0 +1,113 @@
+
+{
+  "appItems": [
+    {
+      "id": 1,
+      "type": "primary",
+      "icon": "briefcase",
+      "name": "Total Products",
+      "total": "100",
+      "suffix": "+",
+      "prefix": "",
+      "status": "growth",
+      "statusRate": "25.36",
+      "decimel": 0,
+      "dataPeriod": "Since last month"
+    },
+    {
+      "id": 2,
+      "type": "info",
+      "icon": "shopping-cart",
+      "name": "Total Orders",
+      "total": "30825",
+      "suffix": "",
+      "prefix": "",
+      "status": "growth",
+      "statusRate": "25.36",
+      "decimels": 0,
+      "separator": ",",
+      "dataPeriod": "Since last month"
+    },
+    {
+      "id": 3,
+      "type": "secondary",
+      "icon": "eye",
+      "name": "Total Sales",
+      "total": "30825",
+      "suffix": "",
+      "prefix": "$",
+      "status": "down",
+      "statusRate": "25.36",
+      "decimels": 0,
+      "separator": ",",
+      "dataPeriod": "Since last month"
+    },
+    {
+      "id": 4,
+      "type": "warning",
+      "icon": "users",
+      "name": "New Customers",
+      "total": "30825",
+      "suffix": "+",
+      "prefix": "",
+      "status": "growth",
+      "statusRate": "25.36",
+      "decimels": 0,
+      "separator": ",",
+      "dataPeriod": "Since last month"
+    },
+    {
+      "id": 5,
+      "type": "primary",
+      "icon": "rotate-cw",
+      "name": "Total Traffic",
+      "total": "30825",
+      "suffix": "",
+      "prefix": "",
+      "status": "growth",
+      "statusRate": "25.36",
+      "decimels": 0,
+      "separator": ",",
+      "dataPeriod": "Since last month"
+    },
+    {
+      "id": 6,
+      "type": "secondary",
+      "icon": "users",
+      "name": "New Customers",
+      "total": "2850",
+      "suffix": "",
+      "prefix": "",
+      "status": "growth",
+      "statusRate": "9.87",
+      "decimels": 0,
+      "dataPeriod": "Since last month"
+    },
+    {
+      "id": 7,
+      "type": "success",
+      "icon": "eye",
+      "name": "Sales",
+      "total": "529",
+      "suffix": "",
+      "prefix": "",
+      "status": "down",
+      "statusRate": "12.36",
+      "decimels": 0,
+      "dataPeriod": "Since last month"
+    },
+    {
+      "id": 8,
+      "type": "info",
+      "icon": "refresh-cw",
+      "name": "Performance",
+      "total": "28.50",
+      "suffix": "%",
+      "prefix": "",
+      "status": "growth",
+      "statusRate": "9.87",
+      "decimels": 2,
+      "dataPeriod": "Since last month"
+    }
+  ]
+}

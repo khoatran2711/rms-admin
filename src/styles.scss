@@ -1,0 +1,20 @@
+// Theme variables, must be included before the libraries to allow overriding defaults
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Theme customization
+@import './assets/scss/app.scss';
+
+@layer utilities {
+  .dark
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
