@@ -1,94 +1,13 @@
-
-
-export const ROUTES: any[] = [{
-    path: '',
+export const ROUTES: any[] = [
+  {
+    path: '/dashboard',
     title: 'Dashboard',
     iconType: 'nzIcon',
     iconTheme: 'outline',
     icon: 'appstore-add',
-    submenu: [{
-        path: '/dashboard/demo-one',
-        title: 'Demo One',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: [],
-      },
-      {
-        path: '/dashboard/demo-two',
-        title: 'Demo Two',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: []
-      },
-      {
-        path: '/dashboard/demo-three',
-        title: 'Demo Three',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: []
-      },
-      {
-        path: '/dashboard/demo-four',
-        title: 'Demo Four',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: []
-      },
-      {
-        path: '/dashboard/demo-five',
-        title: 'Demo Five',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: []
-      },
-      {
-        path: '/dashboard/demo-six',
-        title: 'Demo Six',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: []
-      },
-      {
-        path: '/dashboard/demo-seven',
-        title: 'Demo Seven',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: []
-      },
-      {
-        path: '/dashboard/demo-eight',
-        title: 'Demo Eight',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: []
-      },
-      {
-        path: '/dashboard/demo-nine',
-        title: 'Demo Nine',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: []
-      },
-      {
-        path: '/dashboard/demo-ten',
-        title: 'Demo Ten',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: []
-      },
-    ]
+    submenu: [],
   },
-  {
+   {
     path: '/changelog/changelog',
     title: 'Change-Log',
     iconType: 'nzIcon',
@@ -96,25 +15,126 @@ export const ROUTES: any[] = [{
     icon: 'rise',
     submenu: []
   },
+];
+export const ROUTES2: any[] = [
+  {
+    path: '/dashboard',
+    title: 'Dashboard',
+    iconType: 'nzIcon',
+    iconTheme: 'outline',
+    icon: 'appstore-add',
+    submenu: [
+      // {
+      //   path: '/dashboard/demo-one',
+      //   title: 'Demo One',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: [],
+      // },
+      // {
+      //   path: '/dashboard/demo-two',
+      //   title: 'Demo Two',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: []
+      // },
+      // {
+      //   path: '/dashboard/demo-three',
+      //   title: 'Demo Three',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: []
+      // },
+      // {
+      //   path: '/dashboard/demo-four',
+      //   title: 'Demo Four',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: []
+      // },
+      // {
+      //   path: '/dashboard/demo-five',
+      //   title: 'Demo Five',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: []
+      // },
+      // {
+      //   path: '/dashboard/demo-six',
+      //   title: 'Demo Six',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: []
+      // },
+      // {
+      //   path: '/dashboard/demo-seven',
+      //   title: 'Demo Seven',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: []
+      // },
+      // {
+      //   path: '/dashboard/demo-eight',
+      //   title: 'Demo Eight',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: []
+      // },
+      // {
+      //   path: '/dashboard/demo-nine',
+      //   title: 'Demo Nine',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: []
+      // },
+      // {
+      //   path: '/dashboard/demo-ten',
+      //   title: 'Demo Ten',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: []
+      // },
+    ],
+  },
+  // {
+  //   path: '/changelog/changelog',
+  //   title: 'Change-Log',
+  //   iconType: 'nzIcon',
+  //   iconTheme: 'outline',
+  //   icon: 'rise',
+  //   submenu: []
+  // },
   {
     path: '',
     title: 'Apps',
     iconType: 'nzIcon',
     iconTheme: 'outline',
     icon: 'appstore',
-    submenu: [{
+    submenu: [
+      {
         path: '',
         title: 'Email',
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/apps/email/inbox',
             title: 'Inbox',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/apps/email/read-email',
@@ -122,9 +142,9 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
-        ]
+        ],
       },
       {
         path: '/apps/chat',
@@ -132,7 +152,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/apps/projects',
@@ -140,13 +160,14 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/apps/projects/project-list',
             title: 'Projects',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/apps/projects/project-details',
@@ -154,9 +175,9 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '/apps/contacts',
@@ -164,13 +185,14 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/apps/contacts/contacts-grid',
             title: 'Contacts Grid',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/apps/contacts/contacts-list',
@@ -178,9 +200,9 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '/apps/todo',
@@ -188,7 +210,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/apps/calendar',
@@ -196,7 +218,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/apps/import-export',
@@ -204,13 +226,14 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/apps/import-export/import',
             title: 'Import',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/apps/import-export/export',
@@ -218,9 +241,9 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
-        ]
+        ],
       },
       {
         path: '/apps/supports',
@@ -228,13 +251,14 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/apps/supports/support',
             title: 'Support',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/apps/supports/add-support',
@@ -242,7 +266,7 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/apps/supports/view-support',
@@ -250,11 +274,11 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
-        ]
+        ],
       },
-    ]
+    ],
   },
   {
     path: '',
@@ -269,7 +293,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/auto-complete/en/',
@@ -277,7 +301,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/avatar/en',
@@ -285,7 +309,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/badge/en',
@@ -293,7 +317,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/breadcrumb/en',
@@ -301,7 +325,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/button/en',
@@ -309,7 +333,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/calendar/en',
@@ -317,7 +341,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/card/en',
@@ -325,7 +349,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/carousel/en',
@@ -333,7 +357,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/cascader/en/',
@@ -341,7 +365,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/checkbox/en/',
@@ -349,7 +373,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/collapse/en/',
@@ -357,7 +381,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/comment/en/',
@@ -365,7 +389,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/date-picker/en/',
@@ -373,7 +397,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/drawer/en/',
@@ -381,7 +405,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/dropdown/en/',
@@ -389,7 +413,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/empty/en/',
@@ -397,7 +421,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/form/en/',
@@ -405,7 +429,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/grid/en/',
@@ -413,7 +437,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/input/en/',
@@ -421,7 +445,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/list/en/',
@@ -429,7 +453,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/menu/en/',
@@ -437,7 +461,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/message/en/',
@@ -445,7 +469,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/modal/en/',
@@ -453,7 +477,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/notification/en/',
@@ -461,7 +485,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/rate/en/',
@@ -469,7 +493,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/progress/en',
@@ -477,7 +501,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/radio/en',
@@ -485,7 +509,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/skeleton/en',
@@ -493,9 +517,9 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
-    ]
+    ],
   },
   {
     path: '',
@@ -503,29 +527,31 @@ export const ROUTES: any[] = [{
     iconType: 'nzIcon',
     iconTheme: 'outline',
     icon: 'appstore',
-    submenu: [{
+    submenu: [
+      {
         path: '',
         title: 'Charts',
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
-          path: 'features/chartjs',
-          title: 'Chart JS',
-          iconType: '',
-          icon: '',
-          iconTheme: '',
-          submenu: [],
-        },
-        {
-          path: 'features/apexchart',
-          title: 'Apex Chart',
-          iconType: '',
-          icon: '',
-          iconTheme: '',
-          submenu: []
-        },
-      ]
+        submenu: [
+          {
+            path: 'features/chartjs',
+            title: 'Chart JS',
+            iconType: '',
+            icon: '',
+            iconTheme: '',
+            submenu: [],
+          },
+          {
+            path: 'features/apexchart',
+            title: 'Apex Chart',
+            iconType: '',
+            icon: '',
+            iconTheme: '',
+            submenu: [],
+          },
+        ],
       },
       {
         path: '/features/icon',
@@ -533,13 +559,14 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/features/ant-icons',
             title: 'Ant Design',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/uni-icons',
@@ -547,7 +574,7 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/feather-icons',
@@ -555,9 +582,9 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '',
@@ -565,13 +592,14 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/features/layouts',
             title: 'Form Layouts',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/elements',
@@ -579,7 +607,7 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/components',
@@ -587,7 +615,7 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/validations',
@@ -595,9 +623,9 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '',
@@ -605,13 +633,14 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/features/basic-table',
             title: 'Basic Table',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/data-table',
@@ -619,9 +648,9 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '',
@@ -629,13 +658,14 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/features/charts',
             title: 'Charts',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/cards',
@@ -643,9 +673,9 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '',
@@ -653,15 +683,16 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/features/wizard-one',
             title: 'Wizard One',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '',
@@ -669,15 +700,16 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/features/google-maps',
             title: 'Google Maps',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
     ],
   },
@@ -694,7 +726,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/gallery',
@@ -702,7 +734,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/pricing',
@@ -710,7 +742,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/banner',
@@ -718,7 +750,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/faq',
@@ -726,7 +758,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/search-result',
@@ -734,7 +766,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '',
@@ -742,13 +774,14 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/pages/knowledge-base/knowledge',
             title: 'Knowledge Base',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/pages/knowledge-base/all-article',
@@ -756,7 +789,7 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/pages/knowledge-base/single-article',
@@ -764,9 +797,9 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '/pages/blank-page',
@@ -774,7 +807,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '',
@@ -789,7 +822,7 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/pages/blog-two',
@@ -797,7 +830,7 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/pages/blog-three',
@@ -805,7 +838,7 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/pages/blog-details',
@@ -813,9 +846,9 @@ export const ROUTES: any[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
-        ]
+        ],
       },
       {
         path: '/pages/coming-soon',
@@ -823,7 +856,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/error-page',
@@ -831,7 +864,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/maintenance',
@@ -839,7 +872,7 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/terms-conditions',
@@ -847,9 +880,9 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
-      }
-    ]
+        submenu: [],
+      },
+    ],
   },
   {
     path: '',
@@ -857,14 +890,15 @@ export const ROUTES: any[] = [{
     iconType: 'nzIcon',
     iconTheme: 'outline',
     icon: 'lock',
-    submenu: [{
+    submenu: [
+      {
         path: '/authentication/login-1',
         title: 'Log In',
         iconType: '',
         icon: '',
 
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/authentication/sign-up-1',
@@ -873,7 +907,7 @@ export const ROUTES: any[] = [{
         icon: '',
 
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/authentication/forget-pass',
@@ -881,8 +915,8 @@ export const ROUTES: any[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
-      }
-    ]
-  }
-]
+        submenu: [],
+      },
+    ],
+  },
+];

@@ -40,7 +40,7 @@ export class SideNavComponent{
                         submenuWrapper.style.right = `${Math.round(menuItem.offsetWidth * 0.75) + 10}px`;
                     }
                   }
-                
+
             })
         });
     }
