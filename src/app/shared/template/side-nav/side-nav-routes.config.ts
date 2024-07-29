@@ -8,7 +8,7 @@ export const ROUTES: any[] = [
     submenu: [],
   },
    {
-    path: '/changelog/changelog',
+    path: '/dashboard/changelog/changelog',
     title: 'Change-Log',
     iconType: 'nzIcon',
     iconTheme: 'outline',

@@ -6,6 +6,10 @@
 // Theme customization
 @import './assets/scss/app.scss';
 
+// @font-face {
+//   font-family: Jost;
+//   src: url(assets/fonts/Jost-VariableFont_wght.ttf) format(true);
+// }
 @layer utilities {
   .dark
   /* Chrome, Safari and Opera */
@@ -18,3 +22,4 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
