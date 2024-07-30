@@ -112,35 +112,35 @@
         "title": "Microsoft Company",
         "amount": "1045,520",
         "percent": 90,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/microsoft.svg"
+        "icon": "assets/img/icon/microsoft.svg"
       },
       {
         "id": 2,
         "title": "WordPress",
         "amount": "2000,520",
         "percent": 80,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/wordpress.svg"
+        "icon": "assets/img/icon/wordpress.svg"
       },
       {
         "id": 3,
         "title": "Adidas Brand",
         "amount": "1520,950",
         "percent": 50,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/adidas.svg"
+        "icon": "assets/img/icon/adidas.svg"
       },
       {
         "id": 4,
         "title": "Slack",
         "amount": "7045,154",
         "percent": 60,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/Slack.svg"
+        "icon": "assets/img/icon/Slack.svg"
       },
       {
         "id": 5,
         "title": "Adobe CC",
         "amount": "1252,220",
         "percent": 60,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/adobe.svg"
+        "icon": "assets/img/icon/adobe.svg"
       }
     ],
     "week": [
@@ -149,35 +149,35 @@
         "title": "WordPress",
         "amount": "2000,520",
         "percent": 90,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/wordpress.svg"
+        "icon": "assets/img/icon/wordpress.svg"
       },
       {
         "id": 1,
         "title": "Microsoft Company",
         "amount": "1045,520",
         "percent": 80,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/microsoft.svg"
+        "icon": "assets/img/icon/microsoft.svg"
       },
       {
         "id": 4,
         "title": "Slack",
         "amount": "7045,154",
         "percent": 60,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/Slack.svg"
+        "icon": "assets/img/icon/Slack.svg"
       },
       {
         "id": 3,
         "title": "Adidas Brand",
         "amount": "1520,950",
         "percent": 50,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/adidas.svg"
+        "icon": "assets/img/icon/adidas.svg"
       },
       {
         "id": 5,
         "title": "Adobe CC",
         "amount": "1252,220",
         "percent": 60,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/adobe.svg"
+        "icon": "assets/img/icon/adobe.svg"
       }
     ],
     "month": [
@@ -186,35 +186,35 @@
         "title": "Slack",
         "amount": "7045,154",
         "percent": 80,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/Slack.svg"
+        "icon": "assets/img/icon/Slack.svg"
       },
       {
         "id": 5,
         "title": "Adobe CC",
         "amount": "1252,220",
         "percent": 70,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/adobe.svg"
+        "icon": "assets/img/icon/adobe.svg"
       },
       {
         "id": 2,
         "title": "WordPress",
         "amount": "2000,520",
         "percent": 60,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/wordpress.svg"
+        "icon": "assets/img/icon/wordpress.svg"
       },
       {
         "id": 1,
         "title": "Microsoft Company",
         "amount": "1045,520",
         "percent": 80,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/microsoft.svg"
+        "icon": "assets/img/icon/microsoft.svg"
       },
       {
         "id": 3,
         "title": "Adidas Brand",
         "amount": "1520,950",
         "percent": 50,
-        "icon": "https://hexadash-angular.vercel.app/assets/img/icon/adidas.svg"
+        "icon": "assets/img/icon/adidas.svg"
       }
     ]
   },

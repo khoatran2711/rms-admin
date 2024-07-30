@@ -43,7 +43,7 @@ import overviewData from '../../../../assets/data/pages/demo-one/overviewData.js
                   >
                     <svg-icon
                       class="[&>svg]:w-[16px] [&>svg]:h-[16px]"
-                      src="https://hexadash-angular.vercel.app/assets/images/svg/feather/{{
+                      src="assets/images/svg/feather/{{
                         overviewData.trend
                       }}.svg"
                     ></svg-icon>
@@ -68,7 +68,7 @@ import overviewData from '../../../../assets/data/pages/demo-one/overviewData.js
                 <div class="fill-{{ overviewData.type }} flex items-center">
                   <svg-icon
                     class="w-[35px] h-[35px] [&>svg]:w-[35px] [&>svg]:h-[35px] max-md:[&>svg]:w-[25px] max-md:[&>svg]:h-[25px]"
-                    src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/{{
+                    src="assets/images/svg/unicons-line/{{
                       overviewData.icon
                     }}.svg"
                   ></svg-icon>

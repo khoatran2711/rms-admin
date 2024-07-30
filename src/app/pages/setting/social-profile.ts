@@ -12,7 +12,7 @@ import { FormGroup, FormControl } from '@angular/forms';
           class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize" nzFor="{{item.name}}">{{item.name}}</nz-form-label>
           <nz-input-group class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10  outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60 inline-flex items-center">
             <button class="h-[48px] w-[45px] rounded-6 bg-{{item.name}} shadow-none outline-none border-{{item.name}} inline-flex items-center justify-center ms-[1px]" nz-button>
-              <svg-icon class="[&>svg]:w-[22px] [&>svg]:h-[22px] text-white" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/{{item.iconName}}.svg"></svg-icon>
+              <svg-icon class="[&>svg]:w-[22px] [&>svg]:h-[22px] text-white" src="assets/images/svg/unicons-line/{{item.iconName}}.svg"></svg-icon>
             </button>
             <input class="bg-transparent border-none outline-none shadow-none min-h-[50px] placeholder:text-[14px] placeholder:text-theme-gray dark:placeholder:text-white/60 px-[20px]" type="{{item.type}}" nz-input placeholder="{{item.placeholder}}" />
           </nz-input-group>

@@ -50,7 +50,7 @@ export type ChartOptions = {
             <span
               class="inline-block text-dark dark:text-white/[.87] me-1 ms-2.5 text-[18px] font-semibold">$8,550</span>
             <span class="flex items-center text-sm font-medium text-success">
-                <svg-icon class="w-[20px] h-[20px] [&>svg]:w-full [&>svg]:h-full" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/arrow-up.svg"></svg-icon>
+                <svg-icon class="w-[20px] h-[20px] [&>svg]:w-full [&>svg]:h-full" src="assets/images/svg/unicons-line/arrow-up.svg"></svg-icon>
               25% </span>
           </div>
         </div>

@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
         <div class="flex p-[25px]">
           <div class="flex justify-between gap-[25px] text-{{ item.type }}">
             <div class="{{ rounded }} flex items-center justify-center w-[70px] h-[70px] bg-{{ item.type }}{{bgColor}}">
-            <svg-icon class="w-[34px] h-[34px] [&>svg]:w-full [&>svg]:h-full {{textColor}}" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/{{ item.icon }}.svg"></svg-icon>
+            <svg-icon class="w-[34px] h-[34px] [&>svg]:w-full [&>svg]:h-full {{textColor}}" src="assets/images/svg/unicons-line/{{ item.icon }}.svg"></svg-icon>
             </div>
             <div class="flex gap-[25px]">
               <div>
@@ -21,7 +21,7 @@ import { HttpClient } from '@angular/common/http';
                 <span class="text-[16px] text-light dark:text-white/60">{{ item.label }}</span>
               </div>
               <span class="mt-[6px] text-{{item.statusColor}} inline-flex">
-                <svg-icon class="[&>svg]:w-[20px] [&>svg]:h-[18px] text-current" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/{{ item.trend }}.svg"></svg-icon>
+                <svg-icon class="[&>svg]:w-[20px] [&>svg]:h-[18px] text-current" src="assets/images/svg/unicons-line/{{ item.trend }}.svg"></svg-icon>
                 <span class="font-medium text-[14px]">{{ item.status }}</span>
               </span>
             </div>
@@ -41,7 +41,7 @@ export class OverviewListVerticalComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get('https://hexadash-angular.vercel.app/assets/data/pages/demo-three/overviewListVertical.json').subscribe((data: any) => {
+    this.http.get('assets/data/pages/demo-three/overviewListVertical.json').subscribe((data: any) => {
       this.overviewListVertical = data.overviewListVertical;
     });
   }

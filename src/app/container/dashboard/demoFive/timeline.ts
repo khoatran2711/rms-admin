@@ -49,7 +49,7 @@ export class TimeLineComponent {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get<any>('https://hexadash-angular.vercel.app/assets/data/pages/timeline.json').subscribe(data => {
+    this.http.get<any>('assets/data/pages/timeline.json').subscribe(data => {
       this.tasks = data.tasks;
     });
   }

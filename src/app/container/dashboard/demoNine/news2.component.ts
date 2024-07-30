@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
         <div class="py-[22px] text-center rounded-10 bg-white dark:bg-white/10">
           <div class="inline-flex flex-col items-center justify-center">
             <div class="bg-primary/10 text-primary w-[60px] h-[60px] rounded-10 flex items-center justify-center">
-            <svg-icon class="w-[30px] h-[30px] [&>svg]:w-full [&>svg]:h-full" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/suitcase.svg"></svg-icon>
+            <svg-icon class="w-[30px] h-[30px] [&>svg]:w-full [&>svg]:h-full" src="assets/images/svg/unicons-line/suitcase.svg"></svg-icon>
             </div>
             <div class="flex items-center flex-wrap">
               <div>
@@ -23,7 +23,7 @@ import { Component } from '@angular/core';
         <div class="py-[22px] text-center rounded-10 bg-white dark:bg-white/10">
             <div class="inline-flex flex-col items-center justify-center">
               <div class="bg-info/10 text-info w-[60px] h-[60px] rounded-10 flex items-center justify-center">
-              <svg-icon class="w-[30px] h-[30px] [&>svg]:w-full [&>svg]:h-full" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/award.svg"></svg-icon>
+              <svg-icon class="w-[30px] h-[30px] [&>svg]:w-full [&>svg]:h-full" src="assets/images/svg/unicons-line/award.svg"></svg-icon>
               </div>
               <div class="flex items-center flex-wrap">
                 <div>

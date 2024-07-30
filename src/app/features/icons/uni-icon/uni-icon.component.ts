@@ -23,12 +23,12 @@ export class UniIconComponent implements OnInit {
     }, 500);
   }
   loadIcons() {
-    this.http.get<any>('https://hexadash-angular.vercel.app/assets/data/icons/uni.json').subscribe(data => {
+    this.http.get<any>('assets/data/icons/uni.json').subscribe(data => {
       this.icons = data;
       // this.icons.forEach((item) => {
       //   this.http
       //     .get(
-      //       'https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/' +
+      //       'assets/images/svg/unicons-line/' +
       //         item +
       //         '.svg'
       //     )

@@ -50,7 +50,7 @@ export class BlogCardsComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get<any>('https://hexadash-angular.vercel.app/assets/data/pages/blog-cards.json').subscribe(
+    this.http.get<any>('assets/data/pages/blog-cards.json').subscribe(
       data => {
         this.blogCards = data.blogCards;
       },

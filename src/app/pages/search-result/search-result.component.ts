@@ -82,7 +82,7 @@ export class SearchResultComponent implements OnInit {
       this.showContent = true;
     }, 500);
 
-    this.http.get<{ items: DesignItem[] }>('https://hexadash-angular.vercel.app/assets/data/pages/search-results.json').subscribe(data => {
+    this.http.get<{ items: DesignItem[] }>('assets/data/pages/search-results.json').subscribe(data => {
       this.originalData = data.items; // Store original data
       this.filteredItems = data.items;
       this.filterItems(); // Filter items based on search keyword

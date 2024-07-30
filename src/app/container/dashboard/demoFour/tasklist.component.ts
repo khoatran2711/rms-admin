@@ -55,7 +55,7 @@ import items from '../../../../assets/data/global/dropdown.json';
                     <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="taskList">
                       <svg-icon
                         class="text-light dark:text-white/60 dark:group-hover:text-white/[.87] w-[20px] h-[20px] [&>svg]:w-[20px] [&>svg]:h-[20px]"
-                        src="https://hexadash-angular.vercel.app/assets/images/svg/feather/more-horizontal.svg"></svg-icon>
+                        src="assets/images/svg/feather/more-horizontal.svg"></svg-icon>
                     </a>
                     <nz-dropdown-menu #taskList="nzDropdownMenu">
                       <ul
@@ -65,7 +65,7 @@ import items from '../../../../assets/data/global/dropdown.json';
                           class="flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]"
                           >
                           <svg-icon class="text-current w-3.5 h-3.5 me-2 [&>svg]:w-full [&>svg]:h-full"
-                            [src]="'https://hexadash-angular.vercel.app/assets/images/svg/feather/' + item.icon + '.svg'"></svg-icon>
+                            [src]="'assets/images/svg/feather/' + item.icon + '.svg'"></svg-icon>
                           {{ item.name }}
                         </li>
                       </ul>
@@ -134,7 +134,7 @@ export class TaskListComponent implements OnInit {
   }
 
   loadJSONData() {
-    this.http.get('https://hexadash-angular.vercel.app/assets/data/apps/task-list.json').subscribe((data: any) => {
+    this.http.get('assets/data/apps/task-list.json').subscribe((data: any) => {
       this.taskList = data?.TaskList ?? {};
     });
   }

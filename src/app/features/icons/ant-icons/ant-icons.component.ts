@@ -25,7 +25,7 @@ export class AntIconComponent implements OnInit {
   loadIcons() {
     this.http
       .get<any>(
-        'https://hexadash-angular.vercel.app/assets/data/icons/ant.json'
+        'assets/data/icons/ant.json'
       )
       .subscribe((data) => {
         this.antdIcons = data.antdIcons;
@@ -35,7 +35,7 @@ export class AntIconComponent implements OnInit {
         // this.antdIcons.forEach((item) => {
         //   this.http
         //     .get(
-        //       'https://hexadash-angular.vercel.app/assets/outline/' +
+        //       'assets/outline/' +
         //         item +
         //         '.svg'
         //     )

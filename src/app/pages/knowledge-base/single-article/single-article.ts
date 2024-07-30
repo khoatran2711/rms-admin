@@ -163,22 +163,22 @@ import { Component } from '@angular/core';
                   </li>
                   <li>
                     <a href="#" class="text-[#8C90A4] dark:text-white/60 hover:text-primary">
-                      <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px] text-current" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/facebook.svg"></svg-icon>
+                      <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px] text-current" src="assets/images/svg/unicons-line/facebook.svg"></svg-icon>
                     </a>
                   </li>
                   <li>
                     <a href="#" class="text-[#8C90A4] dark:text-white/60 hover:text-primary">
-                      <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px] text-current" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/twitter.svg"></svg-icon>
+                      <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px] text-current" src="assets/images/svg/unicons-line/twitter.svg"></svg-icon>
                     </a>
                   </li>
                   <li>
                     <a href="#" class="text-[#8C90A4] dark:text-white/60 hover:text-primary">
-                      <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px] text-current" src="https://hexadash-angular.vercel.app/assets/images/svg/pinterest.svg"></svg-icon>
+                      <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px] text-current" src="assets/images/svg/pinterest.svg"></svg-icon>
                     </a>
                   </li>
                   <li>
                     <a href="#" class="text-[#8C90A4] dark:text-white/60 hover:text-primary">
-                      <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px] text-current" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/copy.svg"></svg-icon>
+                      <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px] text-current" src="assets/images/svg/unicons-line/copy.svg"></svg-icon>
                     </a>
                   </li>
                 </ul>

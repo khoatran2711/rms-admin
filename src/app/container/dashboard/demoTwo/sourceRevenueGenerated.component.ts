@@ -38,7 +38,7 @@ import items from '../../../../assets/data/global/dropdown.json';
       <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
         <svg-icon
           class=" text-light dark:text-white/60 dark:group-hover:text-white/[.87] w-[24px] h-[24px] [&>svg]:w-[24px] [&>svg]:h-[24px]"
-          src="https://hexadash-angular.vercel.app/assets/images/svg/feather/more-horizontal.svg"></svg-icon>
+          src="assets/images/svg/feather/more-horizontal.svg"></svg-icon>
       </a>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul
@@ -48,7 +48,7 @@ import items from '../../../../assets/data/global/dropdown.json';
             class="flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]"
             >
             <svg-icon class="text-current w-3.5 h-3.5 me-2 [&>svg]:w-full [&>svg]:h-full"
-              src="https://hexadash-angular.vercel.app/assets/images/svg/feather/{{items.icon}}.svg"></svg-icon>
+              src="assets/images/svg/feather/{{items.icon}}.svg"></svg-icon>
             {{items.name}}
           </li>
         </ul>
@@ -68,7 +68,7 @@ import items from '../../../../assets/data/global/dropdown.json';
           class="flex items-center justify-center bg-facebook/10 text-facebook w-[80px] h-[80px] mb-[10px] rounded-[10px]">
           <span>
             <svg-icon class="w-[30px] h-[30px] [&>svg]:w-[30px] [&>svg]:h-[30px]"
-              src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/facebook-f.svg"></svg-icon>
+              src="assets/images/svg/unicons-line/facebook-f.svg"></svg-icon>
           </span>
         </div>
         <div class="text-center">
@@ -85,7 +85,7 @@ import items from '../../../../assets/data/global/dropdown.json';
           class="flex items-center justify-center bg-twitter/10 text-twitter w-[80px] h-[80px] mb-[10px] rounded-[10px]">
           <span>
             <svg-icon class="w-[30px] h-[30px] [&>svg]:w-[30px] [&>svg]:h-[30px]"
-              src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/twitter.svg"></svg-icon>
+              src="assets/images/svg/unicons-line/twitter.svg"></svg-icon>
           </span>
         </div>
         <div class="text-center">
@@ -101,7 +101,7 @@ import items from '../../../../assets/data/global/dropdown.json';
         <div
           class="flex items-center justify-center bg-google/10 text-google w-[80px] h-[80px] mb-[10px] rounded-[10px]">
           <svg-icon class="w-[30px] h-[30px] [&>svg]:w-[30px] [&>svg]:h-[30px]"
-            src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/google.svg"></svg-icon>
+            src="assets/images/svg/unicons-line/google.svg"></svg-icon>
         </div>
         <div class="text-center">
           <div class="text-[15px] text-dark dark:text-white/[.87] font-medium">

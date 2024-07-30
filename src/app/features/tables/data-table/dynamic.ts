@@ -104,7 +104,7 @@ export class DynamicComponent {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get<Person[]>('https://hexadash-angular.vercel.app/assets/data/features/dynamic-table.json').subscribe(
+    this.http.get<Person[]>('assets/data/features/dynamic-table.json').subscribe(
       (data) => {
         this.people = data;
         this.filteredPeople = data;

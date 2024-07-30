@@ -120,7 +120,7 @@ export class TodoComponent2 implements OnInit {
   }
 
   loadTodos() {
-    this.http.get<any[]>('https://hexadash-angular.vercel.app/assets/data/pages/todos.json').subscribe(
+    this.http.get<any[]>('assets/data/pages/todos.json').subscribe(
       (data) => {
         this.todos = data;
       },

@@ -50,7 +50,7 @@ export class TeamListComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get<TeamMember[]>('https://hexadash-angular.vercel.app/assets/data/pages/teamMembers.json')
+    this.http.get<TeamMember[]>('assets/data/pages/teamMembers.json')
       .subscribe(teamData => {
         this.data = teamData.slice(0, 5).map(member => ({ ...member, isActive: false }));
       });

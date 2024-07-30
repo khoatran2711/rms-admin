@@ -48,7 +48,7 @@ template: `
         <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
           <svg-icon
             class="text-light dark:text-white/60 dark:group-hover:text-white/[.87] w-[24px] h-[24px] [&>svg]:w-[24px] [&>svg]:h-[24px]"
-            src="https://hexadash-angular.vercel.app/assets/images/svg/feather/more-horizontal.svg"></svg-icon>
+            src="assets/images/svg/feather/more-horizontal.svg"></svg-icon>
         </a>
         <nz-dropdown-menu #menu="nzDropdownMenu">
           <ul
@@ -58,7 +58,7 @@ template: `
               class="flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]"
              >
               <svg-icon class="text-current w-3.5 h-3.5 me-2 [&>svg]:w-full [&>svg]:h-full"
-                src="https://hexadash-angular.vercel.app/assets/images/svg/feather/{{item.icon}}.svg"></svg-icon> {{item.name}}
+                src="assets/images/svg/feather/{{item.icon}}.svg"></svg-icon> {{item.name}}
             </li>
           </ul>
         </nz-dropdown-menu>

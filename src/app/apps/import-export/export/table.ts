@@ -158,7 +158,7 @@ export class TableComponent implements OnInit {
   }
 
   loadEmployeeData(): void {
-    this.http.get<Employee[]>('https://hexadash-angular.vercel.app/assets/data/pages/employees-data.json').subscribe(
+    this.http.get<Employee[]>('assets/data/pages/employees-data.json').subscribe(
       (data) => {
         this.fullListOfData = data; // Store the full data separately
 

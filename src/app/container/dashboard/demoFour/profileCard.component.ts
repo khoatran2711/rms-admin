@@ -19,7 +19,7 @@ import { Component, Input } from '@angular/core';
           <ul class="flex items-center justify-center gap-[5px]">
             <li *ngFor="let link of socialMediaLinks" [class]="'text-' + link.platform">
               <a class="flex items-center justify-center w-[32px] h-[32px] rounded-6 hover:opacity-[0.8] duration-200 leading-[1] bg-{{link.platform}} border-{{link.platform}}" [href]="link.link">
-                <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px] text-white" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/{{link.platform}}.svg"></svg-icon>
+                <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px] text-white" src="assets/images/svg/unicons-line/{{link.platform}}.svg"></svg-icon>
               </a>
             </li>
           </ul>
@@ -30,8 +30,8 @@ import { Component, Input } from '@angular/core';
   styles: []
 })
 export class ProfileCardComponent {
-  @Input() image: string = 'https://hexadash-angular.vercel.app/assets/images/profile-author.png';
-  @Input() bgImage: string = 'https://hexadash-angular.vercel.app/assets/images/profile-card.png';
+  @Input() image: string = 'assets/images/profile-author.png';
+  @Input() bgImage: string = 'assets/images/profile-card.png';
   @Input() title: string = 'Robert Clinton';
   @Input() tag: string = 'Best Seller of the last month';
 
