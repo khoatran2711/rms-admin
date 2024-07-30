@@ -49,7 +49,7 @@ import { AppsService } from '../../../shared/services/apps.service';
               <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
                 <svg-icon
                   class=" text-light dark:text-white/60 dark:group-hover:text-white/[.87] w-[24px] h-[24px] [&>svg]:w-[24px] [&>svg]:h-[24px]"
-                  src="https://hexadash-angular.vercel.app/assets/images/svg/feather/more-horizontal.svg"
+                  src="assets/images/svg/feather/more-horizontal.svg"
                 ></svg-icon>
               </a>
               <nz-dropdown-menu #menu="nzDropdownMenu">

@@ -36,12 +36,12 @@ import items from '../../../../assets/data/global/dropdown.json';
       </ul>
       <div>
       <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
-        <svg-icon class="text-light dark:text-white/60 dark:group-hover:text-white/[.87] w-[24px] h-[24px] [&>svg]:w-[24px] [&>svg]:h-[24px]" src="https://hexadash-angular.vercel.app/assets/images/svg/feather/more-horizontal.svg"></svg-icon>
+        <svg-icon class="text-light dark:text-white/60 dark:group-hover:text-white/[.87] w-[24px] h-[24px] [&>svg]:w-[24px] [&>svg]:h-[24px]" src="assets/images/svg/feather/more-horizontal.svg"></svg-icon>
       </a>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <ul class="block bg-white dark:bg-[#1b1e2b] shadow-regular dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] rounded-4 capitalize" nzSelectable>
           <li *ngFor="let item of appItems" class="flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]" >
-            <svg-icon class="text-current w-3.5 h-3.5 me-2 [&>svg]:w-full [&>svg]:h-full" src="https://hexadash-angular.vercel.app/assets/images/svg/feather/{{item.icon}}.svg"></svg-icon> {{item.name}}
+            <svg-icon class="text-current w-3.5 h-3.5 me-2 [&>svg]:w-full [&>svg]:h-full" src="assets/images/svg/feather/{{item.icon}}.svg"></svg-icon> {{item.name}}
           </li>
         </ul>
       </nz-dropdown-menu>
@@ -66,7 +66,7 @@ import items from '../../../../assets/data/global/dropdown.json';
             <td class="ps-0 pe-4 py-2.5 text-start last:text-end text-dark dark:text-white/[.87] group-hover:bg-transparent text-15 font-medium border-none before:hidden rounded-s-[4px]">
               <div class="flex items-center gap-[10px]">
                 <div class="overflow-hidden flex justify-center items-center relative w-[32px] h-[32px] rounded-[8px] bg-{{product.type}}/10">
-                  <svg-icon class="w-[16px] h-[16px] text-{{product.type}}" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/{{product.icon}}.svg"></svg-icon>
+                  <svg-icon class="w-[16px] h-[16px] text-{{product.type}}" src="assets/images/svg/unicons-line/{{product.icon}}.svg"></svg-icon>
                 </div>
                 <span class="font-medium capitalize text-dark dark:text-white/[.87] text-15">{{ product.name }}</span>
               </div>

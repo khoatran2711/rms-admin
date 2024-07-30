@@ -49,7 +49,7 @@ export class socialMediaTrafficComponent2 implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get<socialTraffic[]>('https://hexadash-angular.vercel.app/assets/data/pages/social-traffic.json')
+    this.http.get<socialTraffic[]>('assets/data/pages/social-traffic.json')
       .subscribe(progressData => {
         this.data = progressData.slice(0, 5).map(progress => ({ ...progress, isActive: false }));
       });

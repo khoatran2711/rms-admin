@@ -98,7 +98,7 @@
               </div>
               <div  class="flex items-center text-[#8288a4] dark:text-white/60 gap-[12px] text-[14px] capitalize" *ngIf="item.type == 'map'">
                 <svg-icon class="[&>svg]:w-[14px] [&>svg]:h-[14px] text-light dark:text-white/60"
-                  src="https://hexadash-angular.vercel.app/assets/images/svg/feather/{{item.icon}}.svg"></svg-icon>
+                  src="assets/images/svg/feather/{{item.icon}}.svg"></svg-icon>
                   {{item.name}}
               </div>
             </li>
@@ -107,7 +107,7 @@
             <button nz-button class="bg-transparent border-none absolute top-[16px] text-light dark:text-white/60 ltr:right-[26px] rtl:left-[26px] inline-flex items-center justify-center p-0" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
               <svg-icon
                 class=" text-light-extra dark:text-white/60 dark:group-hover:text-white/[.87] w-[24px] h-[24px] [&>svg]:w-[24px] [&>svg]:h-[24px]"
-                src="https://hexadash-angular.vercel.app/assets/images/svg/feather/more-horizontal.svg"></svg-icon>
+                src="assets/images/svg/feather/more-horizontal.svg"></svg-icon>
             </button>
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul

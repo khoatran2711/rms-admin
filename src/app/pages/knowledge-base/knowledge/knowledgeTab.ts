@@ -169,7 +169,7 @@ export class knowledgeTab implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get<any>('https://hexadash-angular.vercel.app/assets/data/pages/knowledge.json').subscribe((data) => {
+    this.http.get<any>('assets/data/pages/knowledge.json').subscribe((data) => {
       this.jsonData = data;
     });
   }

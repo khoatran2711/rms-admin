@@ -39,7 +39,7 @@ export class FileAttachmentComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get<any>('https://hexadash-angular.vercel.app/assets/data/pages/file-attach.json').subscribe(data => {
+    this.http.get<any>('assets/data/pages/file-attach.json').subscribe(data => {
       this.files = data.files;
     });
   }

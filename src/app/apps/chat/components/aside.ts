@@ -16,7 +16,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
         />
         <svg-icon
           class="[&>svg]:w-[16px] [&>svg]:h-[16px] text-[#8C90A4] dark:text-white/60"
-          src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/search.svg"
+          src="assets/images/svg/unicons-line/search.svg"
         ></svg-icon>
       </div>
       <div
@@ -60,7 +60,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
               >
                 <svg-icon
                   class="w-[14px] h-[14px]"
-                  src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/edit.svg"
+                  src="assets/images/svg/unicons-line/edit.svg"
                 ></svg-icon>
                 Create New Group
               </a>
@@ -72,7 +72,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
               >
                 <svg-icon
                   class="w-[14px] h-[14px]"
-                  src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/user-plus.svg"
+                  src="assets/images/svg/unicons-line/user-plus.svg"
                 ></svg-icon>
                 Add New Contact
               </a>

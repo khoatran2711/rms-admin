@@ -14,25 +14,25 @@ export class AppsService {
   constructor(private http: HttpClient) {}
 
   public getChatJSON(): Observable<any[]> {
-    return this.http.get<any[]>('https://hexadash-angular.vercel.app/assets/data/apps/chat-data.json');
+    return this.http.get<any[]>('assets/data/apps/chat-data.json');
   }
 
   public getFileManagerJson(): Observable<any[]> {
-    return this.http.get<any[]>('https://hexadash-angular.vercel.app/assets/data/apps/file-manager-data.json');
+    return this.http.get<any[]>('assets/data/apps/file-manager-data.json');
   }
 
   public getMailJson(): Observable<any[]> {
-    return this.http.get<any[]>('https://hexadash-angular.vercel.app/assets/data/apps/mail-data.json');
+    return this.http.get<any[]>('assets/data/apps/mail-data.json');
   }
 
   public getReadMailJson(): Observable<any[]> {
-    return this.http.get<any[]>('https://hexadash-angular.vercel.app/assets/data/apps/read-email.json');
+    return this.http.get<any[]>('assets/data/apps/read-email.json');
   }
 
   public getProjectListJson(): Observable<any[]> {
-    return this.http.get<any[]>('https://hexadash-angular.vercel.app/assets/data/apps/project-list-data.json');
+    return this.http.get<any[]>('assets/data/apps/project-list-data.json');
   }
   public getContactGridJson(): Observable<any[]> {
-    return this.http.get<any[]>('https://hexadash-angular.vercel.app/assets/data/apps/contacts.json');
+    return this.http.get<any[]>('assets/data/apps/contacts.json');
   }
 }

@@ -9,6 +9,6 @@ export class JsonDataService {
   constructor(private http: HttpClient) {}
 
   getData(): Observable<any> {
-    return this.http.get('https://hexadash-angular.vercel.app/assets/data/pages/knowledgeSection.json');
+    return this.http.get('assets/data/pages/knowledgeSection.json');
   }
 }

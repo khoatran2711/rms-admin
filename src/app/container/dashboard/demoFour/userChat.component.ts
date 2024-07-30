@@ -23,12 +23,12 @@ import { Component, Input } from '@angular/core';
                                 <span class="text-white dark:text-white/[.87] text-[10px] font-semibold">20+</span>
                             </a>
                             <a class="flex items-center justify-center w-[30px] h-[30px] border border-dashed border-deep dark:border-white/10 rounded-full">
-                                <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px] text-light dark:text-white/60" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/plus.svg"></svg-icon>
+                                <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px] text-light dark:text-white/60" src="assets/images/svg/unicons-line/plus.svg"></svg-icon>
                             </a>
                         </div>
                         <div>
                             <a [nzDropdownMenu]="chatSetting" nz-dropdown [nzTrigger]="'click'" nzPlacement="bottomRight">
-                                <svg-icon class="[&>svg]:w-[20px] [&>svg]:h-[20px] text-light dark:text-white/60" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/ellipsis-h.svg"></svg-icon>
+                                <svg-icon class="[&>svg]:w-[20px] [&>svg]:h-[20px] text-light dark:text-white/60" src="assets/images/svg/unicons-line/ellipsis-h.svg"></svg-icon>
                             </a>
                             <nz-dropdown-menu #chatSetting="nzDropdownMenu">
                                 <ul class="bg-white dark:bg-[#010413] py-1 shadow-[0_5px_30px_#9299b820] dark:shadow-[0_5px_30px_rgba(1,4,19,.60)]  rounded-md" nz-menu>
@@ -70,7 +70,7 @@ import { Component, Input } from '@angular/core';
                                         </p>
                                         <img *ngIf="msgItem.msgType == 'image'" [src]="msgItem.text" [alt]="msgItem.text" [ngClass]="{'p-5 mt-[10px] bg-deepBG rounded-10': msgItem.msgType == 'image'}">
                                         <div *ngIf="msgItem.msgType == 'file'" class="flex items-center gap-[10px] p-5 mt-[10px] -mb-[15px] bg-deepBG dark:bg-white/10 rounded-10">
-                                            <svg-icon class="[&>svg]:w-[18px] [&>svg]:h-[18px] text-[#8C90A4] dark:text-white/60" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/file-alt.svg"></svg-icon>
+                                            <svg-icon class="[&>svg]:w-[18px] [&>svg]:h-[18px] text-[#8C90A4] dark:text-white/60" src="assets/images/svg/unicons-line/file-alt.svg"></svg-icon>
                                             <span class="font-semibold text-link cursor-pointer">
                                                 <u>{{msgItem.text}}</u>
                                             </span>
@@ -79,10 +79,10 @@ import { Component, Input } from '@angular/core';
                                         <!-- Chat Actions -->
                                         <div class="flex items-center gap-[15px]">
                                             <div class="cursor-pointer" [nzDropdownMenu]="emojiAction" nz-dropdown [nzTrigger]="'click'" nzPlacement="bottomRight">
-                                                <svg-icon class="[&>svg]:w-[18px] [&>svg]:h-[18px] text-light-extra dark:text-white/60 {{ msgItem.from === 'me' ? 'order-last' : '' }}" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/smile.svg"></svg-icon>
+                                                <svg-icon class="[&>svg]:w-[18px] [&>svg]:h-[18px] text-light-extra dark:text-white/60 {{ msgItem.from === 'me' ? 'order-last' : '' }}" src="assets/images/svg/unicons-line/smile.svg"></svg-icon>
                                             </div>
                                             <a class="text-light font-size-18" [nzDropdownMenu]="chatAction" nz-dropdown [nzTrigger]="'click'" nzPlacement="bottomRight">
-                                                <svg-icon class="[&>svg]:w-[20px] [&>svg]:h-[20px] text-light-extra dark:text-white/60" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/ellipsis-h.svg"></svg-icon>
+                                                <svg-icon class="[&>svg]:w-[20px] [&>svg]:h-[20px] text-light-extra dark:text-white/60" src="assets/images/svg/unicons-line/ellipsis-h.svg"></svg-icon>
                                             </a>
                                             <nz-dropdown-menu #emojiAction="nzDropdownMenu">
                                                 <ul class="bg-white dark:bg-[#010413] py-1 px-2 gap-2 shadow-[0_5px_30px_#9299b820] dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] rounded-md inline-flex items-center" nz-menu>
@@ -117,19 +117,19 @@ import { Component, Input } from '@angular/core';
             </perfect-scrollbar>
             <div class="relative flex items-center gap-[15px] max-sm:gap-[15px] max-sm:justify-center max-sm:flex-wrap py-[20px] mx-[25px]">
                 <div class="w-full bg-section dark:bg-[#323540] h-[70px] px-[25px] text-body dark:text-white/60 border-none outline-none rounded-[35px] flex items-center gap-[20px]">
-                  <svg-icon class="[&>svg]:w-[24px] [&>svg]:h-[24px] text-[#8C90A4] dark:text-white/60" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/smile.svg"></svg-icon>
+                  <svg-icon class="[&>svg]:w-[24px] [&>svg]:h-[24px] text-[#8C90A4] dark:text-white/60" src="assets/images/svg/unicons-line/smile.svg"></svg-icon>
                     <input [(ngModel)]="msg" class="w-full bg-transparent h-[68px] text-[16px] text-dark dark:text-white/[.87] outline-none shadow-none border-none" type="text" placeholder="Type a message..." (keydown.enter)="sendMsg(msg);$event.preventDefault()" />
                 </div>
 
                 <div class="flex items-center gap-2">
                     <a href="" class="flex items-center justify-center bg-section dark:bg-white/10 w-[50px] h-[50px] rounded-full">
-                        <svg-icon class="[&>svg]:w-[18px] [&>svg]:h-[18px] text-light dark:text-white/60" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/camera.svg"></svg-icon>
+                        <svg-icon class="[&>svg]:w-[18px] [&>svg]:h-[18px] text-light dark:text-white/60" src="assets/images/svg/unicons-line/camera.svg"></svg-icon>
                     </a>
                     <a href="" class="flex items-center justify-center bg-section dark:bg-white/10 w-[50px] h-[50px] rounded-full">
-                        <svg-icon class="[&>svg]:w-[18px] [&>svg]:h-[18px] text-light dark:text-white/60" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/paperclip.svg"></svg-icon>
+                        <svg-icon class="[&>svg]:w-[18px] [&>svg]:h-[18px] text-light dark:text-white/60" src="assets/images/svg/unicons-line/paperclip.svg"></svg-icon>
                     </a>
                     <a href="" class="flex items-center justify-center bg-primary w-[50px] h-[50px] rounded-full text-white dark:text0-white/[.87]" (click)="sendMsg(msg);$event.preventDefault()">
-                        <svg-icon class="[&>svg]:w-[18px] [&>svg]:h-[18px] text-white dark:text-white/[.87]" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/message.svg"></svg-icon>
+                        <svg-icon class="[&>svg]:w-[18px] [&>svg]:h-[18px] text-white dark:text-white/[.87]" src="assets/images/svg/unicons-line/message.svg"></svg-icon>
                     </a>
                 </div>
             </div>

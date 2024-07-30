@@ -40,7 +40,7 @@ import items from '../../../../assets/data/global/dropdown.json';
           <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
             <svg-icon
               class=" text-light dark:text-white/60 dark:group-hover:text-white/[.87] w-[24px] h-[24px] [&>svg]:w-[24px] [&>svg]:h-[24px]"
-              src="https://hexadash-angular.vercel.app/assets/images/svg/feather/more-horizontal.svg"
+              src="assets/images/svg/feather/more-horizontal.svg"
             ></svg-icon>
           </a>
           <nz-dropdown-menu #menu="nzDropdownMenu">
@@ -54,7 +54,7 @@ import items from '../../../../assets/data/global/dropdown.json';
               >
                 <svg-icon
                   class="text-current w-3.5 h-3.5 me-2 [&>svg]:w-full [&>svg]:h-full"
-                  src="https://hexadash-angular.vercel.app/assets/images/svg/feather/{{ items.icon }}.svg"
+                  src="assets/images/svg/feather/{{ items.icon }}.svg"
                 ></svg-icon>
                 {{ items.name }}
               </li>

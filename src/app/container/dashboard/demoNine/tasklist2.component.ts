@@ -213,7 +213,7 @@ export class TaskList2Component implements OnInit {
   }
 
   loadData() {
-    this.http.get('https://hexadash-angular.vercel.app/assets/data/apps/task-list2.json').subscribe((data: any) => {
+    this.http.get('assets/data/apps/task-list2.json').subscribe((data: any) => {
       const taskData = data?.TaskList2 ?? {};
 
       // Copy tasks to the "allTasks" array to preserve the original tasks for the "All" tab.

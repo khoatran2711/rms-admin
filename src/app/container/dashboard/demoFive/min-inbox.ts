@@ -73,7 +73,7 @@ export class MiniInboxComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get<{ messages: Message[] }>('https://hexadash-angular.vercel.app/assets/data/pages/inbox.json').subscribe(
+    this.http.get<{ messages: Message[] }>('assets/data/pages/inbox.json').subscribe(
       (data) => {
         if (data && Array.isArray(data.messages)) {
           this.messages = data.messages; // Assign messages array from data

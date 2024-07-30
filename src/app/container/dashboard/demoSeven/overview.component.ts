@@ -25,7 +25,7 @@ import overviewData from '../../../../assets/data/pages/demo-one/overviewData.js
               <div class="fill-{{ overviewData.type }}  flex items-center">
                 <svg-icon
                   class="w-[30px] h-[30px] [&>svg]:w-full [&>svg]:h-full"
-                  src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/{{
+                  src="assets/images/svg/unicons-line/{{
                     overviewData.icon
                   }}.svg"
                 ></svg-icon>
@@ -59,7 +59,7 @@ import overviewData from '../../../../assets/data/pages/demo-one/overviewData.js
               >
                 <svg-icon
                   class="[&>svg]:w-[16px] [&>svg]:h-[16px]"
-                  src="https://hexadash-angular.vercel.app/assets/images/svg/feather/{{
+                  src="assets/images/svg/feather/{{
                     overviewData.trend
                   }}.svg"
                 ></svg-icon>

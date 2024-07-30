@@ -12,7 +12,7 @@ import overviewData from '../../../../assets/data/pages/demo-one/overviewData.js
             class="flex items-center justify-center order-2 bg-{{ overviewData.type }}/10 text-{{ overviewData.type }} w-[58px] h-[58px] rounded-2xl">
             <div
               class="fill-{{ overviewData.type }}  flex items-center">
-              <svg-icon class="w-[30px] h-[30px] [&>svg]:w-full [&>svg]:h-full" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/{{ overviewData.icon }}.svg"></svg-icon>
+              <svg-icon class="w-[30px] h-[30px] [&>svg]:w-full [&>svg]:h-full" src="assets/images/svg/unicons-line/{{ overviewData.icon }}.svg"></svg-icon>
             </div>
           </div>
           <div>
@@ -28,7 +28,7 @@ import overviewData from '../../../../assets/data/pages/demo-one/overviewData.js
         <div class="mt-3">
           <span class="inline-flex items-center w-full h-11 bg-gray-50 dark:bg-white/[.06]  px-2.5 rounded-lg gap-[10px]">
             <span class="flex items-center text-sm font-medium gap-[2px] text-{{ overviewData.statusColor }}">
-              <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px]" src="https://hexadash-angular.vercel.app/assets/images/svg/feather/{{ overviewData.trend }}.svg"></svg-icon>
+              <svg-icon class="[&>svg]:w-[16px] [&>svg]:h-[16px]" src="assets/images/svg/feather/{{ overviewData.trend }}.svg"></svg-icon>
               {{ overviewData.statusRate }}%
             </span>
             <span class="text-sm text-light dark:text-white/60">{{ overviewData.dataPeriod }}</span>

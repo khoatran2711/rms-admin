@@ -42,12 +42,12 @@ import items from '../../../../assets/data/global/dropdown.json';
       Sales Report</h1>
       <div class="py-[16px]">
         <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
-          <svg-icon class=" text-light dark:text-white/60 dark:group-hover:text-white/[.87] w-[24px] h-[24px] [&>svg]:w-[24px] [&>svg]:h-[24px]" src="https://hexadash-angular.vercel.app/assets/images/svg/feather/more-horizontal.svg"></svg-icon>
+          <svg-icon class=" text-light dark:text-white/60 dark:group-hover:text-white/[.87] w-[24px] h-[24px] [&>svg]:w-[24px] [&>svg]:h-[24px]" src="assets/images/svg/feather/more-horizontal.svg"></svg-icon>
         </a>
         <nz-dropdown-menu #menu="nzDropdownMenu">
           <ul class="block bg-white dark:bg-[#1b1e2b] shadow-regular dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] rounded-4 capitalize" nzSelectable>
             <li *ngFor="let items of appItems" class="flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
-              <svg-icon class="text-current w-3.5 h-3.5 me-2 [&>svg]:w-full [&>svg]:h-full" src="https://hexadash-angular.vercel.app/assets/images/svg/feather/{{items.icon}}.svg"></svg-icon>
+              <svg-icon class="text-current w-3.5 h-3.5 me-2 [&>svg]:w-full [&>svg]:h-full" src="assets/images/svg/feather/{{items.icon}}.svg"></svg-icon>
               {{items.name}}
             </li>
           </ul>
@@ -60,14 +60,14 @@ import items from '../../../../assets/data/global/dropdown.json';
           <span class="flex items-center ps-3 text-sm text-body dark:text-white/60 before:absolute before:bg-primary before:w-2 before:h-2 before:rounded-full ltr:before:left-0 rtl:before:right-0 before:top-1/2 before:-translate-y-2/4">Orders</span>
           <span class="inline-block text-dark dark:text-white/[.87] me-1 ms-2.5 text-22 font-semibold">$8,550</span>
           <span class="flex items-center text-sm text-success font-medium">
-          <svg-icon class="w-[20px] h-[20px] [&>svg]:w-full [&>svg]:h-full" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/arrow-up.svg"></svg-icon>
+          <svg-icon class="w-[20px] h-[20px] [&>svg]:w-full [&>svg]:h-full" src="assets/images/svg/unicons-line/arrow-up.svg"></svg-icon>
           25% </span>
       </div>
       <div class="relative flex items-center mx-3">
           <span class="flex items-center ps-3 text-sm text-body dark:text-white/60 before:absolute before:bg-info before:w-2 before:h-2 before:rounded-full ltr:before:left-0 rtl:before:right-0 before:top-1/2 before:-translate-y-2/4">Sales</span>
           <span class="inline-block text-dark dark:text-white/[.87] me-1 ms-2.5 text-22 font-semibold">$5,550</span>
           <span class="flex items-center text-sm text-danger font-medium">
-          <svg-icon class="w-[20px] h-[20px] [&>svg]:w-full [&>svg]:h-full" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/arrow-down.svg"></svg-icon>15% </span>
+          <svg-icon class="w-[20px] h-[20px] [&>svg]:w-full [&>svg]:h-full" src="assets/images/svg/unicons-line/arrow-down.svg"></svg-icon>15% </span>
       </div>
   </div>
     <div class="hexadash-chart-container" dir="ltr">

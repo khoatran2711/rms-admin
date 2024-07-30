@@ -15,7 +15,7 @@ import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
       (nzChange)="handleChange($event)"
     >
       <p class="text-center mb-[20px]">
-        <svg-icon class="[&>svg]:w-[70px] [&>svg]:h-[70px] text-light-extra dark:text-white/60 inline-block" src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/upload.svg"></svg-icon>
+        <svg-icon class="[&>svg]:w-[70px] [&>svg]:h-[70px] text-light-extra dark:text-white/60 inline-block" src="assets/images/svg/unicons-line/upload.svg"></svg-icon>
       </p>
       <p class="text-[20px] font-medium text-dark dark:text-white/[.87]">Drop File or <strong class="text-primary">Browse</strong></p>
     </nz-upload>

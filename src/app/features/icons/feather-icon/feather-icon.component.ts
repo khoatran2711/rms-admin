@@ -23,12 +23,12 @@ export class FeatherIconComponent implements OnInit {
     }, 500);
   }
   loadIconNames() {
-    this.http.get<any>('https://hexadash-angular.vercel.app/assets/data/icons/feather.json').subscribe(data => {
+    this.http.get<any>('assets/data/icons/feather.json').subscribe(data => {
       this.iconNames = data;
       // this.iconNames.forEach((item) => {
       //   this.http
       //     .get(
-      //       'https://hexadash-angular.vercel.app/assets/images/svg/feather/' +
+      //       'assets/images/svg/feather/' +
       //         item +
       //         '.svg'
       //     )

@@ -360,7 +360,7 @@ export class TicketTableComponent implements OnInit {
   constructor(private http: HttpClient, private modal: NzModalService) {}
 
   ngOnInit(): void {
-    this.http.get<Person[]>('https://hexadash-angular.vercel.app/assets/data/features/ticket-table.json').subscribe(
+    this.http.get<Person[]>('assets/data/features/ticket-table.json').subscribe(
       (data) => {
         this.people = data;
         this.filteredPeople = data;

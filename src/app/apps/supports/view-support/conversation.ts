@@ -55,7 +55,7 @@ export class TicketUserComponent implements OnInit, AfterViewChecked {
     if (storedData) {
       this.ticketUsers = JSON.parse(storedData);
     } else {
-      this.http.get<any>('https://hexadash-angular.vercel.app/assets/data/pages/ticket-user.json').subscribe(data => {
+      this.http.get<any>('assets/data/pages/ticket-user.json').subscribe(data => {
         this.ticketUsers = data.ticketUsers;
       });
     }
@@ -83,7 +83,7 @@ export class TicketUserComponent implements OnInit, AfterViewChecked {
     }
 
     const newMessage = {
-      avatar: 'https://hexadash-angular.vercel.app/assets/images/avatars/thumbs.png', // Replace with the URL of the user's avatar
+      avatar: 'assets/images/avatars/thumbs.png', // Replace with the URL of the user's avatar
       name: 'Md. Rafiq', // Replace with the sender's name
       messagePreview: message,
       timestamp: new Date().toLocaleString(),

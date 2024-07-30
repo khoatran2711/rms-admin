@@ -51,8 +51,8 @@ export class QuickViewComponent implements OnInit {
       body.classList.add('dark');
       const logoImg = document.getElementById('logo-img') as HTMLImageElement;
       const logoFoldImg = document.getElementById('logo-fold-img') as HTMLImageElement;
-      logoImg.src = 'https://hexadash-angular.vercel.app/assets/images/logo/logo-white.png';
-      logoFoldImg.src = 'https://hexadash-angular.vercel.app/assets/images/logo/logo-fold.png';
+      logoImg.src = 'assets/images/logo/logo-white.png';
+      logoFoldImg.src = 'assets/images/logo/logo-fold.png';
     }
 
     if (isListClassEnabled === 'true') {
@@ -76,11 +76,11 @@ export class QuickViewComponent implements OnInit {
     const logoFoldImg = document.getElementById('logo-fold-img') as HTMLImageElement;
 
     if (isDarkModeEnabled) {
-      logoImg.src = 'https://hexadash-angular.vercel.app/assets/images/logo/logo-white.png';
-      logoFoldImg.src = 'https://hexadash-angular.vercel.app/assets/images/logo/logo-fold.png';
+      logoImg.src = 'assets/images/logo/logo-white.png';
+      logoFoldImg.src = 'assets/images/logo/logo-fold.png';
     } else {
-      logoImg.src = 'https://hexadash-angular.vercel.app/assets/images/logo/logo-dark.png';
-      logoFoldImg.src = 'https://hexadash-angular.vercel.app/assets/images/logo/logo-fold.png';
+      logoImg.src = 'assets/images/logo/logo-dark.png';
+      logoFoldImg.src = 'assets/images/logo/logo-fold.png';
     }
 
     this.isDarkMode = isDarkModeEnabled;

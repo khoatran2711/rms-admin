@@ -51,13 +51,13 @@ export class FaqComponent {
   }
 
   fetchUsingApplicationsData() {
-    this.http.get('https://hexadash-angular.vercel.app/assets/data/pages/faq.json').subscribe((data) => {
+    this.http.get('assets/data/pages/faq.json').subscribe((data) => {
       this.usingApplicationsData = data['usingApplications'];
     });
   }
 
   fetchUiElementsData() {
-    this.http.get('https://hexadash-angular.vercel.app/assets/data/pages/faq.json').subscribe((data) => {
+    this.http.get('assets/data/pages/faq.json').subscribe((data) => {
       this.uiElementsData = data['uiElements'];
     });
   }

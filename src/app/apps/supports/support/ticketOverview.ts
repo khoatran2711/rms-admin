@@ -25,7 +25,7 @@ import overviewData from '../../../../assets/data/pages/ticket-overview.json';
               <div class="fill-{{ overviewData.type }}  flex items-center">
                 <svg-icon
                   class="w-[30px] h-[30px] [&>svg]:w-full [&>svg]:h-full"
-                  src="https://hexadash-angular.vercel.app/assets/images/svg/unicons-line/{{
+                  src="assets/images/svg/unicons-line/{{
                     overviewData.icon
                   }}.svg"
                 ></svg-icon>
