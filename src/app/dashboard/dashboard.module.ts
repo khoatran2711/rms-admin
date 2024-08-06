@@ -115,7 +115,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 };
 
 const antdModule = [
-
     NzLayoutModule,
     NzButtonModule,
     NzCardModule,
@@ -154,8 +153,8 @@ const antdModule = [
 @NgModule({
     imports: [
         CommonModule,
-        SharedModule,
         DashboardRoutingModule,
+        SharedModule,
         NzLayoutModule,
         NzButtonModule,
         NzCardModule,
