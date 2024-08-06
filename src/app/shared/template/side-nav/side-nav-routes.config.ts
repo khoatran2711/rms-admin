@@ -9,7 +9,7 @@ export const ROUTES: any[] = [
   },
 
   {
-    path: '',
+    path: '/dashboard/room',
     title: 'Room',
     iconType: 'nzIcon',
     iconTheme: 'outline',
