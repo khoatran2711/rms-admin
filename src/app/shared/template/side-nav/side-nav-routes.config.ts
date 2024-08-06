@@ -7,13 +7,73 @@ export const ROUTES: any[] = [
     icon: 'appstore-add',
     submenu: [],
   },
-   {
-    path: '/dashboard/changelog/changelog',
-    title: 'Change-Log',
+
+  {
+    path: '',
+    title: 'Room',
     iconType: 'nzIcon',
     iconTheme: 'outline',
-    icon: 'rise',
-    submenu: []
+    icon: 'home',
+    submenu: [],
+  },
+  {
+    path: '/dashboard/service',
+    title: 'Service',
+    iconType: 'nzIcon',
+    iconTheme: 'outline',
+    icon: 'customer-service',
+    submenu: [],
+  },
+  {
+    path: '/dashboard/employee',
+    title: 'Employee',
+    iconType: 'nzIcon',
+    iconTheme: 'outline',
+    icon: 'team',
+    submenu: [],
+  },
+  {
+    path: '',
+    title: 'Sale',
+    iconType: 'nzIcon',
+    iconTheme: 'outline',
+    icon: 'shopping-cart',
+    submenu: [
+      {
+        path: '/dashboard/sale/room',
+        title: 'Room booking ',
+        iconType: '',
+        icon: '',
+        iconTheme: '',
+        submenu: [],
+      },
+      {
+        path: '/dashboard/sale/service',
+        title: 'Service Booking ',
+        iconType: '',
+        icon: '',
+        iconTheme: '',
+        submenu: [],
+      },
+      {
+        path: '/dashboard/sale/booking',
+        title: 'Booking',
+        iconType: '',
+        icon: '',
+        iconTheme: '',
+        submenu: [],
+      },
+
+    ],
+
+  },
+  {
+    path: '/dashboard/order',
+    title: 'Order',
+    iconType: 'nzIcon',
+    iconTheme: 'outline',
+    icon: 'solution',
+    submenu: [],
   },
 ];
 export const ROUTES2: any[] = [
