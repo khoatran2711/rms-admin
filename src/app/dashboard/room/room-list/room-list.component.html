@@ -1,4 +1,4 @@
-<nz-tabset nzCentered>
+<nz-tabset nzCentered nzSize="large">
   <nz-tab nzTitle="Room">
     <div
       class="bg-white dark:bg-white/10 m-0 p-0 text-theme-gray dark:text-white/60 text-[15px] rounded-10 relative mb-[25px]">
@@ -181,5 +181,75 @@
       </ng-template>
     </nz-modal>
   </nz-tab>
-  <nz-tab nzTitle="Room type">Content of Tab Pane 2</nz-tab>
+  <nz-tab nzTitle="Room type">
+    <div
+    class="bg-white dark:bg-white/10 m-0 p-0 text-theme-gray dark:text-white/60 text-[15px] rounded-10 relative mb-[25px]">
+    <div
+      class="pt-[30px] pb-[30px] px-[25px] text-dark dark:text-white/[.87] font-medium text-[17px] flex items-center justify-between max-sm:flex-col max-sm:gap-[15px]">
+      <div class="flex items-center justify-between max-sm:flex-col max-sm:gap-[15px] ">
+        <h4 class="mb-0 text-[20px] leading-6 font-medium text-dark dark:text-white/[.87] mr-5">
+          Room Type
+        </h4>
+         <div class="3xl:w-[280px] max-ssm:w-full [&>div>div.ant-select-selector]:border-0 shadow-md">
+          <nz-input-group class="bg-white dark:bg-white/10 rounded-[6px] h-[40px] flex items-center px-[20px]">
+            <input
+              class="bg-transparent border-none text-[15px] shadow-none text-dark dark:text-white/[.87] flex items-center"
+              type="text" nz-input placeholder="Search " >
+            <i class="text-theme-gray dark:text-white/[.87]" nz-icon nzType="search"></i>
+          </nz-input-group>
+        </div>
+      </div>
+
+      <button
+        class="flex items-center px-[14px] text-sm text-white rounded-md font-semibold bg-primary border-primary h-10 gap-[6px]"
+        nz-button (click)="showModal()">
+
+        <i class="text-[12px]" nz-icon nzType="plus"></i>
+        <span class="m-0">Add Room Type</span>
+      </button>
+    </div>
+    </div>
+    <div nz-row nzGutter="25">
+      <div class="duration-300" nz-col nzXXl="6" nzLg="8" nzSm="12" nzXs="24" class="mb-[25px]"
+        *ngFor="let image of filteredGallery">
+        <ng-container >
+          <figure class="bg-white dark:bg-white/10 rounded-10">
+            <img class="w-full h-[276px] rounded-10" [src]="image.url" [alt]="image.caption">
+            <figcaption>
+              <div class="px-6 py-5">
+                <h1 class="text-15 font-medium mb-0.5 text-dark dark:text-white/[.87]">{{image.title}}</h1>
+                <p class="mb-0 text-light dark:text-white/60 text-13">{{image.description}}</p>
+              </div>
+            </figcaption>
+          </figure>
+        </ng-container>
+        <button nz-button
+        class="bg-transparent border-none absolute top-[16px] text-light dark:text-white/60 ltr:right-[26px] rtl:left-[26px] inline-flex items-center justify-center p-0"
+        nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+        <svg-icon
+          class=" text-light-extra dark:text-white/60 dark:group-hover:text-white/[.87] w-[24px] h-[24px] [&>svg]:w-[24px] [&>svg]:h-[24px]"
+          src="assets/images/svg/feather/more-horizontal.svg"></svg-icon>
+      </button>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul
+          class="block bg-white dark:bg-[#1b1e2b] shadow-regular dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] rounded-4 capitalize"
+          nzSelectable>
+          <li
+            class="flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
+            view
+          </li>
+          <li
+            class="flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
+            edit
+          </li>
+          <li
+            class="flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
+            delete
+          </li>
+        </ul>
+      </nz-dropdown-menu>
+      </div>
+
+    </div>
+  </nz-tab>
 </nz-tabset>

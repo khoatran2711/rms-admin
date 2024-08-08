@@ -88,7 +88,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     FullCalendarModule,
     NzMessageModule,
-    NzPaginationModule
+    NzPaginationModule,
+
   ],
 })
 export class RoomModule {}

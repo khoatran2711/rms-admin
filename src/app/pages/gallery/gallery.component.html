@@ -28,7 +28,8 @@
       </div>
     </ng-container>
     <div nz-row nzGutter="25">
-      <div class="duration-300" nz-col nzXXl="6" nzLg="8" nzSm="12" nzXs="24" class="mb-[25px]" *ngFor="let image of filteredGallery">
+      <div class="duration-300" nz-col nzXXl="6" nzLg="8" nzSm="12" nzXs="24" class="mb-[25px]"
+        *ngFor="let image of filteredGallery">
         <ng-container *ngIf="showContentGallery; else loadingSkeleton">
           <figure class="bg-white dark:bg-white/10 rounded-10">
             <img class="w-full h-[276px] rounded-10" [src]="image.url" [alt]="image.caption">
