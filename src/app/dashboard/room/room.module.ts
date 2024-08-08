@@ -40,6 +40,7 @@ import {
 } from 'ngx-om-perfect-scrollbar';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RoomListComponent } from './room-list/room-list.component';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -87,6 +88,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     FullCalendarModule,
     NzMessageModule,
+    NzPaginationModule
   ],
 })
 export class RoomModule {}

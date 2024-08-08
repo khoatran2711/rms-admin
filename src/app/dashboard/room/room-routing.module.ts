@@ -4,9 +4,21 @@ import { RoomListComponent } from './room-list/room-list.component';
 
 const routes: Routes = [
   {
+    path: "room-list",
+    component: RoomListComponent,
+    data: {
+      title: 'Room managermant',
+    },
+  },
+  {
     path: "",
-    component: RoomListComponent
-  }
+    component: RoomListComponent,
+    data: {
+      title: 'Room managermant',
+    },
+    // pathMatch: 'full'
+  },
+
 ];
 
 @NgModule({

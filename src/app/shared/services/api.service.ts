@@ -17,4 +17,17 @@ export class ApiService {
   register(data){
     return this.httpService.Post(Admin_URL.login,data)
   }
+
+  listRoom(filter){
+    return this.httpService.Get(Admin_URL.listRoom,filter)
+  }
+  getRoom(id){
+    return this.httpService.Get(Admin_URL.roomDetail,{id:id})
+  }
+  createRoom(data){
+    return this.httpService.Post(Admin_URL.createRoom,data)
+  }
+  updateRoom(data){
+    return this.httpService.Post(Admin_URL.updateRoom,data)
+  }
 }
