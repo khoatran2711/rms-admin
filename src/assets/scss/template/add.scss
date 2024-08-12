@@ -8219,15 +8219,15 @@ nz-descriptions {
   width: 95%;
 }
 
-.ant-drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  pointer-events: none;
-}
+// .ant-drawer {
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//   z-index: 1000;
+//   pointer-events: none;
+// }
 
 .ant-drawer-inline {
   position: absolute;
@@ -8261,14 +8261,14 @@ nz-descriptions {
   box-shadow: 6px 0 16px -8px rgba(0, 0, 0, 0.08), 9px 0 28px 0 rgba(0, 0, 0, 0.05), 12px 0 48px 16px rgba(0, 0, 0, 0.03);
 }
 
-.ant-drawer-right>.ant-drawer-content-wrapper {
+.ant-drawer-right > .ant-drawer-content-wrapper {
   top: 0;
   right: 0;
   bottom: 0;
   box-shadow: -6px 0 16px -8px rgba(0, 0, 0, 0.08), -9px 0 28px 0 rgba(0, 0, 0, 0.05), -12px 0 48px 16px rgba(0, 0, 0, 0.03);
 }
 
-.ant-drawer-top>.ant-drawer-content-wrapper {
+.ant-drawer-top > .ant-drawer-content-wrapper {
   top: 0;
   right: 0;
   left: 0;
@@ -44570,3 +44570,7 @@ video {
 }
 
 /*# sourceMappingURL=styles.css.map*/
+// .ant-drawer-open.ant-drawer-right .ant-drawer-content-wrapper{
+//   transform: translateX(0) !important;
+
+// }

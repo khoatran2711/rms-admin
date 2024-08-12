@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/shared/services/api.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-room-list',
@@ -9,100 +10,48 @@ import { ApiService } from 'src/app/shared/services/api.service';
 })
 export class RoomListComponent implements OnInit {
   constructor(private apiService: ApiService, private fb: FormBuilder) {}
-  gallery = [
-    {
-      url: '../../../assets/images/gallery/g1.png',
-      caption: 'presentation web-design',
-      title: 'Presentation Web Design',
-      description: 'A collection of web design images for presentations.',
-    },
-    {
-      url: '../../../assets/images/gallery/g2.png',
-      caption: 'web-design',
-      title: 'Web Design',
-      description: 'Various web design examples and inspirations.',
-    },
-    {
-      url: '../../../assets/images/gallery/g3.png',
-      caption: 'ui-design web-design',
-      title: 'UI Design Web Design',
-      description: 'Examples of UI design for web applications and websites.',
-    },
-    {
-      url: '../../../assets/images/gallery/g4.png',
-      caption: 'wireframe',
-      title: 'Wireframe',
-      description: 'Wireframe designs for planning and prototyping.',
-    },
-    {
-      url: '../../../assets/images/gallery/g5.png',
-      caption: 'presentation',
-      title: 'Presentation',
-      description: 'Images and graphics for presentations.',
-    },
-    {
-      url: '../../../assets/images/gallery/g6.png',
-      caption: 'web-design wireframe',
-      title: 'Web Design Wireframe',
-      description: 'Combining web design and wireframe concepts.',
-    },
-    {
-      url: '../../../assets/images/gallery/g7.png',
-      caption: 'ui-design',
-      title: 'UI Design',
-      description: 'User interface design examples and ideas.',
-    },
-    {
-      url: '../../../assets/images/gallery/g8.png',
-      caption: 'wireframe',
-      title: 'Wireframe',
-      description: 'Wireframe designs for planning and prototyping.',
-    },
-    {
-      url: '../../../assets/images/gallery/g9.png',
-      caption: 'web-design',
-      title: 'Web Design',
-      description: 'Various web design examples and inspirations.',
-    },
-    {
-      url: '../../../assets/images/gallery/g10.png',
-      caption: 'ui-design presentation',
-      title: 'UI Design Presentation',
-      description: 'UI design examples for presentations.',
-    },
-    {
-      url: '../../../assets/images/gallery/g11.png',
-      caption: 'web-design',
-      title: 'Web Design',
-      description: 'Various web design examples and inspirations.',
-    },
-    {
-      url: '../../../assets/images/gallery/g12.png',
-      caption: 'presentation wireframe',
-      title: 'Presentation Wireframe',
-      description: 'Wireframe designs for presentations.',
-    },
-  ];
-
-  filteredGallery = this.gallery;
+  isOpenCreateType = false;
+  selectClass =
+    'capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[46px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[4px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60';
+  host = environment.base_URL;
+  roomTypeData = [];
   roomData = [];
   pageData = {};
+  searchNameTypeRoom = '';
   filter = {
     status: '',
     roomType: '',
     name: '',
   };
-  ngOnInit() {
-    this.initData();
-  }
-  initData() {
-    this.getRoomData();
-  }
+  submitedTypeRoom = false;
   isConfirmLoading;
   isVisible;
   filteredPeople = [];
   value;
   statusFilter;
+  roomTypeForm: FormGroup;
+
+  ngOnInit() {
+    this.initData();
+  }
+  initData() {
+    this.getRoomData();
+    this.getRoomTypeData();
+    this.makeRoomTypeForm();
+  }
+
+  makeRoomTypeForm(d?) {
+    this.roomTypeForm = this.fb.group({
+      id: [d?.id],
+      name: [d?.name, Validators.required],
+      imageUrl: [
+        d?.imageUrl || 'https://placehold.co/250x200',
+        Validators.required,
+      ],
+      maxPeople: [d?.maxPeople, Validators.required],
+      decscription: [d?.decscription],
+    });
+  }
   filterByStatus() {}
   contactSearchValue;
   filterByContact() {}
@@ -123,5 +72,79 @@ export class RoomListComponent implements OnInit {
       console.log(this.roomData);
       console.log(this.pageData);
     });
+  }
+  getRoomTypeData(filte?) {
+    this.apiService.listRoomType(filte).subscribe((res) => {
+      this.roomTypeData = res['data'];
+      console.log(this.roomTypeData);
+    });
+  }
+  openCreateTypeRoom(id?) {
+    if (id) {
+      this.apiService.getRoomType(id).subscribe((res) => {
+        this.makeRoomTypeForm(res);
+        this.isOpenCreateType = true;
+      });
+    }
+    this.makeRoomTypeForm();
+    this.isOpenCreateType = true;
+  }
+  closeCreateTypeRoom() {
+    this.isOpenCreateType = false;
+    console.log(this.isOpenCreateType);
+  }
+  onUploadImage(event) {
+    let fileInput = event.target.files[0];
+    if (fileInput) {
+      let formdata = new FormData();
+      formdata.set('file', fileInput);
+      this.apiService.uploadIMG(formdata).subscribe((res) => {
+        this.roomTypeForm.get('imageUrl').setValue(res);
+      });
+    }
+  }
+  submitRoomTypeForm() {
+    this.submitedTypeRoom = true;
+    if (this.roomTypeForm.valid) {
+      const id = this.roomTypeForm.get('id').value;
+      console.log(this.roomTypeForm.value);
+      if (id) {
+        this.apiService
+          .updateRoomType(this.roomTypeForm.value)
+          .subscribe((_) => {
+            this.getRoomTypeData();
+            this.closeCreateTypeRoom();
+          });
+        this.submitedTypeRoom = false;
+
+        return;
+      }
+      this.apiService.createRoomType(this.roomTypeForm.value).subscribe((_) => {
+        this.getRoomTypeData();
+        this.closeCreateTypeRoom();
+      });
+      this.submitedTypeRoom = false;
+      return;
+    }
+    return;
+  }
+  onDeleteRoomType(id) {
+    let data = {
+      id,
+    };
+    this.apiService.deleteRoomType(data).subscribe((_) => {
+      this.getRoomTypeData();
+    });
+  }
+  onSearch() {
+    if (!this.searchNameTypeRoom) {
+      this.apiService.listRoomType({}).subscribe((res) => {
+        this.roomTypeData = res['data'];
+      });
+    }
+    let searchData = this.roomTypeData.filter((item) =>
+      item.name.toLowerCase().includes(this.searchNameTypeRoom.toLowerCase())
+    );
+    this.roomTypeData = searchData;
   }
 }

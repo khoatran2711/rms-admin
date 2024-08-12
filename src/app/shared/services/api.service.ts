@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
-import { Admin_URL } from 'src/app/common/api_common';
+import { Admin_URL, Common_URL } from 'src/app/common/api_common';
 import { register } from 'swiper/element/bundle';
 
 @Injectable({
@@ -18,6 +18,7 @@ export class ApiService {
     return this.httpService.Post(Admin_URL.login,data)
   }
 
+  // fetching Room
   listRoom(filter){
     return this.httpService.Get(Admin_URL.listRoom,filter)
   }
@@ -29,5 +30,26 @@ export class ApiService {
   }
   updateRoom(data){
     return this.httpService.Post(Admin_URL.updateRoom,data)
+  }
+  // fetching Room Type
+  listRoomType(filter){
+    return this.httpService.Get(Admin_URL.listRoomType,filter)
+  }
+  getRoomType(id){
+    return this.httpService.Get(Admin_URL.roomTypeDetail,{id:id})
+  }
+  createRoomType(data){
+    return this.httpService.Post(Admin_URL.createRoomType,data)
+  }
+  updateRoomType(data){
+    return this.httpService.Post(Admin_URL.updateRoomType,data)
+  }
+  deleteRoomType(id){
+    return this.httpService.Delete(Admin_URL.deleteRoomType,id)
+  }
+
+  // fetching upload IMG
+  uploadIMG(imageFile){
+    return this.httpService.Post(Common_URL.uploadIMG,imageFile)
   }
 }

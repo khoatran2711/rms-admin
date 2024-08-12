@@ -7,31 +7,28 @@ import { NzDemoDrawerBasicRightComponent } from './basic-right';
 import { NzDemoDrawerFromDrawerComponent } from './from-drawer';
 import { NzDemoDrawerMultiLevelDrawerComponent } from './multi-level-drawer';
 import { NzDemoDrawerPlacementComponent } from './placement';
-import { NzDemoDrawerServiceComponent, NzDrawerCustomComponent } from './service';
+import {
+  NzDemoDrawerServiceComponent,
+  NzDrawerCustomComponent,
+} from './service';
 import { NzDemoDrawerUserProfileComponent } from './user-profile';
 import { NzDemoDrawerEnComponent } from './en.component';
 
-
 @NgModule({
-  imports     : [
+  imports: [
     DemoComponentsShareModule,
     ...moduleList,
-    RouterModule.forChild([
-      { path: 'en', component: NzDemoDrawerEnComponent }
-    ])
+    RouterModule.forChild([{ path: 'en', component: NzDemoDrawerEnComponent }]),
   ],
   declarations: [
-		NzDemoDrawerBasicRightComponent,
-		NzDemoDrawerFromDrawerComponent,
-		NzDemoDrawerMultiLevelDrawerComponent,
-		NzDemoDrawerPlacementComponent,
-		NzDemoDrawerServiceComponent,
-	NzDrawerCustomComponent,
-		NzDemoDrawerUserProfileComponent,
-		NzDemoDrawerEnComponent,
-
-  ]
+    NzDemoDrawerBasicRightComponent,
+    NzDemoDrawerFromDrawerComponent,
+    NzDemoDrawerMultiLevelDrawerComponent,
+    NzDemoDrawerPlacementComponent,
+    NzDemoDrawerServiceComponent,
+    NzDrawerCustomComponent,
+    NzDemoDrawerUserProfileComponent,
+    NzDemoDrawerEnComponent,
+  ],
 })
-export class NzDemoDrawerModule {
-
-}
+export class NzDemoDrawerModule {}

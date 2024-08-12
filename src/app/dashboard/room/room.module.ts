@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { RoomRoutingModule } from './room-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { NgApexchartsModule } from 'ng-apexcharts';
@@ -41,16 +41,16 @@ import {
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RoomListComponent } from './room-list/room-list.component';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
 
-
 @NgModule({
-  declarations: [
-    RoomListComponent
-  ],
+  declarations: [RoomListComponent],
   imports: [
     CommonModule,
     RoomRoutingModule,
@@ -89,7 +89,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FullCalendarModule,
     NzMessageModule,
     NzPaginationModule,
-
+    NzDrawerModule,
+    NzDividerModule,
+    NzDescriptionsModule,
+    ReactiveFormsModule
   ],
 })
 export class RoomModule {}
