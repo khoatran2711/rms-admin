@@ -44,6 +44,7 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -92,7 +93,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NzDrawerModule,
     NzDividerModule,
     NzDescriptionsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzSwitchModule
   ],
 })
 export class RoomModule {}

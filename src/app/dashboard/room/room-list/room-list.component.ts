@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { environment } from 'src/environments/environment';
 
@@ -10,6 +10,34 @@ import { environment } from 'src/environments/environment';
 })
 export class RoomListComponent implements OnInit {
   constructor(private apiService: ApiService, private fb: FormBuilder) {}
+  switchValue = false;
+  roomsOption = [];
+  statusOption = [
+    {
+      en: 'Available',
+      vi: 'Sẵn sàng',
+    },
+    {
+      en: 'Occupied',
+      vi: 'Đang sử dụng',
+    },
+    {
+      en: 'Reserved',
+      vi: 'Đã đặt',
+    },
+    {
+      en: 'Out of Service',
+      vi: 'Không sử dụng',
+    },
+    {
+      en: 'Cleaning',
+      vi: 'Đang dọn dẹp',
+    },
+    {
+      en: 'Checked Out',
+      vi: 'Đã trả phòng',
+    },
+  ];
   isOpenCreateType = false;
   selectClass =
     'capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[46px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[4px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60';
@@ -26,10 +54,11 @@ export class RoomListComponent implements OnInit {
   submitedTypeRoom = false;
   isConfirmLoading;
   isVisible;
-  filteredPeople = [];
-  value;
+  // filteredPeople = [];
+  // value;
   statusFilter;
   roomTypeForm: FormGroup;
+  roomForm: FormGroup;
 
   ngOnInit() {
     this.initData();
@@ -44,13 +73,18 @@ export class RoomListComponent implements OnInit {
     this.roomTypeForm = this.fb.group({
       id: [d?.id],
       name: [d?.name, Validators.required],
-      imageUrl: [
-        d?.imageUrl || 'https://placehold.co/250x200',
-        Validators.required,
-      ],
+      imageUrl: [d?.imageUrl || 'https://placehold.co/250x200'],
       maxPeople: [d?.maxPeople, Validators.required],
       decscription: [d?.decscription],
     });
+  }
+  makeRoomForm(d?) {
+    this.roomForm = this.fb.group({
+      id: [d?.id],
+      name: [d?.name, Validators.required],
+      price: [d?.price, Validators.required],
+
+    })
   }
   filterByStatus() {}
   contactSearchValue;
@@ -76,6 +110,7 @@ export class RoomListComponent implements OnInit {
   getRoomTypeData(filte?) {
     this.apiService.listRoomType(filte).subscribe((res) => {
       this.roomTypeData = res['data'];
+      this.roomsOption = res['data'];
       console.log(this.roomTypeData);
     });
   }
@@ -104,28 +139,33 @@ export class RoomListComponent implements OnInit {
     }
   }
   submitRoomTypeForm() {
-    this.submitedTypeRoom = true;
-    if (this.roomTypeForm.valid) {
-      const id = this.roomTypeForm.get('id').value;
-      console.log(this.roomTypeForm.value);
-      if (id) {
-        this.apiService
-          .updateRoomType(this.roomTypeForm.value)
-          .subscribe((_) => {
-            this.getRoomTypeData();
-            this.closeCreateTypeRoom();
-          });
-        this.submitedTypeRoom = false;
-
-        return;
-      }
-      this.apiService.createRoomType(this.roomTypeForm.value).subscribe((_) => {
+    if (this.roomTypeForm.invalid) {
+      this.submitedTypeRoom = true;
+      // console.log(this.roomTypeForm['name'].errors)
+      Object.values(this.roomTypeForm.controls).forEach((control) => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+      return;
+    }
+    const id = this.roomTypeForm.get('id').value;
+    console.log(this.roomTypeForm.value);
+    if (id) {
+      this.apiService.updateRoomType(this.roomTypeForm.value).subscribe((_) => {
         this.getRoomTypeData();
         this.closeCreateTypeRoom();
       });
       this.submitedTypeRoom = false;
+
       return;
     }
+    this.apiService.createRoomType(this.roomTypeForm.value).subscribe((_) => {
+      this.getRoomTypeData();
+      this.closeCreateTypeRoom();
+    });
+    this.submitedTypeRoom = false;
     return;
   }
   onDeleteRoomType(id) {
@@ -146,5 +186,11 @@ export class RoomListComponent implements OnInit {
       item.name.toLowerCase().includes(this.searchNameTypeRoom.toLowerCase())
     );
     this.roomTypeData = searchData;
+  }
+  get type() {
+    return this.roomTypeForm.controls;
+  }
+  checkAvai() {
+    console.log(this.switchValue);
   }
 }

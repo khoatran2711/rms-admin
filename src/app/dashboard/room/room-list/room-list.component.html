@@ -26,8 +26,7 @@
                 [(ngModel)]="filter.roomType" (ngModelChange)="filterByStatus()" nzPlaceHolder="Select a status"
                 nzAllowClear>
                 <nz-option nzValue="" nzLabel="All"></nz-option>
-                <nz-option nzValue="single" nzLabel="Single"></nz-option>
-                <nz-option nzValue="double" nzLabel="Double"></nz-option>
+                <nz-option *ngFor="let item of roomsOption" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
               </nz-select>
             </div>
             <div class="inline-flex items-center">
@@ -37,9 +36,8 @@
                 [(ngModel)]="filter.status" (ngModelChange)="filterByStatus()" nzPlaceHolder="Select a status"
                 nzAllowClear>
                 <nz-option nzValue="" nzLabel="All"></nz-option>
-                <nz-option nzValue="open" nzLabel="Open"></nz-option>
-                <nz-option nzValue="pending" nzLabel="Pending"></nz-option>
-                <nz-option nzValue="close" nzLabel="Close"></nz-option>
+                <nz-option *ngFor="let item of statusOption" [nzValue]="item.en" [nzLabel]="item.en"></nz-option>
+
               </nz-select>
             </div>
           </div>
@@ -56,7 +54,7 @@
         </div>
         <perfect-scrollbar>
           <div class="w-full max-2xl:overflow-x-auto max-h-[450px]">
-            <nz-table #basicTable [nzData]="filteredPeople" [nzFrontPagination]="false" [nzShowPagination]="false">
+            <nz-table #basicTable [nzData]="roomData" [nzFrontPagination]="false" [nzShowPagination]="false">
               <thead>
                 <tr>
                   <th
@@ -86,7 +84,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="group max-lg:whitespace-nowrap" *ngFor="let person of filteredPeople, index as i">
+                <tr class="group max-lg:whitespace-nowrap" *ngFor="let person of roomData, index as i">
                   <td
                     class="ltr:pr-[20px] rtl:pl-[20px] text-theme-gray dark:text-white/60 font-medium text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">
                     #{{ i + 1 }}
@@ -162,18 +160,65 @@
       </div>
     </div>
 
-    <nz-modal [(nzVisible)]="isVisible" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()" nzTitle="Create Room">
+    <nz-modal nzWidth="750px" [(nzVisible)]="isVisible" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()"
+      nzTitle="Create Room">
       <ng-container *nzModalContent>
-        <p>Content one</p>
-        <p>Content two</p>
-        <p>Content three</p>
+        <form nz-form class="" [formGroup]="roomForm">
+          <nz-form-item>
+            <nz-form-label class="flex items-center font-medium dark:text-white/60" [nzSm]="6" [nzXs]="24" nzRequired
+              nzFor="email">Name {{'(id)'}} </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+              <input
+                class="{{ 'capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[46px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[4px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60' }}"
+                nz-input id="email" />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label class="flex items-center font-medium dark:text-white/60" [nzSm]="6" [nzXs]="24" nzRequired
+              nzFor="email">Price </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+
+              <div class="relative mt-2 rounded-md shadow-sm">
+
+                <input
+                class="{{ 'capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[46px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[4px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60' }}"
+                nz-input id="email" appAllowDecimalNumber/>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                  <span class="text-gray-500 sm:text-sm" id="price-currency">VND</span>
+                </div>
+              </div>
+
+
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label class="flex items-center font-medium dark:text-white/60" [nzSm]="6" [nzXs]="24"
+              nzFor="password" nzRequired>Type Room</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+              <nz-select
+                class="min-w-[180px] capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[40px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[6px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-light dark:[&>.ant-select-arrow]:text-white/60"
+                [(ngModel)]="filter.roomType" (ngModelChange)="filterByStatus()" nzPlaceHolder="Select a status"
+                nzAllowClear>
+                <nz-option nzValue="" nzLabel="All"></nz-option>
+                <nz-option *ngFor="let item of roomsOption" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label class="flex items-center font-medium dark:text-white/60" [nzSm]="6" [nzXs]="24"
+              nzFor="password" nzRequired>Available</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+              <nz-switch [(ngModel)]="switchValue" (click)="checkAvai()"></nz-switch>
+            </nz-form-control>
+          </nz-form-item>
+
+
+
+        </form>
+
       </ng-container>
       <ng-template #modalFooter>
-        <!-- <button
-        class="hover:bg-gray-hbr border-solid border-1 dark:bg-transparent border-normal dark:border-white/10 text-light dark:text-white/60 dark:focus:text-white/60 hover:text-white text-[14px] font-semibold leading-[22px] inline-flex items-center justify-center rounded-[4px] px-[20px] h-[44px]"
-        nz-button nzType="default" (click)="handleCancel()">
-        Cancel
-      </button> -->
+
         <button
           class="bg-primary hover:bg-primary-hbr hover:border-primary-hbr border-solid border-1 border-primary text-white dark:text-white/[.87] text-[14px] font-semibold leading-[22px] inline-flex items-center justify-center rounded-[4px] px-[20px] h-[44px]"
           nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">
@@ -212,11 +257,12 @@
       </div>
     </div>
     <div nz-row nzGutter="25">
-      <div class="duration-300" nz-col nzXXl="6" nzLg="8" nzSm="12" nzXs="24" class="mb-[25px]"
+      <div class="duration-300" nz-col nzXs="24" nzSm="12" nzXl="8" nzXXl="6" class="mb-[25px]"
         *ngFor="let item of roomTypeData">
         <ng-container>
           <figure class="bg-white dark:bg-white/10 rounded-10">
-            <img class="w-full h-[276px] rounded-10" [src]="host +  item.imageUrl" [alt]="item.name">
+            <img class="w-full h-[276px] rounded-10 object-cover "
+              [src]=" !item.imageUrl.includes('https') && host + item.imageUrl || item.imageUrl" [alt]="item.name">
             <figcaption>
               <div class="px-6 py-5">
                 <h1 class="text-15 font-medium mb-0.5 text-dark dark:text-white/[.87] capitalize ">{{item.name}}</h1>
@@ -256,26 +302,47 @@
     <nz-drawer [nzBodyStyle]="{ overflow: 'auto' }" [nzMaskClosable]="false" [nzWidth]="720"
       [nzVisible]="isOpenCreateType" nzTitle="Create Room Type " nzPlacement="right" [nzFooter]="footerTpl"
       (nzOnClose)="closeCreateTypeRoom()">
-      <form nz-form *nzDrawerContent [formGroup]="roomTypeForm">
-        <div nz-row [nzGutter]="8">
+      <form #myForm nz-form *nzDrawerContent [formGroup]="roomTypeForm">
+        <nz-form-item nzGutter="25" class="mb-0">
+          <nz-form-control nxMd="8" nzXs="24" class="mb-[10px]">
+            <nz-form-label
+              class="flex items-center font-medium [&>label]:text-dark [&>label]:dark:text-white/60 mb-[10px] p-0 text-[15px] capitalize"
+              nzRequired nzFor="name">Name</nz-form-label>
+            <input
+              class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
+              nz-input formControlName="name" id="name" placeholder="please enter name" />
+            <div *ngIf="submitedTypeRoom && type['name'].errors" class="invalid-feedback">
+              <span class="ant-form-item-explain-error mt-1 ml-1"
+                *ngIf="roomTypeForm.get('name')?.errors['required'] == true ">
+                Please input name!
+              </span>
+            </div>
+
+          </nz-form-control>
+
+          <nz-form-control nxMd="8" nzXs="24" class="mb-[10px]">
+            <nz-form-label
+              class="flex font-medium items-center [&>label]:text-dark [&>label]:dark:text-white/60 mb-[10px] p-0 text-[15px] capitalize"
+              nzRequired nzFor="maxPeople">max People</nz-form-label>
+            <input
+              class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
+              nz-input formControlName="maxPeople" id="maxPeople" placeholder="please enter max Guest" />
+            <div *ngIf="submitedTypeRoom && type['maxPeople'].errors" class="invalid-feedback">
+              <span class="ant-form-item-explain-error mt-1 ml-1"
+                *ngIf="type['maxPeople']?.errors['required'] == true ">
+                Please input max People!
+              </span>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <!-- <div nz-row [nzGutter]="8">
           <div nz-col nzSpan="12">
             <nz-form-item>
               <nz-form-label class="flex items-center font-medium dark:text-white/60">Name</nz-form-label>
-              <nz-form-control>
+              <nz-form-control nzErrorTip="Input is required">
                 <input formControlName="name"
                   class="w-full rounded-4 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] h-[46px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
-                  nz-input placeholder="please enter name" />
-                  <ng-template #userErrorTpl let-control>
-                    <!-- @if (control.errors?.['required']) {
-                      Please input your username!
-                    }
-                    @if (control.errors?.['duplicated']) {
-                      The username is redundant!
-                    } -->
-                      <!-- <span *ngIf="roomTypeForm.get('name').errors?.[]">
-
-                      </span> -->
-                  </ng-template>
+                  nz-input placeholder="please enter name" required />
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -286,68 +353,60 @@
                 <input formControlName="maxPeople"
                   class="w-full rounded-4 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] h-[46px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
                   nz-input placeholder="please enter max Guest" />
+
               </nz-form-control>
             </nz-form-item>
-          </div>
-
-        </div>
-        <div nz-row [nzGutter]="8" nzAlign="middle">
-
-          <div nz-col nzSpan="8">
-            <nz-form-item>
-              <nz-form-label class="flex items-center font-medium dark:text-white/60"> Image URL</nz-form-label>
-              <nz-form-control>
-                <!--
-                <input type="file" (change)="onUploadImage($event)"
-                  class="w-full text-gray-500 font-medium text-base bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 file:bg-primary file:border-primary file:hover:bg-primary-hbr file:text-white rounded" /> -->
-                <label for="uploadFile1"
-                  class="flex bg-primary hover:bg-primary-hbr text-white text-base px-5 py-3 outline-none rounded w-max cursor-pointer font-[sans-serif]">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mr-2 fill-white inline" viewBox="0 0 32 32">
-                    <path
-                      d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
-                      data-original="#000000" />
-                    <path
-                      d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
-                      data-original="#000000" />
-                  </svg>
-                  Upload
-                  <input type="file" id='uploadFile1' class="hidden" (change)="onUploadImage($event)" />
-                </label>
-              </nz-form-control>
-            </nz-form-item>
-          </div>
-          <div nz-col nzSpan="14">
-            <div class="p-2">
-              <img class="h-[200px] object-cover max-w-full rounded-lg"
-                [src]="!roomTypeForm.get('imageUrl').value.includes('https')? host + roomTypeForm.get('imageUrl').value: roomTypeForm.get('imageUrl').value"
-                alt="">
-            </div>
-          </div>
-
-        </div>
-        <!-- <div nz-row [nzGutter]="8">
-
-          <div nz-col nzSpan="24">
-            <div class="p-2">
-              <img class="h-auto max-w-full rounded-lg" [src] = "host + roomTypeForm.get('imageUrl').value" alt="">
-
-            </div>
           </div>
 
         </div> -->
-        <div nz-row [nzGutter]="8">
-          <div nz-col nzSpan="24">
-            <nz-form-item>
-              <nz-form-label class="flex items-center font-medium dark:text-white/60">Description</nz-form-label>
-              <nz-form-control>
-                <textarea formControlName="decscription"
-                  class="w-full rounded-4 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
-                  nz-input placeholder="please enter url description"
-                  [nzAutosize]="{ minRows: 4, maxRows: 4 }"></textarea>
-              </nz-form-control>
-            </nz-form-item>
-          </div>
-        </div>
+        <nz-form-item nzGutter="25" class="mb-0">
+          <nz-form-control nxMd="8" nzXs="24" class="mb-[10px]" nzErrorTip="The input is not valid First Name!">
+            <nz-form-label
+              class="flex items-center font-medium [&>label]:text-dark [&>label]:dark:text-white/60 mb-[10px] p-0 text-[15px] capitalize">Image
+              URL</nz-form-label>
+
+            <div class="flex items-center">
+
+
+              <label for="uploadFile1"
+                class="flex bg-primary hover:bg-primary-hbr text-white text-base px-5 py-3 outline-none rounded w-max cursor-pointer  ">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mr-2 fill-white inline" viewBox="0 0 32 32">
+                  <path
+                    d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
+                    data-original="#000000" />
+                  <path
+                    d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
+                    data-original="#000000" />
+                </svg>
+                Upload
+                <input type="file" id='uploadFile1' class="hidden" (change)="onUploadImage($event)" />
+              </label>
+
+              <div nz-col nzSpan="14">
+                <div class="p-2">
+                  <img class="h-[200px] object-cover max-w-full rounded-lg"
+                    [src]="!roomTypeForm.get('imageUrl').value.includes('https')? host + roomTypeForm.get('imageUrl').value: roomTypeForm.get('imageUrl').value"
+                    alt="">
+                </div>
+              </div>
+
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+
+
+        <nz-form-item nzGutter="25" class="mb-0">
+          <nz-form-control nxMd="8" nzXs="24" class="mb-[10px]">
+            <nz-form-label
+              class="flex items-center font-medium [&>label]:text-dark [&>label]:dark:text-white/60 mb-[10px] p-0 text-[15px] capitalize">Decscription</nz-form-label>
+            <textarea formControlName="decscription"
+              class="w-full rounded-4 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
+              nz-input placeholder="Decscription" [nzAutosize]="{ minRows: 4, maxRows: 4 }"></textarea>
+
+          </nz-form-control>
+        </nz-form-item>
+
+
       </form>
 
       <ng-template #footerTpl>
