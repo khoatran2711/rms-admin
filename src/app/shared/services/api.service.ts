@@ -31,6 +31,9 @@ export class ApiService {
   updateRoom(data){
     return this.httpService.Post(Admin_URL.updateRoom,data)
   }
+  deleteRoom(id){
+    return this.httpService.Delete(Admin_URL.deleteRoom,{id:id})
+  }
   // fetching Room Type
   listRoomType(filter){
     return this.httpService.Get(Admin_URL.listRoomType,filter)

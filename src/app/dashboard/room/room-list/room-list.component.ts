@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { environment } from 'src/environments/environment';
-
+import { formatNumber } from '@angular/common';
 @Component({
   selector: 'app-room-list',
   templateUrl: './room-list.component.html',
@@ -10,7 +10,15 @@ import { environment } from 'src/environments/environment';
 })
 export class RoomListComponent implements OnInit {
   constructor(private apiService: ApiService, private fb: FormBuilder) {}
-  switchValue = false;
+  formatNumber = formatNumber;
+  switchValue = true;
+  options = {
+    suffix: ' USD',
+    prefix: '$',
+    thousands: ',',
+    decimal: '.',
+    // inputMode: CurrencyMaskInputMode.NATURAL,
+  };
   roomsOption = [];
   statusOption = [
     {
@@ -39,18 +47,28 @@ export class RoomListComponent implements OnInit {
     },
   ];
   isOpenCreateType = false;
-  selectClass =
-    'capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[46px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[4px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60';
   host = environment.base_URL;
   roomTypeData = [];
   roomData = [];
-  pageData = {};
+  originRoomData = [];
+  pageData = {
+    totalDocs: 1,
+    limit: 10,
+    totalPages: 1,
+    page: 1,
+    pagingCounter: 1,
+    hasPrevPage: false,
+    hasNextPage: false,
+    prevPage: null,
+    nextPage: null,
+  };
   searchNameTypeRoom = '';
   filter = {
     status: '',
-    roomType: '',
+    roomTypeID: '',
     name: '',
   };
+  submitedRoom = false;
   submitedTypeRoom = false;
   isConfirmLoading;
   isVisible;
@@ -67,6 +85,12 @@ export class RoomListComponent implements OnInit {
     this.getRoomData();
     this.getRoomTypeData();
     this.makeRoomTypeForm();
+    this.makeRoomForm();
+  }
+  clearFilter() {
+    this.filter.name = '';
+    this.filter.roomTypeID = '';
+    this.filter.status = '';
   }
 
   makeRoomTypeForm(d?) {
@@ -81,37 +105,54 @@ export class RoomListComponent implements OnInit {
   makeRoomForm(d?) {
     this.roomForm = this.fb.group({
       id: [d?.id],
+      roomTypeID: [d?.roomTypeID, Validators.required],
       name: [d?.name, Validators.required],
       price: [d?.price, Validators.required],
-
-    })
+      status: [
+        (this.switchValue && 'Available') || 'Out of Service',
+        Validators.required,
+      ],
+    });
   }
-  filterByStatus() {}
-  contactSearchValue;
-  filterByContact() {}
+
+  filterByOption() {
+    this.filter.name = '';
+    this.getRoomData(this.filter);
+  }
+
+  filterByName() {
+    let name = this.filter.name;
+    let filterData = this.originRoomData.filter((item) =>
+      item.name.includes(name)
+    );
+    this.roomData = filterData;
+  }
   searchById() {}
 
   handleCancel() {
     this.isVisible = false;
   }
-  handleOk() {}
-  showModal() {
+  showModal(id?) {
+    if (id) {
+      this.apiService.getRoom(id).subscribe((res) => {
+        this.makeRoomForm(res[0]);
+      });
+    }
+    this.makeRoomForm();
     this.isVisible = true;
-    console.log('show');
   }
   getRoomData(filter?) {
-    this.apiService.listRoom(filter).subscribe((res) => {
+    this.apiService.listRoom(this.filter).subscribe((res) => {
       this.roomData = res['data'];
+      this.originRoomData = res['data'];
       this.pageData = res['pageData'];
-      console.log(this.roomData);
-      console.log(this.pageData);
+      console.log(this.pageData)
     });
   }
   getRoomTypeData(filte?) {
     this.apiService.listRoomType(filte).subscribe((res) => {
       this.roomTypeData = res['data'];
       this.roomsOption = res['data'];
-      console.log(this.roomTypeData);
     });
   }
   openCreateTypeRoom(id?) {
@@ -154,6 +195,7 @@ export class RoomListComponent implements OnInit {
     console.log(this.roomTypeForm.value);
     if (id) {
       this.apiService.updateRoomType(this.roomTypeForm.value).subscribe((_) => {
+        this.clearFilter();
         this.getRoomTypeData();
         this.closeCreateTypeRoom();
       });
@@ -162,6 +204,7 @@ export class RoomListComponent implements OnInit {
       return;
     }
     this.apiService.createRoomType(this.roomTypeForm.value).subscribe((_) => {
+      this.clearFilter();
       this.getRoomTypeData();
       this.closeCreateTypeRoom();
     });
@@ -190,7 +233,42 @@ export class RoomListComponent implements OnInit {
   get type() {
     return this.roomTypeForm.controls;
   }
-  checkAvai() {
-    console.log(this.switchValue);
+  get roomControl() {
+    return this.roomForm.controls;
   }
+  submitRoomForm() {
+    this.submitedRoom = true;
+    if (this.roomForm.valid) {
+      let id = this.roomForm.get('id').value;
+      let data = this.roomForm.value;
+      if (id) {
+        this.apiService.updateRoom(data).subscribe((_) => {
+          this.getRoomData(this.filter);
+          this.isVisible = false;
+        });
+        return;
+      }
+      this.apiService.createRoom(data).subscribe((_) => {
+        this.getRoomData(this.filter);
+        this.isVisible = false;
+      });
+      return;
+    }
+    Object.values(this.roomForm.controls).forEach((control) => {
+      if (control.invalid) {
+        control.markAsDirty();
+        control.updateValueAndValidity({ onlySelf: true });
+      }
+    });
+    return;
+  }
+  onDelete(id) {
+    console.log(id);
+    this.apiService.deleteRoom(id).subscribe((res) => {
+      this.getRoomData({});
+    });
+  }
+  // onSearchByName(){
+  //   let searchName = this.filterByName
+  // }
 }

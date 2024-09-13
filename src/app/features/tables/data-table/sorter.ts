@@ -4,7 +4,7 @@ interface DataItem {
   name: string;
   chinese: number;
   math: number;
-  english: number;
+    english: number;
 }
 
 @Component({

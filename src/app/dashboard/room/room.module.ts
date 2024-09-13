@@ -45,9 +45,14 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
-
+import  
+ { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
+};
+import { IConfig } from 'ngx-mask';
+const maskConfig: Partial<IConfig> = {
+  suffix: '' // Thêm ký hiệu '₫' vào cuối
 };
 
 @NgModule({
@@ -94,7 +99,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NzDividerModule,
     NzDescriptionsModule,
     ReactiveFormsModule,
-    NzSwitchModule
+    NzSwitchModule,
+    NgxMaskDirective
   ],
+  providers: [provideNgxMask(maskConfig)],
 })
 export class RoomModule {}
