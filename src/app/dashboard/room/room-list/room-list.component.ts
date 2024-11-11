@@ -146,7 +146,7 @@ export class RoomListComponent implements OnInit {
       this.roomData = res['data'];
       this.originRoomData = res['data'];
       this.pageData = res['pageData'];
-      console.log(this.pageData)
+      console.log(this.roomData)
     });
   }
   getRoomTypeData(filte?) {
@@ -158,7 +158,7 @@ export class RoomListComponent implements OnInit {
   openCreateTypeRoom(id?) {
     if (id) {
       this.apiService.getRoomType(id).subscribe((res) => {
-        this.makeRoomTypeForm(res);
+        this.makeRoomTypeForm(res[0]);
         this.isOpenCreateType = true;
       });
     }

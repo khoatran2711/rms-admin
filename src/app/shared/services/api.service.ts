@@ -50,6 +50,22 @@ export class ApiService {
   deleteRoomType(id){
     return this.httpService.Delete(Admin_URL.deleteRoomType,id)
   }
+  // fetching Service
+  listService(filter){
+    return this.httpService.Get(Admin_URL.listService,filter)
+  }
+  getService(id){
+    return this.httpService.Get(Admin_URL.ServiceDetail,{id:id})
+  }
+  createService(data){
+    return this.httpService.Post(Admin_URL.createService,data)
+  }
+  updateService(data){
+    return this.httpService.Post(Admin_URL.updateService,data)
+  }
+  deleteService(id){
+    return this.httpService.Delete(Admin_URL.deleteService,id)
+  }
 
   // fetching upload IMG
   uploadIMG(imageFile){

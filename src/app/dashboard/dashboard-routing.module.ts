@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DemoTwoDashboardComponent } from './demo-two/demo-two.component';
+import { ServiceComponent } from './service/service.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,13 @@ const routes: Routes = [
     loadChildren: () => import('./room/room.module').then((m) => m.RoomModule),
     data: {
       title: 'Room',
+    },
+  },
+  {
+    path: 'service',
+    component: ServiceComponent,
+    data: {
+      title: 'Service managermant',
     },
   },
   // {
