@@ -27,6 +27,12 @@ export const Admin_URL = {
   createService: get('service/create'),
   updateService: get('service/update'),
   deleteService: get('service/delete'),
+  // Product
+  listProduct: get('product/list'),
+  productDetail: get('product/detail'),
+  createProduct: get('product/create'),
+  updateProduct: get('product/update'),
+  deleteProduct: get('product/delete'),
 };
 export const Common_URL = {
   uploadIMG: getCommon('image/upload'),

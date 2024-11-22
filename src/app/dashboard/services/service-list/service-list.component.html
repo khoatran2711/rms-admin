@@ -8,7 +8,7 @@
       </h4>
       <div class="3xl:w-[280px] max-ssm:w-full [&>div>div.ant-select-selector]:border-0 shadow-md">
         <nz-input-group class="bg-white dark:bg-white/10 rounded-[6px] h-[40px] flex items-center px-[20px]">
-          <input (ngModelChange)="filterServiceData($event)" [(ngModel)]="searchName"
+          <input (ngModelChange)="filterServiceData($event)"
             class="bg-transparent border-none text-[15px] shadow-none text-dark dark:text-white/[.87] flex items-center"
             type="text" nz-input placeholder="Search ">
           <i class="text-theme-gray dark:text-white/[.87]" nz-icon nzType="search"></i>
@@ -51,15 +51,20 @@
         class="block bg-white dark:bg-[#1b1e2b] shadow-regular dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] rounded-4 capitalize"
         nzSelectable nz-menu>
 
+        <li (click)="onViewProduct(item.id)" nz-menu-item
+          class="cursor-pointer flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
+          <i nz-icon nzType="eye" nzTheme="outline"></i>
+          <span class="ml-[5px]">View</span>
+        </li>
         <li (click)="openServiceForm(item.id)" nz-menu-item
           class="cursor-pointer flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
           <i nz-icon nzType="edit" theme="outline"></i>
-          <span class="m-l-10">Edit</span>
+          <span class="ml-[5px]">Edit</span>
         </li>
         <li (click)="onDeleteService(item.id)" nz-menu-item
           class="cursor-pointer flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
           <i nz-icon nzType="delete" theme="outline"></i>
-          <span class="m-l-10">Delete</span>
+          <span class="ml-[5px]">Delete</span>
         </li>
       </ul>
 
@@ -67,27 +72,7 @@
   </div>
 </div>
 
-<!-- <nz-modal  [(nzVisible)]="showServiceForm" (nzOnCancel)="closeServiceForm()" [nzFooter]="modalFooter" nzTitle="Create Service" >
-  <ng-template *nzModalContent>
-    <form nz-form class="max-w-[600px]" [formGroup]="serviceForm" (ngSubmit)="submitServiceForm()">
-      <nz-form-item>
-        <nz-form-label class="flex items-center font-medium dark:text-white/60" [nzSm]="6" [nzXs]="24" nzRequired
-          nzFor="email">E-mail</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-          <input
-            class="w-full rounded-4 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
-            nz-input formControlName="email" id="email" />
-        </nz-form-control>
-      </nz-form-item>
-    </form>
 
-  </ng-template>
-
-  <ng-template #modalFooter>
-
-  </ng-template>
-
-</nz-modal> -->
 <nz-modal nzWidth="750px" [(nzVisible)]="showServiceForm" [nzFooter]="modalFooter" (nzOnCancel)="closeServiceForm()"
   [nzTitle]="ServiceFormTitle">
   <ng-container *nzModalContent>
@@ -159,6 +144,5 @@
         Submit
       </button>
     </div>
-
   </ng-template>
 </nz-modal>

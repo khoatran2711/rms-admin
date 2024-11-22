@@ -290,19 +290,19 @@
           <ul
             class="block bg-white dark:bg-[#1b1e2b] shadow-regular dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] rounded-4 capitalize"
             nzSelectable nz-menu>
-            <li nz-menu-item
-              class="cursor-pointer flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
-              view
-            </li>
+
             <li (click)="openCreateTypeRoom(item.id) " nz-menu-item
               class="cursor-pointer flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
-              edit
+              <i nz-icon nzType="edit" theme="outline"></i>
+              <span class="m-l-10">Edit</span>
             </li>
             <li (click)="onDeleteRoomType(item.id)" nz-menu-item
               class="cursor-pointer flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
-              delete
+              <i nz-icon nzType="delete" theme="outline"></i>
+              <span class="m-l-10">Delete</span>
             </li>
           </ul>
+
         </nz-dropdown-menu>
       </div>
 

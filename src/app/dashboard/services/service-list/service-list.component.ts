@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { environment } from 'src/environments/environment';
-import { ChangeDetectorRef } from '@angular/core';
-import { filter } from 'rxjs/operators';
+
 @Component({
-  selector: 'app-service',
-  templateUrl: './service.component.html',
-  styleUrls: ['./service.component.scss'],
+  selector: 'app-service-list',
+  templateUrl: './service-list.component.html',
+  styleUrls: ['./service-list.component.scss']
 })
-export class ServiceComponent implements OnInit {
+export class ServiceListComponent implements OnInit {
+
   showServiceForm = false;
   serviceForm: FormGroup;
   serviceData = [];
@@ -21,7 +22,8 @@ export class ServiceComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private fb: FormBuilder,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
   createServiceForm(d?) {
     this.serviceForm = this.fb.group({
@@ -118,4 +120,8 @@ export class ServiceComponent implements OnInit {
 
     this.serviceData = serviceFiltered;
   }
+  onViewProduct(id) {
+    this.router.navigate(['dashboard/service/product', id]);
+  }
+
 }

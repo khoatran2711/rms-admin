@@ -17,10 +17,10 @@ const routes: Routes = [
   },
   {
     path: 'service',
-    component: ServiceComponent,
     data: {
-      title: 'Service managermant',
+      title: 'Service',
     },
+    loadChildren: () =>import("./services/services.module").then((m) => m.ServicesModule),
   },
   // {
   //     path: 'demo-one',

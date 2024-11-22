@@ -64,7 +64,23 @@ export class ApiService {
     return this.httpService.Post(Admin_URL.updateService,data)
   }
   deleteService(id){
-    return this.httpService.Delete(Admin_URL.deleteService,id)
+    return this.httpService.Delete(Admin_URL.deleteService,{id:id})
+  }
+  // fetching Service
+  listProduct(filter){
+    return this.httpService.Get(Admin_URL.listProduct,filter)
+  }
+  getProduct(id){
+    return this.httpService.Get(Admin_URL.productDetail,{id:id})
+  }
+  createProduct(data){
+    return this.httpService.Post(Admin_URL.createProduct,data)
+  }
+  updateProduct(data){
+    return this.httpService.Post(Admin_URL.updateProduct,data)
+  }
+  deleteProduct(id){
+    return this.httpService.Delete(Admin_URL.deleteProduct,{id:id})
   }
 
   // fetching upload IMG
