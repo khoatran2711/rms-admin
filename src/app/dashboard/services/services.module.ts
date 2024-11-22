@@ -14,6 +14,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { ProductListComponent } from './product-list/product-list.component';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     NzButtonModule,
     NzToolTipModule,
     NzIconModule,
-    NzTableModule
+    NzTableModule,
+    NzEmptyModule,
+    NzPaginationModule
   ]
 })
 export class ServicesModule { }

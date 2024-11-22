@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: '', component: ServiceListComponent },
   {
     path: 'product/:Serviceid',
-    data: { title: 'Product List' },
+    data: { title: 'Products' },
     component: ProductListComponent,
   },
 ];

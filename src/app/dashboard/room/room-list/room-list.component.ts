@@ -12,13 +12,7 @@ export class RoomListComponent implements OnInit {
   constructor(private apiService: ApiService, private fb: FormBuilder) {}
   formatNumber = formatNumber;
   switchValue = true;
-  options = {
-    suffix: ' USD',
-    prefix: '$',
-    thousands: ',',
-    decimal: '.',
-    // inputMode: CurrencyMaskInputMode.NATURAL,
-  };
+
   roomsOption = [];
   statusOption = [
     {
