@@ -17,6 +17,8 @@ export class ServiceListComponent implements OnInit {
   ServiceFormTitle = 'Create Service';
   host = environment.base_URL;
   isConfirmLoading = false;
+  isLoading = true;
+  showContent = false;
   originData = [];
   searchName = '';
   constructor(
@@ -39,6 +41,7 @@ export class ServiceListComponent implements OnInit {
   ngOnInit(): void {
     this.createServiceForm();
     this.fetchServiceData();
+    this.loadData();
   }
 
   fetchServiceData() {
@@ -123,5 +126,11 @@ export class ServiceListComponent implements OnInit {
   onViewProduct(id) {
     this.router.navigate(['dashboard/service/product', id]);
   }
-
+  loadData() {
+    // Simulate an asynchronous data loading operation
+    setTimeout(() => {
+      this.isLoading = false;
+      this.showContent = true;
+    }, 500);
+  }
 }

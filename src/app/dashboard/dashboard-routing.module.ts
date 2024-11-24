@@ -22,6 +22,13 @@ const routes: Routes = [
     },
     loadChildren: () =>import("./services/services.module").then((m) => m.ServicesModule),
   },
+  {
+    path: 'employee',
+    data: {
+      title: 'Employee',
+    },
+    loadChildren: () =>import("./employee/employee.module").then((m) => m.EmployeeModule),
+  },
   // {
   //     path: 'demo-one',
   //     component: DemoOneDashboardComponent,

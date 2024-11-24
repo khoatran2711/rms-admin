@@ -1,3 +1,9 @@
+<ng-template #loadingSkeleton>
+  <!-- <nz-skeleton class="bg-white dark:bg-white/10 rounded-6 p-[30px] pt-[15px]" [nzShape]="circle" [nzActive]="true"
+     [nzParagraph]="{ rows: 7}"></nz-skeleton> -->
+  <nz-skeleton class="bg-white dark:bg-white/10 rounded-6 p-[30px] pt-[15px]" [nzActive]="true"
+    [nzParagraph]="{ rows: 7}"></nz-skeleton>
+</ng-template>
 <div
   class="bg-white dark:bg-white/10 m-0 p-0 text-theme-gray dark:text-white/60 text-[15px] rounded-10 relative mb-[25px]">
   <div
@@ -25,7 +31,7 @@
     </button>
   </div>
 </div>
-<div nz-row nzGutter="25">
+<div nz-row nzGutter="25" *ngIf="showContent; else loadingSkeleton">
   <div *ngFor="let item of serviceData" class="duration-300" nz-col nzXXl="6" nzLg="8" nzSm="12" nzXs="24"
     class="mb-[25px]">
     <ng-container>

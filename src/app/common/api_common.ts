@@ -33,6 +33,12 @@ export const Admin_URL = {
   createProduct: get('product/create'),
   updateProduct: get('product/update'),
   deleteProduct: get('product/delete'),
+  // Employee
+  listEmployee: get('employee/list'),
+  employeeDetail: get('employee/detail'),
+  createEmployee: get('employee/create'),
+  updateEmployee: get('employee/update'),
+  deleteEmployee: get('employee/delete'),
 };
 export const Common_URL = {
   uploadIMG: getCommon('image/upload'),

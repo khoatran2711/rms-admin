@@ -9,7 +9,7 @@ import { register } from 'swiper/element/bundle';
 export class ApiService {
 
   constructor(private httpService: HttpService) { }
-
+  host = 'http://localhost:8080';
   login(data){
    return this.httpService.Post(Admin_URL.login,data)
   }
@@ -81,6 +81,22 @@ export class ApiService {
   }
   deleteProduct(id){
     return this.httpService.Delete(Admin_URL.deleteProduct,{id:id})
+  }
+  // fetching Employee
+  listEmployee(filter){
+    return this.httpService.Get(Admin_URL.listEmployee,filter)
+  }
+  getEmployee(id){
+    return this.httpService.Get(Admin_URL.employeeDetail,{id:id})
+  }
+  createEmployee(data){
+    return this.httpService.Post(Admin_URL.createEmployee,data)
+  }
+  updateEmployee(data){
+    return this.httpService.Post(Admin_URL.updateEmployee,data)
+  }
+  deleteEmployee(id){
+    return this.httpService.Delete(Admin_URL.deleteEmployee,{id:id})
   }
 
   // fetching upload IMG

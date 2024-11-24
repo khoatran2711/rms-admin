@@ -1,0 +1,171 @@
+<!-- skeleton -->
+<ng-template #loadingSkeleton>
+  <nz-skeleton class="bg-white dark:bg-white/10 rounded-6 p-[30px] pt-[15px]" [nzAvatar]="true" [nzShape]="'circle'"
+    [nzActive]="true" [nzParagraph]="{ rows: 5 }"></nz-skeleton>
+</ng-template>
+<!-- skeleton -->
+
+<div nz-row nzGutter="25">
+
+  <div nz-col nzXXl="6" nzLg="8" nzMd="10" nzXs="24" class="mb-[25px]">
+    <ng-container *ngIf="showContent; else loadingSkeleton">
+
+      <!-- Profile Avatar -->
+      <div class="bg-white dark:bg-white/10 rounded-[10px]">
+        <div class="px-5 pt-[25px] pb-5 text-center border-b border-regular dark:border-white/10">
+          <figure class="relative max-w-[120px] mx-auto mb-6">
+            <nz-avatar [nzSize]="120" nzIcon="user" [nzSrc]="avatarUrl"></nz-avatar>
+            <span
+              class="absolute right-0 flex items-center justify-center w-10 h-10 bg-white rounded-full -bottom-2 dark:bg-white/10">
+              <nz-upload nzName="avatar" [nzShowUploadList]="false" (nzChange)="handleChange($event)">
+                <span
+                  class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-[14px] text-white"
+                  nz-icon nzType="camera" nzTheme="outline">
+                </span>
+              </nz-upload>
+            </span>
+          </figure>
+          <figcaption>
+            <h1 class="mb-0 text-lg font-semibold text-dark dark:text-white/[.87]">{{
+              employeeForm.get('fullName')?.value || "Full Name" }}</h1>
+            <p class="mb-0 text-light dark:text-white/60 text-15">{{"admin"}}</p>
+          </figcaption>
+        </div>
+        <div class="px-[25px] pt-8 pb-5">
+          <ul class="flex flex-col flex-wrap gap-[14px]">
+            <li>
+              <div class="flex items-center text-[#8288a4] dark:text-white/60 gap-[12px] text-[14px] capitalize">
+                <span class="text-light dark:text-white/60" nz-icon nzType="calendar" nzTheme="outline"></span>
+                {{employeeForm.get('dateOfBirth')?.value || "DD/MM/YYYY"}}
+              </div>
+
+            </li>
+            <li>
+              <div class="flex items-center text-[#8288a4] dark:text-white/60 gap-[12px] text-[14px] capitalize">
+                <span class="text-light dark:text-white/60" nz-icon nzType="phone" nzTheme="outline"></span>
+                {{employeeForm.get('phoneNumber')?.value || "000-XXX-XXXX"}}
+              </div>
+
+            </li>
+            <li>
+              <div class="flex items-center text-[#8288a4] dark:text-white/60 gap-[12px] text-[14px] ">
+                <span class="text-light dark:text-white/60" nz-icon nzType="mail" nzTheme="outline"></span>
+                {{employeeForm.get('email')?.value || "yourname@gmail.com"}}
+              </div>
+
+            </li>
+            <li>
+              <div class="flex items-center text-[#8288a4] dark:text-white/60 gap-[12px] text-[14px] capitalize">
+                <span class="text-light dark:text-white/60" nz-icon nzType="info-circle" nzTheme="outline"></span>
+                {{employeeForm.get('address')?.value || "Your Address"}}
+              </div>
+
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div nz-col nzXXl="18" nzLg="16" nzMd="14" nzXs="24" class="mb-[25px] [&>.ant-skeleton]:mb-[25px]">
+
+    <ng-container *ngIf="showContent; else loadingSkeleton">
+      <!-- Profile Content -->
+      <div class="tab-content">
+        <div class="bg-white dark:bg-white/10 m-0 p-0 mb-[25px] rounded-10 relative">
+          <div
+            class="py-[18px] px-[25px] text-dark dark:text-white/[.87] font-medium text-[17px] border-regular dark:border-white/10 border-b">
+            <h1 class="mb-0 text-lg font-medium text-dark dark:text-white/[.87]">{{ tabTitle }}</h1>
+            <span class="mb-0.5 text-light dark:text-white/60 text-13 font-normal">{{subTitle}}</span>
+          </div>
+          <div class="px-[25px] pb-[50px] pt-[40px]">
+            <div *ngIf="selectedTab === 'editProfile'">
+              <!-- Add your content for the Edit Profile tab -->
+              <div nz-row nzGutter="25" nzJustify="center">
+                <div nz-col nzXXl="12" nzLg="16" nzXs="24">
+                  <!-- <edit-profiles></edit-profiles> -->
+                  <form class="max-w-full" nz-form [formGroup]="employeeForm" (ngSubmit)="submitForm()">
+                    <nz-form-control class="mb-[20px]">
+                      <nz-form-label
+                        class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
+                        nzFor="name">Full name</nz-form-label>
+                      <input
+                        class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
+                        nz-input formControlName="fullName" id="fullName" placeholder="Enter your full name ..." />
+                    </nz-form-control>
+                    <nz-form-control class="mb-[20px]">
+                      <nz-form-label
+                        class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
+                        nzFor="name">Username</nz-form-label>
+                      <input
+                        class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
+                        nz-input formControlName="userName" id="name" placeholder="Enter your Username ..." />
+                    </nz-form-control>
+
+
+                    <nz-form-control class="mb-[20px]">
+                      <nz-form-label
+                        class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
+                        nzFor="address">Address</nz-form-label>
+                      <input
+                        class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
+                        nz-input formControlName="address" id="address" placeholder="Enter your adress ..." />
+                    </nz-form-control>
+                    <nz-form-control class="mb-[20px]">
+                      <nz-form-label
+                        class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
+                        nzFor="website">Birthday</nz-form-label>
+                      <nz-date-picker (ngModelChange)="dateChange($event)" [(ngModel)]="date"
+                        [ngModelOptions]="{standalone: true}"
+                        class="inline-flex items-center rounded-4 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] h-[50px] outline-none placeholder:text-light placeholder:font-normal text-theme-gray dark:text-white/60 w-full mb-[15px]"
+                        nzFormat="dd/MM/yyyy" id="datePicker"></nz-date-picker>
+                    </nz-form-control>
+                    <nz-form-control class="mb-[20px]">
+                      <nz-form-label
+                        class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
+                        nzFor="number">Phone Number</nz-form-label>
+                      <input
+                        class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
+                        nz-input formControlName="phoneNumber" id="number" placeholder="+84" />
+                    </nz-form-control>
+                    <nz-form-control class="mb-[20px]">
+                      <nz-form-label
+                        class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
+                        nzFor="city">Email</nz-form-label>
+                      <input
+                        class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60 mb-[15px]"
+                        nz-input formControlName="email" id="email" placeholder="Enter your email ..." />
+                    </nz-form-control>
+                    <nz-form-control class="mb-[20px]">
+                      <nz-form-label
+                        class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
+                        nzFor="lucy">Role</nz-form-label>
+                      <nz-select ngModel="1" formControlName="roleID"
+                        class="w-full capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[50px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[6px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60"
+                        name="country" [nzOptions]="listOfOption"></nz-select>
+                    </nz-form-control>
+                    <nz-form-control class="mt-[25px]">
+                      <div class="inline-flex items-center gap-[13px]">
+                        <button (click)="submitEmployeeForm()"
+                          class="bg-primary hover:bg-primary-hbr inline-flex items-center outline-none shadow-none w-fit duration-300 text-white capitalize px-[20px] text-[15px] border-primary font-semibold hover:border-primary-hbr rounded-[5px] gap-[8px] h-[46px]"
+                          nz-button nzType="primary">
+                          <span>{{employeeID? "update Profile" : "Add Employee"}}</span>
+                        </button>
+                        <button (click)="goToEmployeeList()"
+                          class="bg-normalBG border-normal dark:bg-white/10 dark:border-white/10 inline-flex items-center outline-none shadow-none w-fit duration-300 text-theme-gray dark:text-white/60 font-semibold capitalize px-[20px] text-[15px rounded-[5px] gap-[8px] h-[46px]"
+                          nz-button nzType="primary">
+                          <span>Cancel</span>
+                        </button>
+                      </div>
+                    </nz-form-control>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
