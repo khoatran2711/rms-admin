@@ -1,0 +1,137 @@
+<!-- skeleton -->
+<ng-template #loadingSkeleton>
+  <nz-skeleton class="bg-white dark:bg-white/10 rounded-6 p-[30px] pt-[15px]" [nzAvatar]="true" [nzShape]="'circle'"
+    [nzActive]="true" [nzParagraph]="{ rows: 5 }"></nz-skeleton>
+</ng-template>
+<!-- skeleton -->
+
+<div nz-row nzGutter="25">
+  <div nz-col nzXXl="18" nzLg="16" nzMd="14" nzXs="24" class="mb-[25px] [&>.ant-skeleton]:mb-[25px]">
+
+    <ng-container *ngIf="showContent; else loadingSkeleton">
+      <!-- Profile Content -->
+      <div class="tab-content">
+        <div class="bg-white dark:bg-white/10 m-0 p-0 mb-[25px] rounded-10 relative">
+
+          <div class="px-[25px] pb-[50px] pt-[40px]">
+            <div>
+              <!-- Add your content for the Edit Profile tab -->
+              <div nz-row nzGutter="25" nzJustify="center">
+                <div nz-col nzXXl="12" nzLg="16" nzXs="24">
+                  <!-- <edit-profiles></edit-profiles> -->
+                  <form class="max-w-full" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+                    <nz-form-control class="mb-[20px]">
+                      <nz-form-label
+                        class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
+                        nzFor="website">Select Date</nz-form-label>
+                      <nz-range-picker [ngModel]="datePicker" [ngModelOptions]="{standalone: true}" [nzDisabledDate]="disabledDate"
+                        class="inline-flex items-center  w-full rounded-6 border-regular border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[40px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
+                        [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm" ngModel
+                        (ngModelChange)="onChange($event)"></nz-range-picker>
+                    </nz-form-control>
+                    <nz-form-control class="mb-[20px]">
+                      <nz-form-label
+                        class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
+                        nzFor="customerName">Customer name</nz-form-label>
+                      <input
+                        class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
+                        nz-input formControlName="customerName" id="customerName" placeholder="Enter your full name ..." />
+                    </nz-form-control>
+                    <nz-form-control class="mb-[20px]">
+                      <nz-form-label
+                        class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
+                        nzFor="identityNumber">Identity Number</nz-form-label>
+                      <input
+                        class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
+                        nz-input formControlName="identityNumber" id="identityNumber" placeholder="Enter identity number ..." />
+                    </nz-form-control>
+
+
+                    <nz-form-control class="mb-[20px]">
+                      <nz-form-label
+                        class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
+                        nzFor="phoneNumber">Phone Number</nz-form-label>
+                      <input
+                        class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
+                        nz-input formControlName="phoneNumber" id="phoneNumber" placeholder="Enter phone Number ..." />
+                    </nz-form-control>
+                    <nz-form-control class="mb-[20px]">
+                      <nz-form-label
+                        class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
+                        nzFor="email">Email</nz-form-label>
+                      <input
+                        class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60 mb-[15px]"
+                        nz-input formControlName="email" id="email" placeholder="Enter email ..." />
+                    </nz-form-control>
+
+                    <nz-form-control class="mt-[25px]">
+                      <div class="inline-flex items-center gap-[13px]">
+                        <button (click)="submitForm()"
+                          class="bg-primary hover:bg-primary-hbr inline-flex items-center outline-none shadow-none w-fit duration-300 text-white capitalize px-[20px] text-[15px] border-primary font-semibold hover:border-primary-hbr rounded-[5px] gap-[8px] h-[46px]"
+                          nz-button nzType="primary">
+                          <span>{{'Save & next'}}</span>
+                        </button>
+                      </div>
+                    </nz-form-control>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div nz-col nzXXl="6" nzLg="8" nzMd="10" nzXs="24" class="mb-[25px]">
+    <ng-container *ngIf="showContent; else loadingSkeleton">
+
+      <!-- Profile Avatar -->
+      <div class="bg-white dark:bg-white/10 rounded-[10px]">
+        <!-- <div class="px-5 pt-[25px] pb-5 text-center border-b border-regular dark:border-white/10">
+          <figure class="relative max-w-[120px] mx-auto mb-6">
+
+          </figure>
+          <figcaption>
+
+          </figcaption>
+        </div> -->
+        <div class="px-[25px] pt-8 pb-5 border-b border-regular dark:border-white/10">
+          <div>
+            <h4
+              class="text-[20px] font-medium mb-[20px] text-dark dark:text-white/[.87]"
+            >
+              1. Customer Information
+            </h4>
+            <p
+              class="text-[16px] font-normal text-dark dark:text-white/[.87] capitalize pt-[4px] pb-[15px]"
+            >
+              First Name :
+              <span class="text-light dark:text-white/60">david</span>
+            </p>
+            <p
+              class="text-[16px] font-normal text-dark dark:text-white/[.87] capitalize pt-[4px] pb-[15px]"
+            >
+              Last Name :
+              <span class="text-light dark:text-white/60">warner</span>
+            </p>
+            <p
+              class="text-[16px] font-normal text-dark dark:text-white/[.87] capitalize pt-[4px] pb-[15px]"
+            >
+              Email Address :
+              <span class="text-light dark:text-white/60 lowercase"
+                >sovware&#64;gmail.com</span
+              >
+            </p>
+            <p
+              class="text-[16px] font-normal text-dark dark:text-white/[.87] capitalize pt-[4px] pb-[15px]"
+            >
+              Address :
+              <span class="text-light dark:text-white/60">3/2 Dhaka, bangladesh</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

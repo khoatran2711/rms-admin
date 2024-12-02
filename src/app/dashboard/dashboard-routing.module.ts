@@ -29,6 +29,13 @@ const routes: Routes = [
     },
     loadChildren: () =>import("./employee/employee.module").then((m) => m.EmployeeModule),
   },
+  {
+    path: 'booking',
+    data: {
+      title: 'Booking',
+    },
+    loadChildren: () =>import("./booking/booking.module").then((m) => m.BookingModule),
+  }
   // {
   //     path: 'demo-one',
   //     component: DemoOneDashboardComponent,

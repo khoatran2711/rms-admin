@@ -1,0 +1,164 @@
+<ng-template #loadingSkeleton>
+  <nz-skeleton class="bg-white dark:bg-white/10 rounded-6 p-[30px] pt-[15px]" [nzAvatar]="true" [nzShape]="'circle'"
+    [nzActive]="true" [nzParagraph]="{ rows: 5 }"></nz-skeleton>
+</ng-template>
+<!-- skeleton -->
+<div
+  class="bg-white dark:bg-white/10 m-0 p-0 text-theme-gray dark:text-white/60 text-[15px] rounded-10 relative mb-[25px]">
+  <div
+    class="pt-[30px] pb-[9px] px-[25px] text-dark dark:text-white/[.87] font-medium text-[17px] flex items-center justify-between max-sm:flex-col max-sm:gap-[15px]">
+    <div class="w-[250px]">
+      <h4 class="mb-0 text-[20px] leading-6 font-medium text-dark dark:text-white/[.87]">
+        List of selected rooms
+      </h4>
+    </div>
+
+    <div
+      class="flex items-center justify-center w-full mt-5 mb-[25px] max-md:flex-col max-md:justify-center gap-[15px]">
+      <div class="inline-flex items-center flex-wrap w-full gap-[20px] justify-end">
+        <div class="inline-flex items-center">
+          <div class="me-2 dark:text-white/60">Times: <span class="font-semibold">{{countOfNight}} nights </span> </div>
+        </div>
+        <div class="inline-flex items-center">
+          <nz-form-control>
+            <nz-range-picker [nzOpen]="false" [ngModelOptions]="{standalone: true}" [nzDisabledDate]="disabledDate"
+              class="inline-flex items-center  w-full rounded-6 border-regular border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[40px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
+              [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm" [(ngModel)]="datePicker"
+              (ngModelChange)="onChange($event)"></nz-range-picker>
+          </nz-form-control>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+  <div class="px-[25px] pb-[25px]">
+
+    <perfect-scrollbar>
+      <div class="w-full max-2xl:overflow-x-auto max-h-[450px]">
+        <form [formGroup]="roomForm">
+          <nz-table class="w-full" nzSize="middle" [nz-data]="rooms.controls" #basicTable [nzFrontPagination]="false"
+            [nzShowPagination]="false">
+            <thead>
+              <tr>
+                <th
+                  class="text-left w-[20%] bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden [&:first-child]:rounded-s-[10px] [&:last-child]:rounded-e-[10px] capitalize">
+                  Room
+                </th>
+                <th
+                  class=" text-left w-[15%] bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden [&:first-child]:rounded-s-[10px] [&:last-child]:rounded-e-[10px] capitalize">
+                  Max people
+                </th>
+                <th
+                  class="text-left w-[20%] bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden [&:first-child]:rounded-s-[10px] [&:last-child]:rounded-e-[10px] capitalize">
+                  Count of Customer
+                </th>
+
+                <th
+                  class="text-left w-[20%] bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden [&:first-child]:rounded-s-[10px] [&:last-child]:rounded-e-[10px] capitalize">
+                  Rate per night
+                </th>
+                <th
+                  class="text-left w-[20%] bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden [&:first-child]:rounded-s-[10px] [&:last-child]:rounded-e-[10px] capitalize">
+                  Room total
+                </th>
+                <th
+                  class="text-left w-[5%] bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-end text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden rounded-e-[10px] capitalize ">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody formArrayName="rooms">
+              <tr class="group max-lg:whitespace-nowrap" *ngFor="let room of rooms.controls;  let i = index"
+                [formGroupName]="i">
+
+                <td class="text-center">
+                  <nz-select (ngModelChange)="onChangeRoom($event, i)"
+                    class="min-w-[260px] capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[50px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[5px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60"
+                    nzShowSearch nzAllowClear nzPlaceHolder="Select a room" formControlName="room" [nzSize]="'large'"
+                    [compareWith]="compareObjects">
+                    <nz-option *ngFor="let roomSelect of roomData "
+                      [nzLabel]="roomSelect.name + ' - ' + roomSelect.roomTypeID.name"
+                      [nzValue]="roomSelect"></nz-option>
+
+                  </nz-select>
+                </td>
+                <td class="text-center">
+                  {{room.get('room')?.value?.roomTypeID.maxPeople || 0}}
+                </td>
+                <td class="text-center">
+                  <input class="text-center" nz-input formControlName="countPeople" type="number" />
+                </td>
+                <td [class]="room.get('room')?.value?.price == null? 'text-center':''">
+                  {{room.get('room')?.value?.price == null? 0 + ' VND': (room.get('room')?.value?.price |
+                  currency:'VND':'':'1.0-0'.replace('₫', '') )+ ' VND'}}
+                </td>
+                <td [class]="room.get('totalPrice')?.value == null? 'text-center':''">
+                  {{room.get("totalPrice")?.value == null? 0 + ' VND': (room.get("totalPrice")?.value |
+                  currency:'VND':'':'1.0-0'.replace('₫', '')) + ' VND'}}
+                </td>
+                <td
+                  class="ltr:pr-[20px] rtl:pl-[20px] ltr:pl-[20px] rtl:pr-[20px] text-dark dark:text-white/[.87] text-[15px] py-[20px] before:hidden border-none group-hover:bg-transparent">
+                  <ul class="flex items-center justify-end gap-[15px]">
+
+
+                    <li>
+                      <div class="flex items-center">
+                        <span (click)="removeRoom(i)"
+                          class="cursor-pointer text-light dark:text-white/60 [&>svg]:w-[14px] [&>svg]:h-[14px] hover:text-danger"
+                          nz-icon nzType="delete" nzTheme="outline"></span>
+                      </div>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+          <div class="bottom-table flex mt-5 justify-end">
+            <div class="total">
+              <p>Total: <span class="font-bold"> {{roomForm?.get("subTotal")?.value || 0 |
+                  currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</span>
+              </p>
+            </div>
+          </div>
+          <div class="mt-[25px] flex justify-between">
+            <div class="left-bottom">
+              <div class="text-right inline-flex items-center gap-[13px] mr-3">
+                <button (click)="toInfomation()"
+                  class="bg-primary hover:bg-primary-hbr inline-flex items-center outline-none shadow-none w-fit duration-300 text-white capitalize px-[20px] text-[15px] border-primary font-semibold hover:border-primary-hbr rounded-[5px] gap-[8px] h-[46px]"
+                  nz-button nzType="primary">
+                  <span>{{'Previous'}}</span>
+                </button>
+              </div>
+            </div>
+            <div class="right-bottom">
+              <nz-form-control>
+                <div class="text-right inline-flex items-center gap-[13px] mr-3">
+                  <button (click)="addRooms()"
+                    class="bg-primary hover:bg-primary-hbr inline-flex items-center outline-none shadow-none w-fit duration-300 text-white capitalize px-[20px] text-[15px] border-primary font-semibold hover:border-primary-hbr rounded-[5px] gap-[8px] h-[46px]"
+                    nz-button nzType="primary">
+                    <span>{{'Add room'}}</span>
+                  </button>
+                </div>
+                <div class="text-right inline-flex items-center gap-[13px]">
+                  <button (click)="submitForm()"
+                    class="bg-primary hover:bg-primary-hbr inline-flex items-center outline-none shadow-none w-fit duration-300 text-white capitalize px-[20px] text-[15px] border-primary font-semibold hover:border-primary-hbr rounded-[5px] gap-[8px] h-[46px]"
+                    nz-button nzType="primary">
+                    <span>{{'Save & next'}}</span>
+                  </button>
+                </div>
+              </nz-form-control>
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+    </perfect-scrollbar>
+    <!-- <div class="border-t border-regular dark:border-white/10 pt-[30px] mt-[10px] flex justify-center">
+    <nz-pagination [nzPageSize]="pageData.limit" [nzPageIndex]="pageData.page || 1" [nzTotal]="pageData.totalDocs"
+      (nzPageIndexChange)="getRoomData()"></nz-pagination>
+  </div> -->
+  </div>
+</div>

@@ -189,7 +189,8 @@ const antdModule = [
         PerfectScrollbarModule,
         FullCalendarModule,
         NzMessageModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+
     ],
     exports: [
       SaleLocationComponent,

@@ -37,7 +37,6 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
     NzSelectModule,
     NzDatePickerModule
 
-
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

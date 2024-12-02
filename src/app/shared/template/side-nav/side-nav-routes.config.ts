@@ -56,7 +56,7 @@ export const ROUTES: any[] = [
         submenu: [],
       },
       {
-        path: '/dashboard/sale/booking',
+        path: '/dashboard/booking',
         title: 'Booking',
         iconType: '',
         icon: '',
