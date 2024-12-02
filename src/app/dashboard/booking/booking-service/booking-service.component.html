@@ -1,165 +1,301 @@
-<div
-  class="bg-white dark:bg-white/10 m-0 p-0 text-theme-gray dark:text-white/60 text-[15px] rounded-10 relative mb-[25px]">
-  <div
-    class="pt-[30px] pb-[9px] px-[25px] text-dark dark:text-white/[.87] font-medium text-[17px] flex items-center justify-between max-sm:flex-col max-sm:gap-[15px]">
-    <h4 class="mb-0 text-[20px] leading-6 font-medium text-dark dark:text-white/[.87]">
-      Products
-    </h4>
-    <div class="flex">
-      <button (click)="previous()"
-        class="mr-2 flex items-center px-[14px] text-sm text-white rounded-md font-semibold bg-primary border-primary h-10 gap-[6px]"
-        nz-button>
+<nz-tabset nzCentered nzSize="large"  (nzSelectedIndexChange)="onTabChange($event)">
+  <nz-tab nzTitle="Product">
 
-        <span class="m-0">Previous</span>
-      </button>
-      <button
-        class="flex items-center px-[14px] text-sm text-white rounded-md font-semibold bg-primary border-primary h-10 gap-[6px]"
-        nz-button>
-
-        <span class="m-0">Save & next</span>
-      </button>
-    </div>
-
-  </div>
-  <div class="px-[25px] pb-[25px]">
     <div
-      class="flex items-center justify-center w-full mt-5 mb-[25px] max-md:flex-col max-md:justify-center gap-[15px]">
-      <div class="inline-flex items-center flex-wrap w-full gap-[20px] max-md:justify-center">
-        <div class="inline-flex items-center">
-          <span class="me-2 dark:text-white/60">Services:</span>
-          <nz-select
-            class="min-w-[180px] capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[40px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[6px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-light dark:[&>.ant-select-arrow]:text-white/60"
-            [(ngModel)]="serviceSelected" (ngModelChange)="filterByOption($event)" nzPlaceHolder="Select a status"
-            nzAllowClear>
-            <nz-option nzValue="" nzLabel="All"></nz-option>
-            <nz-option *ngFor="let item of serviceData" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
-          </nz-select>
-        </div>
+      class="bg-white dark:bg-white/10 m-0 p-0 text-theme-gray dark:text-white/60 text-[15px] rounded-10 relative mb-[25px]">
+      <div
+        class="pt-[30px] pb-[9px] px-[25px] text-dark dark:text-white/[.87] font-medium text-[17px] flex items-center justify-between max-sm:flex-col max-sm:gap-[15px]">
+        <h4 class="mb-0 text-[20px] leading-6 font-medium text-dark dark:text-white/[.87]">
+          Products
+        </h4>
+        <div class="flex">
+          <button (click)="previous()"
+            class="mr-2 flex items-center px-[14px] text-sm text-white rounded-md font-semibold bg-primary border-primary h-10 gap-[6px]"
+            nz-button>
 
-      </div>
-      <div class="ssm:min-w-[280px]">
-        <nz-input-group
-          class="h-10 inline-flex items-center text-body dark:text-white/60 bg-white dark:bg-white/10 border-normal border-1 dark:border-white/10 rounded-[6px] px-[20px]">
-          <i class="text-light dark:text-white/[.87] text-[18px]" nz-icon nzType="search"></i>
-          <input
-            class="bg-transparent border-none text-[15px] shadow-none text-dark dark:text-white/[.87] flex items-center"
-            type="text" nz-input placeholder="Search name" />
-        </nz-input-group>
-      </div>
-    </div>
-
-  </div>
-</div>
-<div nz-row nzGutter="25">
-  <div class="duration-300" nz-col nzXs="24" nzSm="12" nzXl="8" nzXXl="6" class="mb-[25px]"
-    *ngFor="let item of productData">
-    <ng-container>
-      <figure class="bg-white dark:bg-white/10 rounded-t-10">
-        <img class="w-full h-[276px] rounded-t-10 object-cover "
-          [src]=" !item.imgUrl.includes('https') && host + item.imgUrl || item.imgUrl" [alt]="item.name">
-        <figcaption>
-          <div class="px-6 py-5">
-            <h1 class="text-18 font-medium mb-0.5 text-dark dark:text-white/[.87] capitalize ">{{item.name}}</h1>
-            <p class="mb-0 text-light dark:text-white/60 text-13 normal-case">{{item.decscription}}</p>
-            <div class="d-flex align-items-center flex-wrap">
-              <span class="text-primary font-semibold">{{(item.price | currency:'VND':'':'1.0-0'.replace('₫', '')) + '
-                VND'}}</span>
-            </div>
-          </div>
-        </figcaption>
-        <div class="add-container px-6 pb-5">
+            <span class="m-0">Previous</span>
+          </button>
           <button
-            class="flex items-center px-[12px] text-sm text-white rounded-md font-semibold bg-primary border-primary h-10 gap-[6px]"
-            nz-button (click)="showModal(item.id)">
+            class="flex items-center px-[14px] text-sm text-white rounded-md font-semibold bg-primary border-primary h-10 gap-[6px]"
+            nz-button>
 
-            <span nz-icon nzType="shopping-cart" nzTheme="outline"></span>
-            <span class="m-0">Add Product</span>
+            <span class="m-0">Skip</span>
           </button>
         </div>
-      </figure>
-    </ng-container>
-    <button nz-button
-      class="bg-transparent border-none absolute top-[16px] text-light dark:text-white/60 ltr:right-[26px] rtl:left-[26px] inline-flex items-center justify-center p-0"
-      nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
-      <svg-icon
-        class=" text-hbr-dark dark:text-white/60 dark:group-hover:text-white/[.87] w-[24px] h-[24px] [&>svg]:w-[24px] [&>svg]:h-[24px]"
-        src="assets/images/svg/feather/more-horizontal.svg"></svg-icon>
-    </button>
-    <nz-dropdown-menu #menu="nzDropdownMenu">
-      <ul
-        class="block bg-white dark:bg-[#1b1e2b] shadow-regular dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] rounded-4 capitalize"
-        nzSelectable nz-menu>
-        <!-- <li (click)="openCreateTypeRoom(item.id) " nz-menu-item
-          class="cursor-pointer flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
-          <i nz-icon nzType="edit" theme="outline"></i>
-          <span class="m-l-10">Edit</span>
-        </li>
-        <li (click)="onDeleteRoomType(item.id)" nz-menu-item
-          class="cursor-pointer flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
-          <i nz-icon nzType="delete" theme="outline"></i>
-          <span class="m-l-10">Delete</span>
-        </li> -->
-      </ul>
 
-    </nz-dropdown-menu>
-  </div>
-</div>
-
-<nz-modal nzWidth="750px" [(nzVisible)]="isVisible" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()"
-  [nzTitle]="'Add '+productSelected?.name + ' to cart'">
-  <ng-container *nzModalContent>
-    <form nz-form class="" [formGroup]="productAddForm">
-      <nz-form-item>
-        <nz-form-label class="flex items-center font-medium dark:text-white/60" [nzSm]="6" [nzXs]="24" nzRequired
-          nzFor="email">Product </nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24">
-          <nz-select (ngModelChange)="onChangeProduct($event)"
-            class="min-w-[260px] capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[50px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[5px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60"
-            nzShowSearch nzAllowClear nzPlaceHolder="Select a room" formControlName="product" [nzSize]="'large'"
-            [compareWith]="compareObjects">
-            <nz-option *ngFor="let product of productData " [nzLabel]="product.name" [nzValue]="product"></nz-option>
-
-          </nz-select>
-
-        </nz-form-control>
-
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label class="flex items-center font-medium dark:text-white/60" [nzSm]="6" [nzXs]="24" nzRequired
-          nzFor="email">Quantity </nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24">
-
-          <div class="relative mt-2 rounded-md shadow-sm">
-
-            <input formControlName="quantity" type="number"
-              class="{{ 'capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[46px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[4px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60' }}"
-              nz-input />
+      </div>
+      <div class="px-[25px] pb-[25px]">
+        <div
+          class="flex items-center justify-center w-full mt-5 mb-[25px] max-md:flex-col max-md:justify-center gap-[15px]">
+          <div class="inline-flex items-center flex-wrap w-full gap-[20px] max-md:justify-center">
+            <div class="inline-flex items-center">
+              <span class="me-2 dark:text-white/60">Services:</span>
+              <nz-select
+                class="min-w-[180px] capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[40px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[6px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-light dark:[&>.ant-select-arrow]:text-white/60"
+                [(ngModel)]="serviceSelected" (ngModelChange)="filterByOption($event)" nzPlaceHolder="Select a status"
+                nzAllowClear>
+                <nz-option nzValue="" nzLabel="All"></nz-option>
+                <nz-option *ngFor="let item of serviceData" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+              </nz-select>
+            </div>
 
           </div>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label class="flex items-center font-medium dark:text-white/60" [nzSm]="6" [nzXs]="24" nzRequired
-          nzFor="email">Usage date </nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <div class="ssm:min-w-[280px]">
+            <nz-input-group
+              class="h-10 inline-flex items-center text-body dark:text-white/60 bg-white dark:bg-white/10 border-normal border-1 dark:border-white/10 rounded-[6px] px-[20px]">
+              <i class="text-light dark:text-white/[.87] text-[18px]" nz-icon nzType="search"></i>
+              <input
+                class="bg-transparent border-none text-[15px] shadow-none text-dark dark:text-white/[.87] flex items-center"
+                type="text" nz-input placeholder="Search name" />
+            </nz-input-group>
+          </div>
+        </div>
 
-          <div class="relative mt-2 rounded-md shadow-sm">
+      </div>
+    </div>
+    <div nz-row nzGutter="25">
+      <div class="duration-300" nz-col nzXs="24" nzSm="12" nzXl="8" nzXXl="6" class="mb-[25px]"
+        *ngFor="let item of productData">
+        <ng-container>
+          <figure class="bg-white dark:bg-white/10 rounded-t-10">
+            <img class="w-full h-[276px] rounded-t-10 object-cover "
+              [src]=" !item.imgUrl.includes('https') && host + item.imgUrl || item.imgUrl" [alt]="item.name">
+            <figcaption>
+              <div class="px-6 py-5">
+                <h1 class="text-18 font-medium mb-0.5 text-dark dark:text-white/[.87] capitalize ">{{item.name}}</h1>
+                <p class="mb-0 text-light dark:text-white/60 text-13 normal-case">{{item.decscription}}</p>
+                <div class="d-flex align-items-center flex-wrap">
+                  <span class="text-primary font-semibold">{{(item.price | currency:'VND':'':'1.0-0'.replace('₫', '')) +
+                    '
+                    VND'}}</span>
+                </div>
+              </div>
+            </figcaption>
+            <div class="add-container px-6 pb-5">
+              <button
+                class="flex items-center px-[12px] text-sm text-white rounded-md font-semibold bg-primary border-primary h-10 gap-[6px]"
+                nz-button (click)="showModal(item.id)">
 
-            <nz-date-picker (ngModelChange)="dateChange($event)" [(ngModel)]="date"
-              [ngModelOptions]="{standalone: true}" nzShowTime
-              class="inline-flex items-center rounded-4 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] h-[50px] outline-none placeholder:text-light placeholder:font-normal text-theme-gray dark:text-white/60 w-full mb-[15px]"
-              nzFormat="dd/MM/yyyy HH:mm" id="datePicker"></nz-date-picker>
+                <span nz-icon nzType="shopping-cart" nzTheme="outline"></span>
+                <span class="m-0">Add Product</span>
+              </button>
+            </div>
+          </figure>
+        </ng-container>
+        <button nz-button
+          class="bg-transparent border-none absolute top-[16px] text-light dark:text-white/60 ltr:right-[26px] rtl:left-[26px] inline-flex items-center justify-center p-0"
+          nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+          <svg-icon
+            class=" text-hbr-dark dark:text-white/60 dark:group-hover:text-white/[.87] w-[24px] h-[24px] [&>svg]:w-[24px] [&>svg]:h-[24px]"
+            src="assets/images/svg/feather/more-horizontal.svg"></svg-icon>
+        </button>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul
+            class="block bg-white dark:bg-[#1b1e2b] shadow-regular dark:shadow-[0_5px_30px_rgba(1,4,19,.60)] rounded-4 capitalize"
+            nzSelectable nz-menu>
+            <!-- <li (click)="openCreateTypeRoom(item.id) " nz-menu-item
+        class="cursor-pointer flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
+        <i nz-icon nzType="edit" theme="outline"></i>
+        <span class="m-l-10">Edit</span>
+      </li>
+      <li (click)="onDeleteRoomType(item.id)" nz-menu-item
+        class="cursor-pointer flex items-center text-theme-gray dark:text-white/60 hover:bg-primary/10 hover:text-primary dark:hover:bg-white/10 px-3 py-1.5 text-sm dark:hover:text-white/[.87]">
+        <i nz-icon nzType="delete" theme="outline"></i>
+        <span class="m-l-10">Delete</span>
+      </li> -->
+          </ul>
+
+        </nz-dropdown-menu>
+      </div>
+    </div>
+
+    <nz-modal nzWidth="750px" [(nzVisible)]="isVisible" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()"
+      [nzTitle]="'Add '+productSelected?.name + ' to cart'">
+      <ng-container *nzModalContent>
+        <form nz-form class="" [formGroup]="productAddForm">
+          <nz-form-item>
+            <nz-form-label class="flex items-center font-medium dark:text-white/60" [nzSm]="6" [nzXs]="24" nzRequired
+              nzFor="email">Product </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+              <nz-select (ngModelChange)="onChangeProduct($event)"
+                class="min-w-[260px] capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[50px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[5px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60"
+                nzShowSearch nzAllowClear nzPlaceHolder="Select a room" formControlName="product" [nzSize]="'large'"
+                [compareWith]="compareObjects">
+                <nz-option *ngFor="let product of productData " [nzLabel]="product.name"
+                  [nzValue]="product"></nz-option>
+
+              </nz-select>
+
+            </nz-form-control>
+
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label class="flex items-center font-medium dark:text-white/60" [nzSm]="6" [nzXs]="24" nzRequired
+              nzFor="email">Quantity </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+
+              <div class="relative mt-2 rounded-md shadow-sm">
+
+                <input formControlName="quantity" type="number"
+                  class="{{ 'capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[46px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[4px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60' }}"
+                  nz-input />
+
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label class="flex items-center font-medium dark:text-white/60" [nzSm]="6" [nzXs]="24" nzRequired
+              nzFor="email">Usage date </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+
+              <div class="relative mt-2 rounded-md shadow-sm">
+
+                <nz-date-picker (ngModelChange)="dateChange($event)" [(ngModel)]="date"
+                  [ngModelOptions]="{standalone: true}" nzShowTime
+                  class="inline-flex items-center rounded-4 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] h-[50px] outline-none placeholder:text-light placeholder:font-normal text-theme-gray dark:text-white/60 w-full mb-[15px]"
+                  nzFormat="dd/MM/yyyy HH:mm" id="datePicker"></nz-date-picker>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+
+      </ng-container>
+      <ng-template #modalFooter>
+        <button (click)="submitAddProductForm()"
+          class="bg-primary hover:bg-primary-hbr hover:border-primary-hbr border-solid border-1 border-primary text-white dark:text-white/[.87] text-[14px] font-semibold leading-[22px] inline-flex items-center justify-center rounded-[4px] px-[20px] h-[44px]"
+          nz-button nzType="primary">
+          Submit
+        </button>
+      </ng-template>
+    </nz-modal>
+  </nz-tab>
+  <nz-tab nzTitle="Cart">
+    <div
+      class="bg-white dark:bg-white/10 m-0 p-0 text-theme-gray dark:text-white/60 text-[15px] rounded-10 relative mb-[25px]">
+      <div
+        class="pt-[30px] pb-[9px] px-[25px] text-dark dark:text-white/[.87] font-medium text-[17px] flex items-center justify-between max-sm:flex-col max-sm:gap-[15px]">
+        <h4 class="mb-0 text-[20px] leading-6 font-medium text-dark dark:text-white/[.87]">
+          Cart
+        </h4>
+
+      </div>
+      <div class="px-[25px] pb-[25px]">
+        <perfect-scrollbar>
+          <div class="w-full max-2xl:overflow-x-auto max-h-[450px]">
+            <nz-table #basicTable [nzData]="cartData" [nzFrontPagination]="false" [nzShowPagination]="false">
+              <thead>
+                <tr>
+                  <th
+                    class="w-[20%] bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden [&:first-child]:rounded-s-[10px] [&:last-child]:rounded-e-[10px] capitalize">
+                    Product
+                  </th>
+                  <th
+                    class= " w-[20%] bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden [&:first-child]:rounded-s-[10px] [&:last-child]:rounded-e-[10px] capitalize">
+                    Quantity
+                  </th>
+                  <th
+                    class="w-[20%] bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden [&:first-child]:rounded-s-[10px] [&:last-child]:rounded-e-[10px] capitalize">
+                    Usage Date
+                  </th>
+
+                  <th
+                    class="w-[20%] bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden [&:first-child]:rounded-s-[10px] [&:last-child]:rounded-e-[10px] capitalize">
+                    Total Price
+                  </th>
+
+                  <th
+                    class=" w-[5%] bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-end text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden rounded-e-[10px] capitalize ">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="bg-white dark:bg-[#1b1d2a]">
+                <tr *ngFor="let item of cartData, let i = index" class="group">
+                  <td
+                    class="ps-0 pe-4 py-2.5 text-start last:text-end text-dark dark:text-white/[.87] group-hover:bg-transparent text-15 font-medium border-none before:hidden rounded-s-[4px]">
+                    <div class="flex items-center">
+                      <div class="me-2.5 w-[34px] h-[34px]">
+                        <img class="min-w-[34px] h-[34px] rounded-4" [src]="host+item.product.imgUrl"
+                          [alt]="item.product.name" />
+                      </div>
+                      <span class="font-medium capitalize text-dark dark:text-white/[.87] text-15">{{ item.product.name
+                        }}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="px-4 py-2.5 font-normal last:text-end capitalize text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent">
+                      <input nz-input type="number" [value]="item.quantity" (change)="changeQuantity($event,item)"></div>
+                  </td>
+                  <td>
+                    <div class="px-4 py-2.5 font-normal  capitalize text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent">
+                      {{ item.usageDateTime }}</div>
+                  </td>
+                  <td>
+                    {{(item.totalPrice | currency:'VND':'':'1.0-0'.replace('₫', '') )+ ' VND'}}
+                  </td>
+                  <!-- <td
+                    class="px-4 py-2.5 font-normal last:text-end capitalize text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent">
+                    {{ (item.product.price| currency:'VND':'':'1.0-0').replace('₫', '') + ' VND' }}</td>
+
+                  <td
+                    class="px-4 py-2.5 font-normal last:text-end capitalize text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent">
+                    {{ item.product.created_date }}</td> -->
+                  <td
+                    class="ltr:pr-[20px] rtl:pl-[20px] ltr:pl-[20px] rtl:pr-[20px] text-dark dark:text-white/[.87] text-[15px] py-[20px] before:hidden border-none group-hover:bg-transparent">
+                    <ul class="flex items-center justify-end gap-[15px]">
+                      <!-- <li>
+                      <div class="flex items-center leading-none text-light dark:text-white/60 hover:text-primary">
+                        <span class="[&>svg]:w-[14px] [&>svg]:h-[14px] cursor-pointer " nz-icon nzType="eye"
+                          nzTheme="outline"></span>
+                      </div>
+                    </li> -->
+
+                    <li>
+                      <div class="flex items-center">
+                        <span (click)="onRemoveProduct(item)"
+                          class="cursor-pointer text-light dark:text-white/60 [&>svg]:w-[14px] [&>svg]:h-[14px] hover:text-danger"
+                          nz-icon nzType="delete" nzTheme="outline"></span>
+                      </div>
+                    </li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+
+            </nz-table>
+          </div>
+        </perfect-scrollbar>
+      </div>
+    </div>
+    <div class="bottom-table flex mt-5 justify-end">
+      <div class="total">
+        <p>Total: <span class="font-bold"> {{totalAmoute || 0 |
+            currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</span>
+        </p>
+      </div>
+    </div>
+    <div class="mt-[25px] flex justify-between">
+      <div class="left-bottom">
+        <div class="text-right inline-flex items-center gap-[13px] mr-3">
+          <button (click)="previous()"
+            class="bg-primary hover:bg-primary-hbr inline-flex items-center outline-none shadow-none w-fit duration-300 text-white capitalize px-[20px] text-[15px] border-primary font-semibold hover:border-primary-hbr rounded-[5px] gap-[8px] h-[46px]"
+            nz-button nzType="primary">
+            <span>{{'Previous'}}</span>
+          </button>
+        </div>
+      </div>
+      <div class="right-bottom">
+        <nz-form-control>
+
+          <div class="text-right inline-flex items-center gap-[13px]">
+            <button (click)="submitForm()"
+              class="bg-primary hover:bg-primary-hbr inline-flex items-center outline-none shadow-none w-fit duration-300 text-white capitalize px-[20px] text-[15px] border-primary font-semibold hover:border-primary-hbr rounded-[5px] gap-[8px] h-[46px]"
+              nz-button nzType="primary">
+              <span>{{'Save & next'}}</span>
+            </button>
           </div>
         </nz-form-control>
-      </nz-form-item>
-    </form>
-
-  </ng-container>
-  <ng-template #modalFooter>
-    <button (click)="submitAddProductForm()"
-      class="bg-primary hover:bg-primary-hbr hover:border-primary-hbr border-solid border-1 border-primary text-white dark:text-white/[.87] text-[14px] font-semibold leading-[22px] inline-flex items-center justify-center rounded-[4px] px-[20px] h-[44px]"
-      nz-button nzType="primary">
-      Submit
-    </button>
-  </ng-template>
-</nz-modal>
+      </div>
+    </div>
+  </nz-tab>
+</nz-tabset>

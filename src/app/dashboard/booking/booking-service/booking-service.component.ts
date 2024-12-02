@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import moment from 'moment';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-booking-service',
@@ -20,15 +21,18 @@ export class BookingServiceComponent implements OnInit {
   productSelected;
   isVisible = false;
   productAddForm: FormGroup;
+  totalAmoute = 0;
   constructor(
     private apiService: ApiService,
     private fb: FormBuilder,
     private orderService: OrderService,
     private router: Router
   ) {}
+  cartData = [];
   ngOnInit(): void {
     this.fetchServiceData();
     this.fetchProductData();
+    this.fetchCartData();
   }
   showModal(id) {
     console.log('id', id);
@@ -55,6 +59,17 @@ export class BookingServiceComponent implements OnInit {
       console.log('res', res);
       this.productData = res.data;
     });
+  }
+  fetchCartData() {
+    let cartdata = this.orderService.getProductInfo();
+    cartdata.forEach((item) => {
+      item["usageDateTime"] = moment.unix(item["usageDate"]).format("MM/DD/YYYY HH:mm");
+    });
+    console.log('cartdata', cartdata);
+    this.totalAmoute = cartdata.reduce((acc, item) => {
+      return acc + item.totalPrice;
+    }, 0);
+    this.cartData = cartdata;
   }
   filterByOption(e) {
     console.log('e', e);
@@ -99,7 +114,7 @@ export class BookingServiceComponent implements OnInit {
     if (check) {
       check.quantity = Number(check.quantity) + Number(productAddData.quantity);
       check.totalPrice =
-        Number(check.totalPrice) * Number(productAddData.totalPrice);
+        Number(check.quantity) * Number(check.product.price);
     } else {
       cartdata.push(productAddData);
     }
@@ -114,5 +129,26 @@ export class BookingServiceComponent implements OnInit {
   }
   previous(){
     this.router.navigate(['/dashboard/booking/select-room']);
+  }
+  changeQuantity(e, item) {
+    let cartdata = this.orderService.getProductInfo();
+    let check = cartdata.find((cart) => cart.product.id == item.product.id);
+    console.log('check', check);
+    check.quantity = e.target.value;
+    check.totalPrice = Number(check.product.price) * e.target.value;
+    this.orderService.saveProductInfo(cartdata);
+    this.fetchCartData()
+  }
+  onRemoveProduct(item) {
+    let cartdata = this.orderService.getProductInfo();
+    let check = cartdata.filter((cart) => cart.product.id != item.product.id);
+    this.orderService.saveProductInfo(check);
+    this.fetchCartData();
+  }
+  onTabChange(e){
+    this.fetchCartData();
+  }
+  submitForm() {
+    this.router.navigate(['/dashboard/booking/booking-confirm']);
   }
 }
