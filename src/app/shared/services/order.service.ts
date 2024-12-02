@@ -18,5 +18,11 @@ export class OrderService {
   getRoomInfo(){
     return JSON.parse(localStorage.getItem("roomInfo"))
   }
+  saveProductInfo(data){
+    localStorage.setItem("productInfo", JSON.stringify(data))
+  }
+  getProductInfo(){
+    return JSON.parse(localStorage.getItem("productInfo"))
+  }
 
 }

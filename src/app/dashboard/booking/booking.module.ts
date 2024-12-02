@@ -18,6 +18,7 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzSkeletonModule,
     NzAvatarModule,
     NzUploadModule,
-    NzModalModule
+    NzModalModule,
+    NzDropDownModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
