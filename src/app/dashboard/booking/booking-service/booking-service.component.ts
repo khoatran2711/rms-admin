@@ -149,6 +149,6 @@ export class BookingServiceComponent implements OnInit {
     this.fetchCartData();
   }
   submitForm() {
-    this.router.navigate(['/dashboard/booking/booking-confirm']);
+    this.router.navigate(['/dashboard/booking/confirm']);
   }
 }

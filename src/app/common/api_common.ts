@@ -39,6 +39,12 @@ export const Admin_URL = {
   createEmployee: get('employee/create'),
   updateEmployee: get('employee/update'),
   deleteEmployee: get('employee/delete'),
+  // Order
+  listOrder: get('order/list'),
+  orderDetail: get('order/detail'),
+  createOrder: get('order/create'),
+  updateOrder: get('order/update'),
+  deleteOrder: get('order/delete')
 };
 export const Common_URL = {
   uploadIMG: getCommon('image/upload'),

@@ -1,0 +1,50 @@
+<div class="confirm-booking-container">
+  <h2 class="title text-center text-[22px] font-semibold ">Confirm Your Booking</h2>
+
+  <!-- Room Booking Section -->
+  <nz-card class="booking-card px-4" nzTitle="Room Booking Details">
+    <div *ngFor="let room of roomBookingDetails" class="booking-item">
+      <div class="room-details">
+        <img [src]="'http://localhost:8080'+room.room.roomTypeID.imageUrl" alt="Room" class="room-image" />
+        <div class="details">
+          <h4>{{ room.room.name }}</h4>
+          <p><strong>Guests:</strong> {{ room.countPeople }}</p>
+          <p><strong>Check-in:</strong> {{ customerData.checkInDateTime }}</p>
+          <p><strong>Check-out:</strong> {{ customerData.checkOutDateTime }}</p>
+        </div>
+      </div>
+      <div class="price">
+        <p><strong>Price:</strong> {{ room.totalPrice |
+          currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</p>
+      </div>
+    </div>
+  </nz-card>
+
+  <!-- Service Booking Section -->
+  <nz-card class="booking-card px-4" nzTitle="Service Booking Details" *ngIf="serviceBookingDetails.length > 0">
+    <div *ngFor="let service of serviceBookingDetails" class="booking-item">
+      <div class="service-details flex-col">
+        <h4>{{ service.product.name + (service.quantity? ' x' +service.quantity:'' )}}</h4>
+        <p><strong>Date:</strong> {{ service.usageDateTime }}</p>
+      </div>
+      <div class="price">
+        <p><strong>Price:</strong> {{ service.totalPrice |
+          currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</p>
+      </div>
+    </div>
+  </nz-card>
+  <!-- Total Section -->
+  <div class="total-section">
+    <nz-card>
+      <h3>Total Amount: {{ calculateTotal() |
+        currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</h3>
+       <div class="text-right inline-flex items-center gap-[13px]">
+        <button (click)="confirmBooking()"
+          class="bg-primary hover:bg-primary-hbr inline-flex items-center outline-none shadow-none w-fit duration-300 text-white capitalize px-[20px] text-[15px] border-primary font-semibold hover:border-primary-hbr rounded-[5px] gap-[8px] h-[46px]"
+          nz-button nzType="primary">
+          <span>{{'Pay Now'}}</span>
+        </button>
+      </div>
+    </nz-card>
+  </div>
+</div>

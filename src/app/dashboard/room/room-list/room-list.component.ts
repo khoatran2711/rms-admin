@@ -238,6 +238,7 @@ export class RoomListComponent implements OnInit {
       if (id) {
         this.apiService.updateRoom(data).subscribe((_) => {
           this.getRoomData(this.filter);
+          this.getRoomData(this.filter);
           this.isVisible = false;
         });
         return;

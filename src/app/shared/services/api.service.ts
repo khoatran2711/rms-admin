@@ -99,6 +99,23 @@ export class ApiService {
     return this.httpService.Delete(Admin_URL.deleteEmployee,{id:id})
   }
 
+  // fetching Order
+  listOrder(filter){
+    return this.httpService.Get(Admin_URL.listOrder, filter)
+  }
+  getOrder(id){
+    return this.httpService.Get(Admin_URL.orderDetail, {id: id})
+  }
+  createOrder(data){
+    return this.httpService.Post(Admin_URL.createOrder, data)
+  }
+  updateOrder(data){
+    return this.httpService.Post(Admin_URL.updateOrder, data)
+  }
+  deleteOrder(id){
+    return this.httpService.Delete(Admin_URL.deleteOrder, {id: id})
+  }
+
   // fetching upload IMG
   uploadIMG(imageFile){
     return this.httpService.Post(Common_URL.uploadIMG,imageFile)

@@ -20,13 +20,15 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { ConfirmBookingComponent } from './confirm-booking/confirm-booking.component';
 
 
 @NgModule({
   declarations: [
     BookingComponent,
     SelectRoomComponent,
-    BookingServiceComponent
+    BookingServiceComponent,
+    ConfirmBookingComponent
   ],
   imports: [
     CommonModule,
