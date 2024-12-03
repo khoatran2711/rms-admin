@@ -33,11 +33,11 @@ export class SelectRoomComponent implements OnInit {
     let endDate = moment.unix(customerData.checkOutDate).startOf('day');
     let nights = endDate.diff(startDate, 'days');
     this.countOfNight = nights;
+    this.makeForm(roomOrderData);
+
     if (!roomOrderData) {
       this.addRooms();
     }
-    console.log('roomOrderData', roomOrderData);
-    this.makeForm(roomOrderData);
     this.fetchRoomData();
   }
   makeForm(d?) {
@@ -50,6 +50,7 @@ export class SelectRoomComponent implements OnInit {
       totalRoom: [d?.totalRoom || null],
       subTotal: [d?.subTotal || null],
     });
+
   console.log('roomForm', this.roomForm);
   }
   addRooms() {
@@ -72,7 +73,7 @@ export class SelectRoomComponent implements OnInit {
     return current && current.getTime() < new Date().setHours(0, 0, 0, 0);
   };
   get rooms(): FormArray {
-    return this.roomForm.get('rooms') as FormArray;
+    return this.roomForm?.get('rooms') as FormArray;
   }
   fetchRoomData() {
     this.apiService.listRoom({}).subscribe((res: any) => {

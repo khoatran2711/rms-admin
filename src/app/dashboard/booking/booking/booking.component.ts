@@ -41,10 +41,12 @@ export class BookingComponent implements OnInit {
   ngOnInit() {
     const customerData = this.orderService.getCustomerInfo();
     console.log('customerData', customerData);
-    this.datePicker = [
-      moment(customerData.checkInDate * 1000).format('YYYY-MM-DD HH:mm'),
-      moment(customerData.checkOutDate * 1000).format('YYYY-MM-DD HH:mm'),
-    ];
+    if (customerData) {
+      this.datePicker = [
+        moment(customerData.checkInDate * 1000).format('YYYY-MM-DD HH:mm'),
+        moment(customerData.checkOutDate * 1000).format('YYYY-MM-DD HH:mm'),
+      ];
+    }
     this.makeOrderForm(customerData);
     this.loadData();
   }
