@@ -109,8 +109,8 @@ export class ApiService {
   createOrder(data){
     return this.httpService.Post(Admin_URL.createOrder, data)
   }
-  updateOrder(data){
-    return this.httpService.Post(Admin_URL.updateOrder, data)
+  updateStatusOrder(data){
+    return this.httpService.Post(Admin_URL.updateStatusOrder, data)
   }
   deleteOrder(id){
     return this.httpService.Delete(Admin_URL.deleteOrder, {id: id})

@@ -1,0 +1,125 @@
+<div class="grid grid-cols-12 gap-6 p-6">
+  <!-- Left Section: Order Item + Service Order -->
+  <div class="col-span-8 space-y-6">
+    <!-- Order Item -->
+    <div class="bg-white rounded-lg shadow p-6 ">
+      <div class="flex">
+        <h2 class="text-lg font-semibold">OrderID: {{orderID}}</h2>
+        <span
+          [ngClass]="'ml-2 inline-block  text-sm font-medium rounded px-2 py-1 bg-'+statusObject[orderData?.status]?.color+'/10 text-'+statusObject[orderData?.status]?.color">
+          {{statusObject[orderData?.status]?.title || 'Pending'}}
+        </span>
+      </div>
+      <p class="mt-2 text-gray-600">
+        22/12/2024
+      </p>
+      <!-- Room List -->
+      <div class="room container">
+        <div *ngFor="let item of orderData?.rooms " class="flex items-center gap-4 mt-4">
+          <div class="w-20 h-20 bg-gray-300 flex items-center justify-center rounded-lg">
+            <img [src]="'http://localhost:8080'+item?.room?.roomTypeID?.imageUrl" alt="Room" class="room-image" />
+          </div>
+          <div class="">
+            <h3 class="font-medium">{{item?.room.roomTypeID.name+' - '+item?.room.name }}</h3>
+            <p class="text-sm text-gray-500">From {{usageDate[0]}} to {{usageDate[1]}}</p>
+          </div>
+          <div class="ml-auto text-right">
+            <p>{{countNight}} x {{item?.room.price |
+              currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</p>
+            <p class="font-bold">{{item.totalPrice|
+              currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add more items here if needed -->
+      <!-- Total for all items -->
+      <div class="mt-4 flex justify-between border-t pt-4">
+        <span class="text-lg font-semibold">Total for all rooms:</span>
+        <span class="text-lg font-bold">{{totalPriceRoom | currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</span>
+      </div>
+
+    </div>
+
+    <!-- Service Order -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h3 class="text-lg font-semibold">Service Order</h3>
+      <div *ngFor="let item of orderData?.services " class="flex items-center gap-4 mt-4">
+        <div class="w-20 h-20 bg-gray-300 flex items-center justify-center rounded-lg">
+          <img [src]="'http://localhost:8080'+item?.product?.imgUrl" alt="Room" class="room-image" />
+        </div>
+        <div class="">
+          <h3 class="font-medium">{{item?.product?.name}}</h3>
+          <p class="text-sm text-gray-500">Usage at: {{item?.usageDateTime}}</p>
+        </div>
+        <div class="ml-auto text-right">
+          <p>{{item?.quantity}} x {{item?.product.price |
+            currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</p>
+          <p class="font-bold">{{item?.totalPrice|
+            currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</p>
+        </div>
+      </div>
+      <div class="mt-4 flex justify-between border-t pt-4">
+        <span class="text-lg font-semibold">Total for all Services:</span>
+        <span class="text-lg font-bold">{{totalPriceService | currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Right Section -->
+  <div class="col-span-4 space-y-6">
+    <!-- Shipping Address -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h3 class="font-semibold">Customer Infomation</h3>
+      <p class="mt-2"> Customer: {{orderData?.customerName || 'None!'}}</p>
+      <p> Identity Number: {{orderData?.identityNumber || 'None!'}}</p>
+      <p>Phone: {{orderData?.phoneNumber || 'None!'}}</p>
+      <p>Email: {{orderData?.email|| 'None!'}}</p>
+    </div>
+
+    <!-- Notes -->
+    <!-- <div class="bg-white rounded-lg shadow p-6">
+      <h3 class="font-semibold">Notes</h3>
+      <p class="mt-2">First customer and order!</p>
+    </div> -->
+    <!-- Order Summary -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h3 class="font-semibold">Order Summary</h3>
+      <div class="mt-4">
+        <p class="flex justify-between">
+          <span>Total of rooms</span>
+          <span>{{totalPriceRoom | currency:'VND':'':'1.0-0'.replace('₫', '')}} VND</span>
+        </p>
+        <p class="flex justify-between">
+          <span>Total of Services</span>
+          <span>{{totalPriceService | currency:'VND':'':'1.0-0'.replace('₫', '')}} VND</span>
+        </p>
+        <!-- <p class="flex justify-between">
+          <span>Subtotal</span>
+          <span>{{orderData?.totalAmount  | currency:'VND':'':'1.0-0'.replace('₫', '')}} VND </span>
+        </p> -->
+        <p class="flex justify-between font-bold text-lg">
+          <span>Total</span>
+          <span>{{orderData?.totalAmount | currency:'VND':'':'1.0-0'.replace('₫', '')}} VND </span>
+        </p>
+      </div>
+      <div class="mt-6 flex space-x-4">
+        <button (click)="changeStatusOrder('Payment')" [disabled]="orderData?.status != 'Waitting'"
+          [ngClass]="paymentBtnClass">Payment</button>
+        <button (click)="changeStatusOrder('Canceled')" *ngIf="orderData?.status == 'Waitting'"
+          class="bg-danger text-white py-2 px-4 rounded">Cancel</button>
+        <button (click)="changeStatusOrder('CheckOuted')" *ngIf="orderData?.status == 'Payment'"
+          class="bg-primary text-white py-2 px-4 rounded">Checkout</button>
+      </div>
+    </div>
+
+    <!-- Billing Address -->
+    <!-- <div class="bg-white rounded-lg shadow p-6">
+      <h3 class="font-semibold">Billing address</h3>
+      <p class="mt-2">Same as shipping address</p>
+    </div> -->
+
+
+  </div>
+</div>

@@ -35,6 +35,13 @@ const routes: Routes = [
       title: 'Booking',
     },
     loadChildren: () =>import("./booking/booking.module").then((m) => m.BookingModule),
+  },
+  {
+    path: 'order',
+    data: {
+      title: 'Order',
+    },
+    loadChildren: () =>import("./order/order.module").then((m) => m.OrderModule),
   }
   // {
   //     path: 'demo-one',

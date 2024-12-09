@@ -43,7 +43,7 @@ export const Admin_URL = {
   listOrder: get('order/list'),
   orderDetail: get('order/detail'),
   createOrder: get('order/create'),
-  updateOrder: get('order/update'),
+  updateStatusOrder: get('order/update-status'),
   deleteOrder: get('order/delete')
 };
 export const Common_URL = {
