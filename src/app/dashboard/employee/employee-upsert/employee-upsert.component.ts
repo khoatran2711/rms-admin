@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { format } from 'date-fns';
+import moment from 'moment';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { ApiService } from 'src/app/shared/services/api.service';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
   selector: 'app-employee-upsert',
@@ -36,6 +38,7 @@ export class EmployeeUpsertComponent implements OnInit {
   selectedLanguage: any;
   validateForm: FormGroup;
   employeeID: any;
+  roleData = [];
 
   networkList = [
     {
@@ -105,6 +108,7 @@ export class EmployeeUpsertComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private modalService: NzModalService,
+    private notificationService: NotificationService,
     private message: NzMessageService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -118,6 +122,7 @@ export class EmployeeUpsertComponent implements OnInit {
     // Simulate loading time
     this.loadData();
     this.initData();
+    this.fetchRoleData();
     // form
     this.changePWForm = this.fb.group({
       oldPassword: [null, [Validators.required]],
@@ -138,16 +143,21 @@ export class EmployeeUpsertComponent implements OnInit {
   initData() {
     if (this.employeeID) {
       this.apiService.getEmployee(this.employeeID).subscribe((res) => {
+        console.log(res);
         this.makeForm(res[0]);
         this.avatarUrl = res[0].avatar
           ? `http://localhost:8080${res[0].avatar}`
           : 'assets/images/avatars/thumbs.png';
-        this.date = format(res[0].dateOfBirth, 'dd/MM/yyyy');
-        console.log(res[0].dateOfBirth);
+        this.date = moment(res[0].dateOfBirth, 'DD/MM/YYYY', true).toDate();
       });
       return;
     }
     this.makeForm();
+  }
+  fetchRoleData() {
+    this.apiService.listRole({}).subscribe((res) => {
+      this.roleData = res;
+    });
   }
   makeForm(d?) {
     this.employeeForm = this.fb.group({
@@ -186,7 +196,7 @@ export class EmployeeUpsertComponent implements OnInit {
 
   //avatar
   handleChange(info: { file: NzUploadFile }): void {
-    console.log("start upload");
+    console.log('start upload');
     let formdata = new FormData();
     formdata.append('file', info.file.originFileObj as any);
     this.apiService.uploadIMG(formdata).subscribe((res) => {
@@ -197,24 +207,42 @@ export class EmployeeUpsertComponent implements OnInit {
 
   submitEmployeeForm() {
     // this.employeeForm.valid
+
     if (true) {
       let id = this.employeeID;
       let employeeData = this.employeeForm.value;
-      console.log(employeeData);
-      if (id) {
-        this.apiService.updateEmployee(employeeData).subscribe((_) => {
-          this.showContent = false;
-          this.loadData();
-        });
-        return;
-      }
+      this.modalService.confirm({
+        nzTitle: 'Do you want to save the changes?',
+        nzContent: 'When clicked the OK button, the changes will be saved',
+        nzOnOk: () => {
+          if (id) {
+            this.apiService.updateEmployee(employeeData).subscribe((_) => {
+              this.showContent = false;
+              this.loadData();
+              this.notificationService.createNotification({
+                type: 'success',
+                title: 'Success',
+                message: 'Employee updated successfully',
+                position: 'bottomRight',
+              });
+            });
+            return;
+          }
 
-      this.apiService.createEmployee(employeeData).subscribe((_) => {
-        this.showContent = false;
-        this.loadData();
-        this.employeeForm.reset();
+          this.apiService.createEmployee(employeeData).subscribe((_) => {
+            this.showContent = false;
+            this.loadData();
+            this.employeeForm.reset();
+            this.notificationService.createNotification({
+              type: 'success',
+              title: 'Success',
+              message: 'Employee created successfully',
+              position: 'bottomRight',
+            });
+          });
+          return;
+        },
       });
-      return;
     }
   }
   goToEmployeeList() {
@@ -222,8 +250,14 @@ export class EmployeeUpsertComponent implements OnInit {
   }
   dateChange(e): void {
     const dateValue = format(e, 'dd/MM/yyyy');
-    console.log(this.date);
+    console.log(e);
     this.employeeForm.get('dateOfBirth').setValue(dateValue);
     return;
+  }
+  getRoleName() {
+    const id = this.employeeForm.get('roleID').value;
+    if (!id) return;
+    const role = this.roleData.find((role) => role.id == id);
+    return role?.name;
   }
 }

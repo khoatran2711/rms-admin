@@ -14,7 +14,7 @@ export const Admin_URL = {
   createRoom: get('room/create'),
   updateRoom: get('room/update'),
   deleteRoom: get('room/delete'),
-
+  availableRoom: get('room/available'),
   // Room Type
   listRoomType: get('roomType/list'),
   roomTypeDetail: get('roomType/detail'),
@@ -44,7 +44,13 @@ export const Admin_URL = {
   orderDetail: get('order/detail'),
   createOrder: get('order/create'),
   updateStatusOrder: get('order/update-status'),
-  deleteOrder: get('order/delete')
+  deleteOrder: get('order/delete'),
+  // Role
+  listRole: get('role/list'),
+  roleDetail: get('role/detail'),
+  createRole: get('role/create'),
+  updateRole: get('role/update'),
+  deleteRole: get('role/delete'),
 };
 export const Common_URL = {
   uploadIMG: getCommon('image/upload'),

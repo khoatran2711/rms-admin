@@ -5,6 +5,7 @@ import { NzDatePickerComponent } from 'ng-zorro-antd/date-picker';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { AppsService } from 'src/app/shared/services/apps.service';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 import { TableService } from 'src/app/shared/services/table.service';
 // import { TableService } from 'src/app/shared/services/table.service';
 
@@ -28,6 +29,7 @@ export class EmployeeListComponent implements OnInit {
     private ContactGridSvc: AppsService,
     private modalService: NzModalService,
     private tablesvc: TableService,
+    private notificationService: NotificationService,
     private fb: FormBuilder,
     private router: Router,
     private apiService: ApiService
@@ -43,9 +45,11 @@ export class EmployeeListComponent implements OnInit {
     this.loadData();
   }
   fetchEmployeeData() {
-    this.apiService.listEmployee({ roleID: 1 }).subscribe((res) => {
-      this.employeeData = res['data'];
-      this.originData = res['data'];
+    this.apiService.listEmployee({}).subscribe((res) => {
+      // this.employeeData = res['data'];
+      // this.originData = res['data'];
+      this.employeeData = res;
+      this.originData = res;
       console.log(res);
     });
   }
@@ -108,9 +112,22 @@ export class EmployeeListComponent implements OnInit {
     return 'assets/images/avatars/thumbs.png';
   }
   onDeleteEmployee(id) {
-    this.apiService.deleteEmployee(id).subscribe((_) => {
-      this.fetchEmployeeData();
-      this.loadData();
-    });
+    this.modalService.confirm({
+      nzTitle: 'Do you Want to delete this employee?',
+      nzContent: 'When clicked the OK button, employee will be deleted',
+      nzOnOk: () => {
+        this.apiService.deleteEmployee(id).subscribe((_) => {
+          this.notificationService.createNotification({
+            type: 'error',
+            title: 'Deleted',
+            message: 'Employee deleted successfully',
+            position: 'bottomRight',
+          });
+          this.fetchEmployeeData();
+          this.loadData();
+        });
+      },
+    })
+
   }
 }

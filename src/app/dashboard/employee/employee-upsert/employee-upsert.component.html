@@ -28,7 +28,8 @@
           <figcaption>
             <h1 class="mb-0 text-lg font-semibold text-dark dark:text-white/[.87]">{{
               employeeForm.get('fullName')?.value || "Full Name" }}</h1>
-            <p class="mb-0 text-light dark:text-white/60 text-15">{{"admin"}}</p>
+            <p class="mb-0 text-light dark:text-white/60 text-15">{{getRoleName() ||
+              "N/A"}}</p>
           </figcaption>
         </div>
         <div class="px-[25px] pt-8 pb-5">
@@ -140,9 +141,11 @@
                       <nz-form-label
                         class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
                         nzFor="lucy">Role</nz-form-label>
-                      <nz-select ngModel="1" formControlName="roleID"
+                      <nz-select formControlName="roleID"
                         class="w-full capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[50px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[6px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60"
-                        name="country" [nzOptions]="listOfOption"></nz-select>
+                        name="country">
+                        <nz-option *ngFor="let role of roleData" [nzLabel]="role.name" [nzValue]="role.id"> </nz-option>
+                      </nz-select>
                     </nz-form-control>
                     <nz-form-control class="mt-[25px]">
                       <div class="inline-flex items-center gap-[13px]">

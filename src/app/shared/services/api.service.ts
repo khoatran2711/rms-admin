@@ -35,6 +35,9 @@ export class ApiService {
   deleteRoom(id){
     return this.httpService.Delete(Admin_URL.deleteRoom,{id:id})
   }
+  availableRoom(filter){
+    return this.httpService.Get(Admin_URL.availableRoom,filter)
+  }
   // fetching Room Type
   listRoomType(filter){
     return this.httpService.Get(Admin_URL.listRoomType,filter)
@@ -117,6 +120,22 @@ export class ApiService {
     return this.httpService.Delete(Admin_URL.deleteOrder, {id: id})
   }
 
+  //Fetching Role
+  listRole(filter){
+    return this.httpService.Get(Admin_URL.listRole, filter)
+  }
+  getRole(id){
+    return this.httpService.Get(Admin_URL.roleDetail, {id: id})
+  }
+  createRole(data){
+    return this.httpService.Post(Admin_URL.createRole, data)
+  }
+  updateRole(data){
+    return this.httpService.Post(Admin_URL.updateRole, data)
+  }
+  deleteRole(id){
+    return this.httpService.Delete(Admin_URL.deleteRole, {id: id})
+  }
   // fetching upload IMG
   uploadIMG(imageFile){
     return this.httpService.Post(Common_URL.uploadIMG,imageFile)

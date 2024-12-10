@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import moment from 'moment';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-select-room',
@@ -76,10 +77,19 @@ export class SelectRoomComponent implements OnInit {
     return this.roomForm?.get('rooms') as FormArray;
   }
   fetchRoomData() {
-    this.apiService.listRoom({}).subscribe((res: any) => {
-      this.roomData = res.data;
+    const customerData = this.orderService.getCustomerInfo();
+    const filter = {
+      start: customerData.checkInDate,
+      end: customerData.checkOutDate,
+    }
+    this.apiService.availableRoom(filter).subscribe((res: any) => {
+      this.roomData = res;
       console.log('roomData', this.roomData);
     });
+    // this.apiService.listRoom({}).subscribe((res: any) => {
+    //   this.roomData = res.data;
+    //   console.log('roomData', this.roomData);
+    // });
   }
   onChangeRoom(e, i) {
     console.log('onChangeRoom', e, i);

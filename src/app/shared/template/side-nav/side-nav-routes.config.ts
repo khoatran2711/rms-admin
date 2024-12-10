@@ -6,8 +6,8 @@ export const ROUTES: any[] = [
     iconTheme: 'outline',
     icon: 'appstore-add',
     submenu: [],
+    id: '1',
   },
-
   {
     path: '/dashboard/room',
     title: 'Room',
@@ -15,6 +15,7 @@ export const ROUTES: any[] = [
     iconTheme: 'outline',
     icon: 'home',
     submenu: [],
+    id: '2',
   },
   {
     path: '/dashboard/service',
@@ -23,6 +24,7 @@ export const ROUTES: any[] = [
     iconTheme: 'outline',
     icon: 'customer-service',
     submenu: [],
+    id: '3',
   },
   {
     path: '/dashboard/employee',
@@ -31,6 +33,7 @@ export const ROUTES: any[] = [
     iconTheme: 'outline',
     icon: 'team',
     submenu: [],
+    id: '4',
   },
   {
     path: '',
@@ -39,14 +42,6 @@ export const ROUTES: any[] = [
     iconTheme: 'outline',
     icon: 'shopping-cart',
     submenu: [
-      // {
-      //   path: '/dashboard/sale/room',
-      //   title: 'Room booking ',
-      //   iconType: '',
-      //   icon: '',
-      //   iconTheme: '',
-      //   submenu: [],
-      // },
       {
         path: '/dashboard/booking/booking-service',
         title: 'Service Booking ',
@@ -54,6 +49,7 @@ export const ROUTES: any[] = [
         icon: '',
         iconTheme: '',
         submenu: [],
+        id: '5',
       },
       {
         path: '/dashboard/booking',
@@ -62,10 +58,10 @@ export const ROUTES: any[] = [
         icon: '',
         iconTheme: '',
         submenu: [],
+        id: '6',
       },
-
     ],
-
+    id: '7',
   },
   {
     path: '/dashboard/order',
@@ -74,6 +70,7 @@ export const ROUTES: any[] = [
     iconTheme: 'outline',
     icon: 'solution',
     submenu: [],
+    id: '8',
   },
 ];
 export const ROUTES2: any[] = [
