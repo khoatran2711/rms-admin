@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Admin_URL, Common_URL } from 'src/app/common/api_common';
 import { register } from 'swiper/element/bundle';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { register } from 'swiper/element/bundle';
 export class ApiService {
 
   constructor(private httpService: HttpService) { }
-  host = 'http://localhost:8080';
+  host = environment.base_URL;
   login(data){
    return this.httpService.Post(Admin_URL.login,data)
   }

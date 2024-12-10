@@ -141,15 +141,13 @@
                   </li>
                 </ul>
               </td>
-
-
             </tr>
           </tbody>
         </nz-table>
       </div>
     </perfect-scrollbar>
     <div class="border-t border-regular dark:border-white/10 pt-[30px] mt-[10px] flex justify-center">
-      <nz-pagination [nzPageSize]="filter.pageData?.limit" [nzPageIndex]="filter.pageData?.page || 1"
-        [nzTotal]="filter.pageData?.totalDocs" (nzPageIndexChange)="fetchOrderData()"></nz-pagination>
+      <nz-pagination [(nzPageSize)]="filter.limit"  [(nzPageIndex)]="filter.page" [nzTotal]="filter.totalDocs"
+        (nzPageIndexChange)="fetchOrderData()"></nz-pagination>
     </div>
   </div>

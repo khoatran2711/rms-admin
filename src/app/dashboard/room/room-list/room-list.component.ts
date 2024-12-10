@@ -3,13 +3,20 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { environment } from 'src/environments/environment';
 import { formatNumber } from '@angular/common';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 @Component({
   selector: 'app-room-list',
   templateUrl: './room-list.component.html',
   styleUrls: ['./room-list.component.scss'],
 })
 export class RoomListComponent implements OnInit {
-  constructor(private apiService: ApiService, private fb: FormBuilder) {}
+  constructor(
+    private apiService: ApiService,
+    private fb: FormBuilder,
+    private modalService: NzModalService,
+    private notificationService: NotificationService
+  ) {}
   formatNumber = formatNumber;
   switchValue = true;
 
@@ -140,7 +147,7 @@ export class RoomListComponent implements OnInit {
       this.roomData = res['data'];
       this.originRoomData = res['data'];
       this.pageData = res['pageData'];
-      console.log(this.roomData)
+      console.log(this.roomData);
     });
   }
   getRoomTypeData(filte?) {
@@ -186,31 +193,68 @@ export class RoomListComponent implements OnInit {
       return;
     }
     const id = this.roomTypeForm.get('id').value;
-    console.log(this.roomTypeForm.value);
-    if (id) {
-      this.apiService.updateRoomType(this.roomTypeForm.value).subscribe((_) => {
-        this.clearFilter();
-        this.getRoomTypeData();
-        this.closeCreateTypeRoom();
-      });
-      this.submitedTypeRoom = false;
-
-      return;
-    }
-    this.apiService.createRoomType(this.roomTypeForm.value).subscribe((_) => {
-      this.clearFilter();
-      this.getRoomTypeData();
-      this.closeCreateTypeRoom();
+    this.modalService.confirm({
+      nzTitle: `Are you sure to ${
+        this.roomTypeForm.get('id').value ? 'update' : 'create'
+      } this room type?`,
+      nzContent: `${
+        this.roomTypeForm.get('id').value ? 'Update' : 'Create'
+      } this room type?`,
+      nzOnOk: () => {
+        if (id) {
+          this.apiService
+            .updateRoomType(this.roomTypeForm.value)
+            .subscribe((_) => {
+              this.clearFilter();
+              this.getRoomTypeData();
+              this.closeCreateTypeRoom();
+            });
+          this.submitedTypeRoom = false;
+          this.notificationService.createNotification({
+            type: 'success',
+            title: 'Success',
+            message: `Update room type success`,
+            position: 'bottomRight',
+          });
+          return;
+        }
+        this.apiService
+          .createRoomType(this.roomTypeForm.value)
+          .subscribe((_) => {
+            this.clearFilter();
+            this.getRoomTypeData();
+            this.closeCreateTypeRoom();
+            this.notificationService.createNotification({
+              type: 'success',
+              title: 'Success',
+              message: `Create room type success`,
+              position: 'bottomRight',
+            });
+          });
+        this.submitedTypeRoom = false;
+        return;
+      },
     });
-    this.submitedTypeRoom = false;
     return;
   }
   onDeleteRoomType(id) {
-    let data = {
-      id,
-    };
-    this.apiService.deleteRoomType(data).subscribe((_) => {
-      this.getRoomTypeData();
+    this.modalService.confirm({
+      nzTitle: `Are you sure to delete this room type?`,
+      nzContent: `Delete this room type?`,
+      nzOnOk: () => {
+        let data = {
+          id,
+        };
+        this.apiService.deleteRoomType(data).subscribe((_) => {
+          this.getRoomTypeData();
+          this.notificationService.createNotification({
+            type: 'error',
+            title: 'Delete',
+            message: `Delete room type success`,
+            position: 'bottomRight',
+          })
+        });
+      },
     });
   }
   onSearch() {
@@ -235,19 +279,37 @@ export class RoomListComponent implements OnInit {
     if (this.roomForm.valid) {
       let id = this.roomForm.get('id').value;
       let data = this.roomForm.value;
-      if (id) {
-        this.apiService.updateRoom(data).subscribe((_) => {
-          this.getRoomData(this.filter);
-          this.getRoomData(this.filter);
-          this.isVisible = false;
-        });
-        return;
-      }
-      this.apiService.createRoom(data).subscribe((_) => {
-        this.getRoomData(this.filter);
-        this.isVisible = false;
+      this.modalService.confirm({
+        nzTitle: `Are you sure to ${id ? 'update' : 'create'} this room?`,
+        nzContent: `${id ? 'Update' : 'Create'} this room?`,
+        nzOnOk: () => {
+          if (id) {
+            this.apiService.updateRoom(data).subscribe((_) => {
+              this.getRoomData(this.filter);
+              this.getRoomData(this.filter);
+              this.isVisible = false;
+              this.notificationService.createNotification({
+                type: 'success',
+                title: 'Success',
+                message: `Update room success`,
+                position: 'bottomRight',
+              });
+            });
+            return;
+          }
+          this.apiService.createRoom(data).subscribe((_) => {
+            this.getRoomData(this.filter);
+            this.isVisible = false;
+            this.notificationService.createNotification({
+              type: 'success',
+              title: 'Success',
+              message: `Create room success`,
+              position: 'bottomRight',
+            });
+          });
+          return;
+        },
       });
-      return;
     }
     Object.values(this.roomForm.controls).forEach((control) => {
       if (control.invalid) {
@@ -258,12 +320,20 @@ export class RoomListComponent implements OnInit {
     return;
   }
   onDelete(id) {
-    console.log(id);
-    this.apiService.deleteRoom(id).subscribe((res) => {
-      this.getRoomData({});
+    this.modalService.confirm({
+      nzTitle: `Are you sure to delete this room?`,
+      nzContent: `Delete this room?`,
+      nzOnOk: () => {
+        this.apiService.deleteRoom(id).subscribe((_) => {
+          this.getRoomData(this.filter);
+          this.notificationService.createNotification({
+            type: 'error',
+            title: 'Delete',
+            message: `Delete room success`,
+            position: 'bottomRight',
+          });
+        });
+      },
     });
   }
-  // onSearchByName(){
-  //   let searchName = this.filterByName
-  // }
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DemoTwoDashboardComponent } from './demo-two/demo-two.component';
-import { ServiceComponent } from './service/service.component';
 
 const routes: Routes = [
   {

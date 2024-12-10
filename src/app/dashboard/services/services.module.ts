@@ -17,13 +17,13 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-
-
+import { IConfig, NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+const maskConfig: Partial<IConfig> = {
+  suffix: '', // Thêm ký hiệu '₫' vào cuối
+};
 @NgModule({
-  declarations: [
-    ServiceListComponent,
-    ProductListComponent
-  ],
+  declarations: [ServiceListComponent, ProductListComponent],
+
   imports: [
     CommonModule,
     ServicesRoutingModule,
@@ -40,7 +40,9 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
     NzTableModule,
     NzEmptyModule,
     NzPaginationModule,
-    NzSkeletonModule
-  ]
+    NzSkeletonModule,
+    NgxMaskDirective,
+  ],
+  providers: [provideNgxMask(maskConfig)],
 })
-export class ServicesModule { }
+export class ServicesModule {}

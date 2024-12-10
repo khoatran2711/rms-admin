@@ -1,16 +1,17 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { ApiService } from 'src/app/shared/services/api.service';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-service-list',
   templateUrl: './service-list.component.html',
-  styleUrls: ['./service-list.component.scss']
+  styleUrls: ['./service-list.component.scss'],
 })
 export class ServiceListComponent implements OnInit {
-
   showServiceForm = false;
   serviceForm: FormGroup;
   serviceData = [];
@@ -25,7 +26,9 @@ export class ServiceListComponent implements OnInit {
     private apiService: ApiService,
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private modalService: NzModalService,
+    private notificationService: NotificationService
   ) {}
   createServiceForm(d?) {
     this.serviceForm = this.fb.group({
@@ -54,20 +57,39 @@ export class ServiceListComponent implements OnInit {
   submitServiceForm() {
     if (this.serviceForm.valid) {
       let id = this.serviceForm.get('id').value;
-      console.log(id);
-      let serviceData = this.serviceForm.value;
-      if (id) {
-        this.apiService.updateService(serviceData).subscribe((_) => {
-          this.showServiceForm = false;
-          this.fetchServiceData();
-        });
-        return;
-      }
-      this.apiService.createService(serviceData).subscribe((_) => {
-        this.showServiceForm = false;
-        this.fetchServiceData();
+      this.modalService.confirm({
+        nzTitle: `Do you Want to ${id ? 'Update' : 'Create'} this Service?`,
+        nzContent: `Service Name: ${this.serviceForm.get('name').value}`,
+        nzOnOk: () => {
+          let serviceData = this.serviceForm.value;
+          if (id) {
+            this.apiService.updateService(serviceData).subscribe((_) => {
+              this.showServiceForm = false;
+              this.fetchServiceData();
+              this.notificationService.createNotification({
+                type: 'success',
+                title: 'Service Updated',
+                message: `Service ${serviceData.name} has been updated`,
+                position: 'bottomRight',
+
+              });
+            });
+            return;
+          }
+          this.apiService.createService(serviceData).subscribe((_) => {
+            this.showServiceForm = false;
+            this.fetchServiceData();
+            this.notificationService.createNotification({
+              type: 'success',
+              title: 'Service Created',
+              message: `Service ${serviceData.name} has been created`,
+              position: 'bottomRight',
+
+            });
+          });
+          return;
+        },
       });
-      return;
     }
   }
   openServiceForm(id?) {
@@ -104,8 +126,21 @@ export class ServiceListComponent implements OnInit {
     return `${this.host}${url}`;
   }
   onDeleteService(id) {
-    this.apiService.deleteService(id).subscribe((_) => {
-      this.fetchServiceData();
+    this.modalService.confirm({
+      nzTitle: 'Are you sure you want to delete this Service?',
+      nzContent: 'Service will be deleted',
+      nzOnOk: () => {
+        this.apiService.deleteService(id).subscribe((_) => {
+          this.fetchServiceData();
+          this.notificationService.createNotification({
+            type: 'error',
+            title: 'Service Deleted',
+            message: `Service has been deleted`,
+            position: 'bottomRight',
+
+          });
+        });
+      },
     });
   }
   filterServiceData(e) {

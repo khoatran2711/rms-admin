@@ -5,6 +5,7 @@ import moment from 'moment';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { filter } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-booking-service',
@@ -12,7 +13,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./booking-service.component.scss'],
 })
 export class BookingServiceComponent implements OnInit {
-  host = 'http://localhost:8080';
+  host = environment.base_URL;
   date = null;
   submited = false;
   productData = [];

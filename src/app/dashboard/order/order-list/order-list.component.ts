@@ -18,13 +18,12 @@ export class OrderListComponent implements OnInit {
     private notificationService: NotificationService
   ) {}
   orderData = [];
-  filter = {
+  filter = <any>{
     start: '' as any,
     end: '' as any,
     orderType: '',
     status: '',
-    pageData :<any>{
-    }
+    page: 1,
   };
   orderTypeData = ['booking', 'service'];
   statusData = ['Payment', 'Waitting', 'CheckOuted', 'Canceled'];
@@ -56,7 +55,8 @@ export class OrderListComponent implements OnInit {
   fetchOrderData() {
     this.apiService.listOrder(this.filter).subscribe((res) => {
       this.orderData = res.data;
-      this.filter.pageData = res.pageData
+      this.filter = { ...this.filter, ...res.pageData };
+      console.log(this.filter);
     });
   }
 
