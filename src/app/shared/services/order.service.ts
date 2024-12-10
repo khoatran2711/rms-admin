@@ -24,6 +24,9 @@ export class OrderService {
   getProductInfo(){
     return JSON.parse(localStorage.getItem("productInfo"))
   }
+  removeCustomerInfo(){
+    return localStorage.removeItem("customerInfo")
+  }
   clearAllData(){
     localStorage.removeItem("customerInfo")
     localStorage.removeItem("roomInfo")

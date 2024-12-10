@@ -24,7 +24,6 @@ export class OrderListComponent implements OnInit {
     orderType: '',
     status: '',
     pageData :<any>{
-
     }
   };
   orderTypeData = ['booking', 'service'];

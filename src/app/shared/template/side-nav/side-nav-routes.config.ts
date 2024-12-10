@@ -39,16 +39,16 @@ export const ROUTES: any[] = [
     iconTheme: 'outline',
     icon: 'shopping-cart',
     submenu: [
+      // {
+      //   path: '/dashboard/sale/room',
+      //   title: 'Room booking ',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: [],
+      // },
       {
-        path: '/dashboard/sale/room',
-        title: 'Room booking ',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: [],
-      },
-      {
-        path: '/dashboard/sale/service',
+        path: '/dashboard/booking/booking-service',
         title: 'Service Booking ',
         iconType: '',
         icon: '',

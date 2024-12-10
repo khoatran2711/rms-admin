@@ -8,7 +8,7 @@
         <h4 class="mb-0 text-[20px] leading-6 font-medium text-dark dark:text-white/[.87]">
           Products
         </h4>
-        <div class="flex">
+        <div class="flex" *ngIf="isBooking">
           <button (click)="previous()"
             class="mr-2 flex items-center px-[14px] text-sm text-white rounded-md font-semibold bg-primary border-primary h-10 gap-[6px]"
             nz-button>
@@ -275,8 +275,8 @@
       </div>
     </div>
     <div class="mt-[25px] flex justify-between">
-      <div class="left-bottom">
-        <div class="text-right inline-flex items-center gap-[13px] mr-3">
+      <div class="left-bottom" >
+        <div class="text-right inline-flex items-center gap-[13px] mr-3" *ngIf="isBooking">
           <button (click)="previous()"
             class="bg-primary hover:bg-primary-hbr inline-flex items-center outline-none shadow-none w-fit duration-300 text-white capitalize px-[20px] text-[15px] border-primary font-semibold hover:border-primary-hbr rounded-[5px] gap-[8px] h-[46px]"
             nz-button nzType="primary">

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import moment from 'moment';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { ApiService } from 'src/app/shared/services/api.service';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
@@ -10,32 +12,57 @@ import { OrderService } from 'src/app/shared/services/order.service';
   styleUrls: ['./confirm-booking.component.scss'],
 })
 export class ConfirmBookingComponent implements OnInit {
-  constructor(private orderService: OrderService, private apiService: ApiService,private router: Router) {}
+  constructor(
+    private orderService: OrderService,
+    private apiService: ApiService,
+    private router: Router,
+    private modalService: NzModalService,
+    private notificationService: NotificationService
+  ) {}
   ngOnInit(): void {
     this.fetchData();
   }
-
   roomBookingDetails = [];
   customerData;
   serviceBookingDetails = [];
+  countNight = 0;
+  totalPriceRoom = 0;
+  totalPriceService = 0;
+  today
   fetchData() {
+    this.today = moment().format('DD/MM/YYYY HH:mm');
     const customerData = this.orderService.getCustomerInfo();
-    customerData['checkInDateTime'] = moment(
-      customerData.checkInDate * 1000
-    ).format('DD/MM/YYYY HH:mm');
-    customerData['checkOutDateTime'] = moment(
-      customerData.checkOutDate * 1000
-    ).format('DD/MM/YYYY HH:mm');
+    if (customerData?.orderType == `booking`) {
+      customerData['checkInDateTime'] = moment(
+        customerData.checkInDate * 1000
+      ).format('DD/MM/YYYY HH:mm');
+      customerData['checkOutDateTime'] = moment(
+        customerData.checkOutDate * 1000
+      ).format('DD/MM/YYYY HH:mm');
+      let nights = moment(customerData['checkOutDateTime'], 'DD/MM/YYYY HH:mm').diff(
+        moment(customerData['checkInDateTime'], 'DD/MM/YYYY HH:mm'),
+        'days'
+      );
+      this.countNight = nights;
+
+    }
+
     this.customerData = customerData;
     const roomOrderData = this.orderService.getRoomInfo();
-    this.roomBookingDetails = roomOrderData.rooms;
+    if (roomOrderData != null) {
+      this.roomBookingDetails = roomOrderData.rooms;
+    }
     const serviceOrderData = this.orderService.getProductInfo();
-    serviceOrderData.forEach((item) => {
-      item['usageDateTime'] = moment
-        .unix(item['usageDate'])
-        .format('DD/MM/YYYY HH:mm');
-    });
-    this.serviceBookingDetails = serviceOrderData;
+    if (serviceOrderData != null) {
+      {
+        serviceOrderData.forEach((item) => {
+          item['usageDateTime'] = moment
+            .unix(item['usageDate'])
+            .format('DD/MM/YYYY HH:mm');
+        });
+        this.serviceBookingDetails = serviceOrderData;
+      }
+    }
   }
   calculateTotal(): number {
     const roomTotal = this.roomBookingDetails.reduce(
@@ -47,28 +74,55 @@ export class ConfirmBookingComponent implements OnInit {
       (sum, service) => sum + service.totalPrice,
       0
     );
+    this.totalPriceRoom = roomTotal;
+    this.totalPriceService = serviceTotal;
     return roomTotal + serviceTotal;
   }
 
-  confirmBooking(): void {
-    const data = {
-      userID: 'admin',
-      ...this.customerData,
-      rooms: this.roomBookingDetails,
-      services: this.serviceBookingDetails,
-      totalAmount: this.calculateTotal(),
-      status: 'Payment',
-      orderType: 'booking',
-    };
-    this.apiService.createOrder(data).subscribe((res) => {
-      this.orderService.clearAllData();
-      this.router.navigate(['/dashboard/booking']);
+  confirmBooking(status): void {
+    this.modalService.confirm({
+      nzTitle: `Do you want to ${status == 'Waitting'?'save':'payment'} this booking?`,
+      nzContent: `${status == 'Waitting'?'Save':'Payment'} this booking`,
+      nzOnOk: () => {
+        const data = {
+          userID: 'admin',
+          ...this.customerData,
+          rooms: this.roomBookingDetails,
+          services: this.serviceBookingDetails,
+          totalAmount: this.calculateTotal(),
+          status: status,
+        };
+        this.apiService.createOrder(data).subscribe((res) => {
+          this.orderService.clearAllData();
+          this.notificationService.createNotification({
+            type: 'success',
+            title: 'Success',
+            message: `${status == 'Waitting'?'Save':'Payment'} order successfully`,
+            position: 'bottomRight',
+          });
+          this.router.navigate(['/dashboard/order']);
+
+        });
+      },
     });
-    console.log('data', data);
-    console.log('Booking Confirmed!');
+
+
   }
 
   cancelBooking(): void {
-    console.log('Booking Cancelled');
+    this.modalService.confirm({
+      nzTitle: 'Do you want to cancel this booking?',
+      nzContent: 'Clear all booking',
+      nzOnOk: () => {
+        this.orderService.clearAllData();
+        this.notificationService.createNotification({
+          type: 'success',
+          title: 'Success',
+          message: 'Cancel booking successfully',
+          position: 'bottomRight',
+        })
+        this.router.navigate(['/dashboard/booking']);
+      },
+    })
   }
 }

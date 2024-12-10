@@ -24,7 +24,8 @@
                       <nz-form-label
                         class="flex items-center [&>label]:text-dark [&>label]:dark:text-white/60 p-0 [&>label]:text-[15px] mb-[5px] capitalize"
                         nzFor="website">Select Date</nz-form-label>
-                      <nz-range-picker [ngModel]="datePicker" [ngModelOptions]="{standalone: true}" [nzDisabledDate]="disabledDate"
+                      <nz-range-picker [ngModel]="datePicker" [ngModelOptions]="{standalone: true}"
+                        [nzDisabledDate]="disabledDate"
                         class="inline-flex items-center  w-full rounded-6 border-regular border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[40px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
                         [nzShowTime]="{ nzFormat: 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm" ngModel
                         (ngModelChange)="onChange($event)"></nz-range-picker>
@@ -35,7 +36,8 @@
                         nzFor="customerName">Customer name</nz-form-label>
                       <input
                         class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
-                        nz-input formControlName="customerName" id="customerName" placeholder="Enter your full name ..." />
+                        nz-input formControlName="customerName" id="customerName"
+                        placeholder="Enter your full name ..." />
                     </nz-form-control>
                     <nz-form-control class="mb-[20px]">
                       <nz-form-label
@@ -43,7 +45,8 @@
                         nzFor="identityNumber">Identity Number</nz-form-label>
                       <input
                         class="w-full rounded-6 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] min-h-[50px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60"
-                        nz-input formControlName="identityNumber" id="identityNumber" placeholder="Enter identity number ..." />
+                        nz-input formControlName="identityNumber" id="identityNumber"
+                        placeholder="Enter identity number ..." />
                     </nz-form-control>
 
 
@@ -65,11 +68,18 @@
                     </nz-form-control>
 
                     <nz-form-control class="mt-[25px]">
-                      <div class="inline-flex items-center gap-[13px]">
+                      <div class="inline-flex items-center gap-[13px] mr-2">
                         <button (click)="submitForm()"
                           class="bg-primary hover:bg-primary-hbr inline-flex items-center outline-none shadow-none w-fit duration-300 text-white capitalize px-[20px] text-[15px] border-primary font-semibold hover:border-primary-hbr rounded-[5px] gap-[8px] h-[46px]"
                           nz-button nzType="primary">
                           <span>{{'Save & next'}}</span>
+                        </button>
+                      </div>
+                      <div class="inline-flex items-center gap-[13px]">
+                        <button (click)="resetAll()"
+                          class="bg-gray-300 text-gray-800 inline-flex items-center outline-none shadow-none w-fit duration-300  capitalize px-[20px] text-[15px]  font-semibold  rounded-[5px] gap-[8px] h-[46px]"
+                          nz-button nzType="primary">
+                          <span>{{'Reset all'}}</span>
                         </button>
                       </div>
                     </nz-form-control>
@@ -88,46 +98,27 @@
 
       <!-- Profile Avatar -->
       <div class="bg-white dark:bg-white/10 rounded-[10px]">
-        <!-- <div class="px-5 pt-[25px] pb-5 text-center border-b border-regular dark:border-white/10">
-          <figure class="relative max-w-[120px] mx-auto mb-6">
 
-          </figure>
-          <figcaption>
-
-          </figcaption>
-        </div> -->
         <div class="px-[25px] pt-8 pb-5 border-b border-regular dark:border-white/10">
           <div>
-            <h4
-              class="text-[20px] font-medium mb-[20px] text-dark dark:text-white/[.87]"
-            >
+            <h4 class="text-[20px] font-medium mb-[20px] text-dark dark:text-white/[.87]">
               1. Customer Information
             </h4>
-            <p
-              class="text-[16px] font-normal text-dark dark:text-white/[.87] capitalize pt-[4px] pb-[15px]"
-            >
-            Customer Name :
-              <span class="text-light dark:text-white/60">{{validateForm.get("customerName").value || "Full Name"}}</span>
+            <p class="text-[16px] font-normal text-dark dark:text-white/[.87] capitalize pt-[4px] pb-[15px]">
+              Customer Name :
+              <span class="text-light dark:text-white/60">{{validateForm.get("customerName")?.value || "Full Name"}}</span>
             </p>
-            <p
-              class="text-[16px] font-normal text-dark dark:text-white/[.87] capitalize pt-[4px] pb-[15px]"
-            >
-            Identity Number :
-              <span class="text-light dark:text-white/60">{{validateForm.get("identityNumber").value}}</span>
+            <p class="text-[16px] font-normal text-dark dark:text-white/[.87] capitalize pt-[4px] pb-[15px]">
+              Identity Number :
+              <span class="text-light dark:text-white/60">{{validateForm.get("identityNumber")?.value}}</span>
             </p>
-            <p
-              class="text-[16px] font-normal text-dark dark:text-white/[.87] capitalize pt-[4px] pb-[15px]"
-            >
+            <p class="text-[16px] font-normal text-dark dark:text-white/[.87] capitalize pt-[4px] pb-[15px]">
               Email Address :
-              <span class="text-light dark:text-white/60 lowercase"
-                >{{validateForm.get("email").value}}</span
-              >
+              <span class="text-light dark:text-white/60 lowercase">{{validateForm.get("email")?.value}}</span>
             </p>
-            <p
-              class="text-[16px] font-normal text-dark dark:text-white/[.87] capitalize pt-[4px] pb-[15px]"
-            >
+            <p class="text-[16px] font-normal text-dark dark:text-white/[.87] capitalize pt-[4px] pb-[15px]">
               Phone Number :
-              <span class="text-light dark:text-white/60">{{validateForm.get("phoneNumber").value}}</span>
+              <span class="text-light dark:text-white/60">{{validateForm.get("phoneNumber")?.value}}</span>
             </p>
           </div>
         </div>

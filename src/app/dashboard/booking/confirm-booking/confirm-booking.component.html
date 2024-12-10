@@ -1,50 +1,113 @@
-<div class="confirm-booking-container">
-  <h2 class="title text-center text-[22px] font-semibold ">Confirm Your Booking</h2>
+<div class="grid grid-cols-12 gap-6 p-6">
+  <!-- Left Section: Order Item + Service Order -->
+  <div class="col-span-8 space-y-6">
+    <!-- Order Item -->
+    <div class="bg-white rounded-lg shadow p-6 ">
+      <div class="flex">
+        <h2 class="text-lg font-semibold">Review your order</h2>
+        <!-- <span
+          [ngClass]="'ml-2 inline-block  text-sm font-medium rounded px-2 py-1 bg-'+statusObject[orderData?.status]?.color+'/10 text-'+statusObject[orderData?.status]?.color">
+          {{statusObject[orderData?.status]?.title || 'Pending'}}
+        </span> -->
+      </div>
+      <p class="mt-2 text-gray-600">
+        {{today | date:'dd/MM/yyyy'}}
+      </p>
+      <!-- Room List -->
+      <div *ngIf="roomBookingDetails.length > 0">
+        <div class="room container">
+          <div *ngFor="let item of roomBookingDetails " class="flex items-center gap-4 mt-4">
+            <div class="w-20 h-20 bg-gray-300 flex items-center justify-center rounded-lg">
+              <img [src]="'http://localhost:8080'+item?.room?.roomTypeID?.imageUrl" alt="Room" class="room-image" />
+            </div>
+            <div class="">
+              <h3 class="font-medium">{{item?.room.roomTypeID.name+' - '+item?.room.name }}</h3>
+              <p class="text-sm text-gray-500">From {{customerData['checkInDateTime']}} to
+                {{customerData['checkOutDateTime']}}</p>
+            </div>
+            <div class="ml-auto text-right">
+              <p>{{countNight}} x {{item?.room.price |
+                currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</p>
+              <p class="font-bold">{{item.totalPrice|
+                currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</p>
+            </div>
+          </div>
+        </div>
 
-  <!-- Room Booking Section -->
-  <nz-card class="booking-card px-4" nzTitle="Room Booking Details">
-    <div *ngFor="let room of roomBookingDetails" class="booking-item">
-      <div class="room-details">
-        <img [src]="'http://localhost:8080'+room.room.roomTypeID.imageUrl" alt="Room" class="room-image" />
-        <div class="details">
-          <h4>{{ room.room.name }}</h4>
-          <p><strong>Guests:</strong> {{ room.countPeople }}</p>
-          <p><strong>Check-in:</strong> {{ customerData.checkInDateTime }}</p>
-          <p><strong>Check-out:</strong> {{ customerData.checkOutDateTime }}</p>
+        <!-- Add more items here if needed -->
+        <!-- Total for all items -->
+        <div class="mt-4 flex justify-between border-t pt-4">
+          <span class="text-lg font-semibold">Total for all rooms:</span>
+          <span class="text-lg font-bold">{{totalPriceRoom | currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</span>
         </div>
       </div>
-      <div class="price">
-        <p><strong>Price:</strong> {{ room.totalPrice |
-          currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</p>
-      </div>
-    </div>
-  </nz-card>
 
-  <!-- Service Booking Section -->
-  <nz-card class="booking-card px-4" nzTitle="Service Booking Details" *ngIf="serviceBookingDetails.length > 0">
-    <div *ngFor="let service of serviceBookingDetails" class="booking-item">
-      <div class="service-details flex-col">
-        <h4>{{ service.product.name + (service.quantity? ' x' +service.quantity:'' )}}</h4>
-        <p><strong>Date:</strong> {{ service.usageDateTime }}</p>
+
+    </div>
+
+    <!-- Service Order -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h3 class="text-lg font-semibold">Service Order</h3>
+      <div class="serviceContainer" *ngIf="serviceBookingDetails.length > 0">
+        <div *ngFor="let item of serviceBookingDetails " class="flex items-center gap-4 mt-4">
+          <div class="w-20 h-20 bg-gray-300 flex items-center justify-center rounded-lg">
+            <img [src]="'http://localhost:8080'+item?.product?.imgUrl" alt="Room" class="room-image" />
+          </div>
+          <div class="">
+            <h3 class="font-medium">{{item?.product?.name}}</h3>
+            <p class="text-sm text-gray-500">Usage at: {{item?.usageDateTime}}</p>
+          </div>
+          <div class="ml-auto text-right">
+            <p>{{item?.quantity}} x {{item?.product.price |
+              currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</p>
+            <p class="font-bold">{{item?.totalPrice|
+              currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</p>
+          </div>
+        </div>
+        <div class="mt-4 flex justify-between border-t pt-4">
+          <span class="text-lg font-semibold">Total for all Services:</span>
+          <span class="text-lg font-bold">{{totalPriceService | currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</span>
+        </div>
       </div>
-      <div class="price">
-        <p><strong>Price:</strong> {{ service.totalPrice |
-          currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</p>
+
+    </div>
+  </div>
+
+
+  <!-- Right Section -->
+  <div class="col-span-4 space-y-6">
+    <!-- Shipping Address -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h3 class="font-semibold">Customer Infomation</h3>
+      <p class="mt-2"> Customer: {{customerData?.customerName || '-'}}</p>
+      <p> Identity Number: {{customerData?.identityNumber || '-'}}</p>
+      <p>Phone: {{customerData?.phoneNumber || '-'}}</p>
+      <p>Email: {{customerData?.email|| '-'}}</p>
+    </div>
+
+
+    <div class="bg-white rounded-lg shadow p-6">
+      <h3 class="font-semibold">Order Summary</h3>
+      <div class="mt-4">
+        <p class="flex justify-between">
+          <span>Total of rooms</span>
+          <span>{{totalPriceRoom | currency:'VND':'':'1.0-0'.replace('₫', '')}} VND</span>
+        </p>
+        <p class="flex justify-between">
+          <span>Total of Services</span>
+          <span>{{totalPriceService | currency:'VND':'':'1.0-0'.replace('₫', '')}} VND</span>
+        </p>
+
+        <p class="flex justify-between font-bold text-lg">
+          <span>Total</span>
+          <span>{{calculateTotal() | currency:'VND':'':'1.0-0'.replace('₫', '')}} VND </span>
+        </p>
+      </div>
+      <div class="mt-6 flex space-x-4">
+        <button (click)="confirmBooking('Waitting')" class="bg-primary text-white py-2 px-4 rounded">Confirm</button>
+        <button (click)="confirmBooking('Payment')" class="py-2 px-4 rounded bg-green-500 text-white">Payment</button>
+        <button (click)="cancelBooking()" class="bg-gray-300 text-gray-800 py-2 px-4 rounded">Cancel</button>
       </div>
     </div>
-  </nz-card>
-  <!-- Total Section -->
-  <div class="total-section">
-    <nz-card>
-      <h3>Total Amount: {{ calculateTotal() |
-        currency:'VND':'':'1.0-0'.replace('₫', '') }} VND</h3>
-       <div class="text-right inline-flex items-center gap-[13px]">
-        <button (click)="confirmBooking()"
-          class="bg-primary hover:bg-primary-hbr inline-flex items-center outline-none shadow-none w-fit duration-300 text-white capitalize px-[20px] text-[15px] border-primary font-semibold hover:border-primary-hbr rounded-[5px] gap-[8px] h-[46px]"
-          nz-button nzType="primary">
-          <span>{{'Pay Now'}}</span>
-        </button>
-      </div>
-    </nz-card>
   </div>
 </div>

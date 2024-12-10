@@ -39,15 +39,24 @@ export class BookingComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit() {
+    this.makeOrderForm();
     const customerData = this.orderService.getCustomerInfo();
     console.log('customerData', customerData);
     if (customerData) {
-      this.datePicker = [
-        moment(customerData.checkInDate * 1000).format('YYYY-MM-DD HH:mm'),
-        moment(customerData.checkOutDate * 1000).format('YYYY-MM-DD HH:mm'),
-      ];
+      console.log('customerData', 'have data');
+      if (customerData?.orderType == `booking`) {
+        console.log('customerData', 'booking');
+        this.datePicker = [
+          moment(customerData.checkInDate * 1000).format('YYYY-MM-DD HH:mm'),
+          moment(customerData.checkOutDate * 1000).format('YYYY-MM-DD HH:mm'),
+        ];
+        this.makeOrderForm(customerData);
+      }
+      if (customerData?.orderType == 'service') {
+        this.orderService.clearAllData();
+      }
     }
-    this.makeOrderForm(customerData);
+
     this.loadData();
   }
   handleChange(e) {}
@@ -61,9 +70,10 @@ export class BookingComponent implements OnInit {
       checkInDate: [d?.checkInDate, [Validators.required]],
       checkOutDate: [d?.checkOutDate, [Validators.required]],
       userID: ['66a786fe70935a10e380d08e', [Validators.required]],
-      bookingType: ['booking', [Validators.required]],
+      orderType: ['booking', [Validators.required]],
     });
   }
+
   onChange(result: Date): void {
     console.log('Selected Time: ', result);
     if (result[0]) {
@@ -90,6 +100,7 @@ export class BookingComponent implements OnInit {
   //Step
 
   submitForm(): void {
+    console.log('submit', this.validateForm.value);
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
       this.orderService.savedCustomerInfo(this.validateForm.value);
@@ -104,5 +115,12 @@ export class BookingComponent implements OnInit {
         }
       });
     }
+  }
+  resetAll() {
+    this.datePicker = [];
+    this.validateForm.reset();
+    this.validateForm.controls['userID'].setValue('66a786fe70935a10e380d08e');
+    this.validateForm.controls['orderType'].setValue('booking');
+    this.orderService.clearAllData();
   }
 }
