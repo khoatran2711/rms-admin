@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DemoTwoDashboardComponent } from './demo-two/demo-two.component';
+import { DemoOneDashboardComponent } from './demo-one/demo-one.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DemoTwoDashboardComponent,
+    component: DemoOneDashboardComponent,
   },
   {
     path: 'room',
