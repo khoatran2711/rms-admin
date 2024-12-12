@@ -1,0 +1,248 @@
+{
+  "chartGrowth": {
+    "series": [
+      {
+        "name": "Target",
+        "data": [35, 55, 25, 60, 42, 80, 35],
+        "color": "#7811FF"
+      },
+      {
+        "name": "Total Sales",
+        "data": [10, 30, 8, 30, 22, 38, 45],
+        "color": "#00AAFF"
+      }
+    ],
+    "chart": {
+      "height": 311,
+      "type": "bar",
+      "parentHeightOffset": 0,
+      "toolbar": {
+        "show": false
+      }
+    },
+    "dataLabels": {
+      "enabled": false
+    },
+    "stroke": {
+      "show": true,
+      "width": 30,
+      "colors": ["transparent"]
+    },
+    "grid": {
+      "borderColor": "#485e9029",
+      "strokeDashArray": 5,
+      "padding": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0
+      }
+    },
+    "plotOptions": {
+      "bar": {
+        "horizontal": false,
+        "columnWidth": "60%",
+        "borderRadius": 2
+      }
+    },
+    "legend": {
+      "show": false
+    },
+    "states": {},
+    "tooltip": {
+      "enabled": true,
+      "shared": true,
+      "followCursor": false,
+      "intersect": false,
+      "x": {
+        "show": true,
+        "format": "dd MMM"
+      },
+      "y": {
+        "title": {}
+      },
+      "z": {
+        "title": "Size: "
+      },
+      "marker": {
+        "show": true
+      },
+      "fixed": {
+        "enabled": false,
+        "position": "topLeft",
+        "offsetY": 0
+      },
+      "style": {
+        "fontSize": "12px",
+        "fontFamily": "\"Jost\", sans-serif"
+      }
+    },
+    "xaxis": {
+      "crosshairs": {
+        "show": false
+      },
+      "labels": {
+        "style": {
+          "colors": [
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474"
+          ],
+          "fontSize": "14px",
+          "fontFamily": "\"Jost\", sans-serif",
+          "fontWeight": 400,
+          "cssClass": "apexcharts-yaxis-label"
+        }
+      },
+      "categories": ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+      "axisBorder": {
+        "show": false
+      },
+      "axisTicks": {
+        "show": false
+      }
+    },
+    "yaxis": {
+      "labels": {
+        "offsetX": -15,
+        "style": {
+          "colors": ["#747474"],
+          "fontSize": "14px",
+          "fontFamily": "\"Jost\", sans-serif",
+          "fontWeight": 400,
+          "cssClass": "apexcharts-yaxis-label"
+        }
+      },
+      "axisBorder": {
+        "show": false
+      },
+      "axisTicks": {
+        "show": false
+      }
+    }
+  },
+  "chartGrowth2": {
+    "series": [
+      {
+        "name": "Target",
+        "data": [12, 34, 76, 23, 48, 34, 78],
+        "color": "#7811FF"
+      },
+      {
+        "name": "Total Sales",
+        "data": [34, 25, 34, 8, 45, 65, 18],
+        "color": "#00AAFF"
+      }
+    ],
+    "xaxis": {
+      "crosshairs": {
+        "show": false
+      },
+      "labels": {
+        "style": {
+          "colors": [
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474"
+          ],
+          "fontSize": "14px",
+          "fontFamily": "\"Jost\", sans-serif",
+          "fontWeight": 400,
+          "cssClass": "apexcharts-yaxis-label"
+        }
+      },
+      "categories": ["1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8"],
+      "axisBorder": {
+        "show": false
+      },
+      "axisTicks": {
+        "show": false
+      }
+    }
+  },
+  "chartGrowth3": {
+    "series": [
+      {
+        "name": "Target",
+        "data": [35, 55, 25, 72, 45, 58, 35, 45, 65, 38, 45, 48],
+        "color": "#7811FF"
+      },
+      {
+        "name": "Total Sales",
+        "data": [15, 35, 10, 16, 25, 44, 10, 5, 24, 18, 7, 36],
+        "color": "#00AAFF"
+      }
+    ],
+    "plotOptions": {
+      "bar": {
+        "horizontal": false,
+        "columnWidth": "95%",
+        "borderRadius": 2
+      }
+    },
+    "xaxis": {
+      "crosshairs": {
+        "show": false
+      },
+      "labels": {
+        "style": {
+          "colors": [
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474",
+            "#747474"
+          ],
+          "fontSize": "14px",
+          "fontFamily": "\"Jost\", sans-serif",
+          "fontWeight": 400,
+          "cssClass": "apexcharts-yaxis-label"
+        }
+      },
+      "categories": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ],
+      "axisBorder": {
+        "show": false
+      },
+      "axisTicks": {
+        "show": false
+      }
+    }
+  }
+}

@@ -51,6 +51,10 @@ export const Admin_URL = {
   createRole: get('role/create'),
   updateRole: get('role/update'),
   deleteRole: get('role/delete'),
+
+  //report
+  overview: get('report/overview'),
+  saleReport: get('report/sale-report'),
 };
 export const Common_URL = {
   uploadIMG: getCommon('image/upload'),

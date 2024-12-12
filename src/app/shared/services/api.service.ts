@@ -136,6 +136,15 @@ export class ApiService {
   deleteRole(id){
     return this.httpService.Delete(Admin_URL.deleteRole, {id: id})
   }
+
+  // Report API
+  getOverviewData(){
+    return this.httpService.Get(Admin_URL.overview)
+  }
+  getSaleReport(filter){
+    return this.httpService.Get(Admin_URL.saleReport, filter)
+  }
+
   // fetching upload IMG
   uploadIMG(imageFile){
     return this.httpService.Post(Common_URL.uploadIMG,imageFile)

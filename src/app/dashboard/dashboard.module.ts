@@ -109,6 +109,7 @@ import { googleMapMiniComponent } from '../container/dashboard/demoNine/googleMa
 import { DanialFullComponent2 } from '../container/dashboard/demoTen/danial.component';
 import { AppCalendarTwoComponent } from '../container/dashboard/demoNine/calendar-mini';
 import { ServiceComponent } from './service/service.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -265,7 +266,8 @@ const antdModule = [
         socialMediaTrafficComponent2,
         googleMapMiniComponent,
         AppCalendarTwoComponent,
-        ServiceComponent
+        ServiceComponent,
+        DashboardComponent,
     ],
     providers: [
         ThemeConstantService,
