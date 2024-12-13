@@ -25,55 +25,36 @@
     },
     "stroke": {
       "show": true,
-      "width": 30,
+      "width": 2,
       "colors": ["transparent"]
     },
     "grid": {
       "borderColor": "#485e9029",
       "strokeDashArray": 5,
       "padding": {
-        "top": 0,
-        "right": 0,
-        "bottom": 0
+        "top": 10,
+        "right": 10,
+        "bottom": 10,
+        "left": 10
       }
     },
     "plotOptions": {
       "bar": {
         "horizontal": false,
-        "columnWidth": "60%",
-        "borderRadius": 2
+        "columnWidth": "50%",
+        "borderRadius": 4
       }
     },
     "legend": {
       "show": false
     },
-    "states": {},
     "tooltip": {
       "enabled": true,
       "shared": true,
       "followCursor": false,
       "intersect": false,
       "x": {
-        "show": true,
-        "format": "dd MMM"
-      },
-      "y": {
-        "title": {}
-      },
-      "z": {
-        "title": "Size: "
-      },
-      "marker": {
         "show": true
-      },
-      "fixed": {
-        "enabled": false,
-        "position": "topLeft",
-        "offsetY": 0
-      },
-      "style": {
-        "fontSize": "12px",
-        "fontFamily": "\"Jost\", sans-serif"
       }
     },
     "xaxis": {
@@ -129,5 +110,4 @@
       }
     }
   }
-
 }

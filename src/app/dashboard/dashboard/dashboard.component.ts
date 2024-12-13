@@ -39,23 +39,30 @@ export class DashboardComponent implements OnInit {
   totalCountBookingOrder = 0;
   constructor(private apiService: ApiService) {}
   ngOnInit() {
-    this.initDate();
+    this.initDate('report');
+    this.initDate('growth');
     // Simulate loading time
     this.fetchOverviewData();
     this.loadData();
-    this.fetchGrowtChartData();
     this.generateSevenDay();
   }
-  initDate() {
+  initDate(type) {
     const today = moment().format('YYYY-MM-DD');
     const sevenDayAgo = moment().subtract(7, 'days').format('YYYY-MM-DD');
-    this.selectedDateReport = [sevenDayAgo, today];
+    if (type === 'report') {
+      this.selectedDateReport = [sevenDayAgo, today];
+      this.filterSaleReport.start = moment(sevenDayAgo).startOf('day').unix();
+      this.filterSaleReport.end = moment(today).endOf('day').unix();
+      this.filterSaleReport.type = 'week';
+      this.fetchSaleReportData();
+      return;
+    }
     this.selectedDate = [sevenDayAgo, today];
-    this.filterSaleReport.start = moment(sevenDayAgo).startOf('day').unix();
-    this.filterSaleReport.end = moment(today).endOf('day').unix();
     this.filterGrowthReport.start = moment(sevenDayAgo).startOf('day').unix();
     this.filterGrowthReport.end = moment(today).endOf('day').unix();
-    this.fetchSaleReportData();
+    this.filterGrowthReport.type = 'week';
+    this.fetchGrowthReportData();
+    return;
   }
   loadData() {
     // Simulate an asynchronous data loading operation
@@ -72,6 +79,14 @@ export class DashboardComponent implements OnInit {
       xaxis: data?.xaxis || xaxis,
     };
   }
+  makeGrowthData(data) {
+    const { series, xaxis, ...rest } = chartGrowth.chartGrowth;
+    this.chartGrowthOptions = {
+      ...rest,
+      series: data.series,
+      xaxis: data.xaxis,
+    };
+  }
 
   fetchOverviewData() {
     this.apiService.getOverviewData().subscribe((data) => {
@@ -82,20 +97,24 @@ export class DashboardComponent implements OnInit {
       return;
     });
   }
-  makeGrowthData(data) {}
 
-  fetchGrowtChartData() {
-    this.chartGrowthOptions = chartGrowth.chartGrowth;
-  }
+
   handleClick(tab: string, type): void {
     if (type === 'selling') {
       this.sellingTab = tab;
+      if (tab === 'week') {
+        this.initDate('growth');
+      }
+      if (tab === 'month') {
+        this.filterGrowthReport.type = 'month';
+        this.fetchGrowthReportData();
+      }
       return;
     }
 
     this.filterSaleReport.type = tab;
     if (tab === 'week') {
-      this.initDate();
+      this.initDate('report');
     }
     if (tab === 'month') {
       this.filterSaleReport.type = 'month';
@@ -138,7 +157,9 @@ export class DashboardComponent implements OnInit {
     this.filterGrowthReport.start = moment(e[0], 'DD/MM/YYYY')
       .startOf('day')
       .unix();
-    this.filterGrowthReport.end = moment(e[1], 'DD/MM/YYYY').endOf('day').unix();
+    this.filterGrowthReport.end = moment(e[1], 'DD/MM/YYYY')
+      .endOf('day')
+      .unix();
     if (this.filterGrowthReport.type === 'week') {
       this.fetchGrowthReportData();
       return;
@@ -187,7 +208,10 @@ export class DashboardComponent implements OnInit {
           const listMonths = this.generateListMonth();
           const fullMonthData = this.insertEmptyData(data, listMonths);
           console.log('fullMonthData', fullMonthData);
-          const { seriesData, dates } = this.transformData(fullMonthData,'report');
+          const { seriesData, dates } = this.transformData(
+            fullMonthData,
+            'report'
+          );
           this.totalCountBookingOrder = seriesData[1]?.data.reduce(
             (a, b) => a + b,
             0
@@ -209,7 +233,10 @@ export class DashboardComponent implements OnInit {
       if (data) {
         const listDates = this.generateListDate(filter.start, filter.end);
         const fullDateData = this.insertEmptyData(data, listDates);
-        const { seriesData, dates } = this.transformData(fullDateData,'report');
+        const { seriesData, dates } = this.transformData(
+          fullDateData,
+          'report'
+        );
         this.totalCountBookingOrder = seriesData[1]?.data.reduce(
           (a, b) => a + b,
           0
@@ -235,15 +262,19 @@ export class DashboardComponent implements OnInit {
             const listMonths = this.generateListMonth();
             const fullMonthData = this.insertEmptyData(data, listMonths);
             console.log('fullMonthData', fullMonthData);
-            const { seriesData, dates } = this.transformData(fullMonthData,'growth');
-            console.log('seriesData', seriesData);
-            // const formattedData = this.formatChartData(seriesData, listMonths);
-            // this.makeGrowthData(formattedData);
+            const { seriesData, dates } = this.transformData(
+              fullMonthData,
+              'growth'
+            );
+            const formattedData = this.formatChartData(seriesData, listMonths);
+            console.log('seriesData', formattedData);
+
+            this.makeGrowthData(formattedData);
             return;
           }
           return;
         });
-        return
+      return;
     }
     this.apiService.getSaleReport(this.filterGrowthReport).subscribe((data) => {
       if (data) {
@@ -252,14 +283,18 @@ export class DashboardComponent implements OnInit {
           this.filterGrowthReport.end
         );
         const fullDateData = this.insertEmptyData(data, listDates);
-        const { seriesData, dates } = this.transformData(fullDateData,'growth');
+        const { seriesData, dates } = this.transformData(
+          fullDateData,
+          'growth'
+        );
         console.log('seriesData', seriesData);
-        // const formattedData = this.formatChartData(seriesData, listDates);
-        // this.makeGrowthData(formattedData);
+        const formattedData = this.formatChartData(seriesData, listDates);
+        console.log('formattedData', formattedData);
+        this.makeGrowthData(formattedData);
         return;
       }
       return;
-    })
+    });
   }
   insertEmptyData(data, listDates) {
     const result = [];
@@ -346,28 +381,27 @@ export class DashboardComponent implements OnInit {
     };
     return result;
   }
-  transformData = (data,type) => {
+  transformData = (data, type) => {
     const dates = data.map((item) => item.date);
     const groupedData = {};
     data.forEach((item) => {
       item.bookings.forEach((booking) => {
-        if(type === 'report'){
+        if (type === 'report') {
           if (!groupedData[booking.type]) {
             groupedData[booking.type] = { name: booking.type, data: [] };
           }
           groupedData[booking.type].data.push(booking.orderCount);
         }
-        if(type === 'growth'){
+        if (type === 'growth') {
           if (!groupedData[booking.type]) {
             groupedData[booking.type] = { name: booking.type, data: [] };
           }
           groupedData[booking.type].data.push(booking.totalAmount);
         }
-
       });
     });
     const seriesData = Object.values(groupedData) as any;
-    console.log(seriesData)
+    console.log(seriesData);
     return { seriesData, dates };
   };
 }
