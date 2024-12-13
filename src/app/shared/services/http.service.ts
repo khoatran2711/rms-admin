@@ -14,16 +14,20 @@ export class HttpService {
         if (res['data']) {
           if (res['data']['data']) {
             res['data']['data'].forEach((item) => {
-              item['created_date'] = this.dateService.timestampToDate(
-                item['created_at']
-              );
+              if (item['created_at']) {
+                item['created_date'] = this.dateService.timestampToDate(
+                  item['created_at']
+                );
+              }
             });
             return res['data'];
           }
           res['data'].forEach((item) => {
-            item['created_date'] = this.dateService.timestampToDate(
-              item['created_at']
-            );
+            if (item['created_at']) {
+              item['created_date'] = this.dateService.timestampToDate(
+                item['created_at']
+              );
+            }
           });
           return res['data'];
         }

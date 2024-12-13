@@ -90,21 +90,21 @@
             <ul class="flex items-center mb-0">
               <li>
                 <button type="button"
-                  [class]="sellingReportTab === 'days' ? 'inline-flex items-center bg-primary/10 dark:bg-white/10 px-3 h-8 text-primary dark:text-white/[.87] text-13 font-medium rounded-md' : 'inline-flex items-center px-3 h-8 text-light dark:text-white/60 hover:text-primary text-13'"
+                  [class]="filterSaleReport.type === 'days' ? 'inline-flex items-center bg-primary/10 dark:bg-white/10 px-3 h-8 text-primary dark:text-white/[.87] text-13 font-medium rounded-md' : 'inline-flex items-center px-3 h-8 text-light dark:text-white/60 hover:text-primary text-13'"
                   (click)="handleClick('days','report')">
                   Days
                 </button>
               </li>
               <li>
                 <button type="button"
-                  [class]="sellingReportTab === 'week' ? 'inline-flex items-center bg-primary/10 dark:bg-white/10 px-3 h-8 text-primary dark:text-white/[.87] text-13 font-medium rounded-md' : 'inline-flex items-center px-3 h-8 text-light dark:text-white/60 dark:hover:text-white hover:text-primary text-13 font-medium rounded-md'"
+                  [class]="filterSaleReport.type === 'week' ? 'inline-flex items-center bg-primary/10 dark:bg-white/10 px-3 h-8 text-primary dark:text-white/[.87] text-13 font-medium rounded-md' : 'inline-flex items-center px-3 h-8 text-light dark:text-white/60 dark:hover:text-white hover:text-primary text-13 font-medium rounded-md'"
                   (click)="handleClick('week','report')">
                   Week
                 </button>
               </li>
               <li>
                 <button type="button"
-                  [class]="sellingReportTab === 'month' ? 'inline-flex items-center bg-primary/10 dark:bg-white/10 px-3 h-8 text-primary dark:text-white/[.87] text-13 font-medium rounded-md' : 'inline-flex items-center px-3 h-8 text-light dark:text-white/60 dark:hover:text-white hover:text-primary text-13 font-medium rounded-md'"
+                  [class]="filterSaleReport.type === 'month' ? 'inline-flex items-center bg-primary/10 dark:bg-white/10 px-3 h-8 text-primary dark:text-white/[.87] text-13 font-medium rounded-md' : 'inline-flex items-center px-3 h-8 text-light dark:text-white/60 dark:hover:text-white hover:text-primary text-13 font-medium rounded-md'"
                   (click)="handleClick('month','report')">
                   Month
                 </button>
@@ -135,20 +135,29 @@
           <div class="flex items-center justify-center max-ssm:flex-col max-ssm:gap-y-[15px]">
             <div class="relative flex items-center mx-3">
               <span
-                class="flex items-center ps-3 text-sm text-body dark:text-white/60 before:absolute before:bg-primary before:w-2 before:h-2 before:rounded-full ltr:before:left-0 rtl:before:right-0 before:top-1/2 before:-translate-y-2/4">Orders</span>
-              <span class="inline-block text-dark dark:text-white/[.87] me-1 ms-2.5 text-22 font-semibold">$8,550</span>
-              <span class="flex items-center text-sm text-success font-medium">
+                class="flex items-center ps-3 text-sm text-body dark:text-white/60 before:absolute before:bg-primary before:w-2 before:h-2 before:rounded-full ltr:before:left-0 rtl:before:right-0 before:top-1/2 before:-translate-y-2/4">Service</span>
+              <span class="inline-block text-dark dark:text-white/[.87] me-1 ms-2.5 text-22 font-semibold">{{
+                totalCountServiceOrder}}</span>
+              <span class="flex items-center text-sm font-medium text-primary">
                 <svg-icon class="w-[20px] h-[20px] [&>svg]:w-full [&>svg]:h-full"
-                  src="assets/images/svg/unicons-line/arrow-up.svg"></svg-icon>
-                25% </span>
+                  src="assets/images/svg/unicons-line/calendar-alt.svg"></svg-icon>
+              </span>
+
             </div>
             <div class="relative flex items-center mx-3">
               <span
-                class="flex items-center ps-3 text-sm text-body dark:text-white/60 before:absolute before:bg-info before:w-2 before:h-2 before:rounded-full ltr:before:left-0 rtl:before:right-0 before:top-1/2 before:-translate-y-2/4">Sales</span>
-              <span class="inline-block text-dark dark:text-white/[.87] me-1 ms-2.5 text-22 font-semibold">$5,550</span>
-              <span class="flex items-center text-sm text-danger font-medium">
+                class="flex items-center ps-3 text-sm text-body dark:text-white/60 before:absolute before:bg-info before:w-2 before:h-2 before:rounded-full ltr:before:left-0 rtl:before:right-0 before:top-1/2 before:-translate-y-2/4">Booking</span>
+              <span class="inline-block text-dark dark:text-white/[.87] me-1 ms-2.5 text-22 font-semibold">{{
+                totalCountServiceOrder}}</span>
+
+              <span>
+
+              </span>
+              <span class="flex items-center text-sm font-medium text-info">
                 <svg-icon class="w-[20px] h-[20px] [&>svg]:w-full [&>svg]:h-full"
-                  src="assets/images/svg/unicons-line/arrow-down.svg"></svg-icon>15% </span>
+                  src="assets/images/svg/unicons-line/file-check.svg"></svg-icon>
+              </span>
+
             </div>
           </div>
           <div class="hexadash-chart-container" dir="ltr">
@@ -187,9 +196,9 @@
             <ul class="flex items-center mb-0">
               <li>
                 <button type="button"
-                  [class]="sellingTab === 'today' ? 'inline-flex items-center bg-primary/10 dark:bg-white/10 px-3 h-8 text-primary dark:text-white/[.87] text-13 font-medium rounded-md' : 'inline-flex items-center px-3 h-8 text-light dark:text-white/60 hover:text-primary text-13'"
-                  (click)="handleClick('today','selling')">
-                  Today
+                  [class]="sellingTab === 'days' ? 'inline-flex items-center bg-primary/10 dark:bg-white/10 px-3 h-8 text-primary dark:text-white/[.87] text-13 font-medium rounded-md' : 'inline-flex items-center px-3 h-8 text-light dark:text-white/60 hover:text-primary text-13'"
+                  (click)="handleClick('days','selling')">
+                  Days
                 </button>
               </li>
               <li>
@@ -228,7 +237,7 @@
                 15% </span>
             </div>
           </div>
-          <div *ngIf="sellingTab === 'today'">
+          <div >
             <div class="hexadash-chart-container" dir="ltr">
               <apx-chart [series]="chartGrowthOptions.series" [chart]="chartGrowthOptions.chart"
                 [xaxis]="chartGrowthOptions.xaxis" [yaxis]="chartGrowthOptions.yaxis"
@@ -238,7 +247,7 @@
                 [tooltip]="chartGrowthOptions.tooltip" [states]="chartGrowthOptions.states"></apx-chart>
             </div>
           </div>
-          <div *ngIf="sellingTab === 'week'">
+          <!-- <div *ngIf="sellingTab === 'week'">
             <div class="hexadash-chart-container" dir="ltr">
               <apx-chart [series]="chartGrowthOptions2.series" [chart]="chartGrowthOptions.chart"
                 [xaxis]="chartGrowthOptions2.xaxis" [yaxis]="chartGrowthOptions.yaxis"
@@ -257,7 +266,7 @@
                 [plotOptions]="chartGrowthOptions3.plotOptions" [legend]="chartGrowthOptions.legend"
                 [tooltip]="chartGrowthOptions.tooltip" [states]="chartGrowthOptions.states"></apx-chart>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </ng-container>

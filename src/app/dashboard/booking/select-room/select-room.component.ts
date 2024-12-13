@@ -86,10 +86,7 @@ export class SelectRoomComponent implements OnInit {
       this.roomData = res;
       console.log('roomData', this.roomData);
     });
-    // this.apiService.listRoom({}).subscribe((res: any) => {
-    //   this.roomData = res.data;
-    //   console.log('roomData', this.roomData);
-    // });
+
   }
   onChangeRoom(e, i) {
     console.log('onChangeRoom', e, i);

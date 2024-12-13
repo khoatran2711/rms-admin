@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import moment from 'moment';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -17,18 +17,26 @@ export class ConfirmBookingComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private modalService: NzModalService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private cdr: ChangeDetectorRef
   ) {}
+  ngAfterViewInit() {
+    // Thay đổi giá trị
+    this.totalPriceRoom = this.calculateTotal().roomTotal;
+    this.totalPriceService = this.calculateTotal().serviceTotal;
+    this.cdr.detectChanges();
+  }
   ngOnInit(): void {
     this.fetchData();
   }
+
   roomBookingDetails = [];
   customerData;
   serviceBookingDetails = [];
   countNight = 0;
-  totalPriceRoom = 0;
-  totalPriceService = 0;
-  today
+  totalPriceRoom;
+  totalPriceService;
+  today;
   fetchData() {
     this.today = moment().format('DD/MM/YYYY HH:mm');
     const customerData = this.orderService.getCustomerInfo();
@@ -39,12 +47,14 @@ export class ConfirmBookingComponent implements OnInit {
       customerData['checkOutDateTime'] = moment(
         customerData.checkOutDate * 1000
       ).format('DD/MM/YYYY HH:mm');
-      let nights = moment(customerData['checkOutDateTime'], 'DD/MM/YYYY HH:mm').diff(
+      let nights = moment(
+        customerData['checkOutDateTime'],
+        'DD/MM/YYYY HH:mm'
+      ).diff(
         moment(customerData['checkInDateTime'], 'DD/MM/YYYY HH:mm'),
         'days'
       );
       this.countNight = nights;
-
     }
 
     this.customerData = customerData;
@@ -64,7 +74,7 @@ export class ConfirmBookingComponent implements OnInit {
       }
     }
   }
-  calculateTotal(): number {
+  calculateTotal() {
     const roomTotal = this.roomBookingDetails.reduce(
       (sum, room) => sum + room.totalPrice,
       0
@@ -74,22 +84,25 @@ export class ConfirmBookingComponent implements OnInit {
       (sum, service) => sum + service.totalPrice,
       0
     );
-    this.totalPriceRoom = roomTotal;
-    this.totalPriceService = serviceTotal;
-    return roomTotal + serviceTotal;
+
+    const totalRevenue = roomTotal + serviceTotal;
+
+    return { roomTotal, serviceTotal, totalRevenue };
   }
 
   confirmBooking(status): void {
     this.modalService.confirm({
-      nzTitle: `Do you want to ${status == 'Waitting'?'save':'payment'} this booking?`,
-      nzContent: `${status == 'Waitting'?'Save':'Payment'} this booking`,
+      nzTitle: `Do you want to ${
+        status == 'Waitting' ? 'save' : 'payment'
+      } this booking?`,
+      nzContent: `${status == 'Waitting' ? 'Save' : 'Payment'} this booking`,
       nzOnOk: () => {
         const data = {
           userID: 'admin',
           ...this.customerData,
           rooms: this.roomBookingDetails,
           services: this.serviceBookingDetails,
-          totalAmount: this.calculateTotal(),
+          totalAmount: this.calculateTotal().totalRevenue,
           status: status,
         };
         this.apiService.createOrder(data).subscribe((res) => {
@@ -97,16 +110,15 @@ export class ConfirmBookingComponent implements OnInit {
           this.notificationService.createNotification({
             type: 'success',
             title: 'Success',
-            message: `${status == 'Waitting'?'Save':'Payment'} order successfully`,
+            message: `${
+              status == 'Waitting' ? 'Save' : 'Payment'
+            } order successfully`,
             position: 'bottomRight',
           });
           this.router.navigate(['/dashboard/order']);
-
         });
       },
     });
-
-
   }
 
   cancelBooking(): void {
@@ -120,9 +132,9 @@ export class ConfirmBookingComponent implements OnInit {
           title: 'Success',
           message: 'Cancel booking successfully',
           position: 'bottomRight',
-        })
+        });
         this.router.navigate(['/dashboard/booking']);
       },
-    })
+    });
   }
 }

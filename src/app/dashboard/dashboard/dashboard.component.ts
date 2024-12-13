@@ -4,19 +4,19 @@ import items from '../../../assets/data/global/dropdown.json';
 import chartOption from './chartData.json';
 import chartGrowth from './chartGrowthOptions.json';
 import { ApiService } from 'src/app/shared/services/api.service';
-import moment from 'moment';
+import moment, { months } from 'moment';
+import { format } from 'date-fns';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  public chartGrowthOptions;
   public chartOptions;
-  public chartGrowthOptions2;
-  public chartGrowthOptions3;
-  sellingTab: string = 'today';
-  sellingReportTab: string = 'days';
+  public chartGrowthOptions;
+
+  sellingTab: string = 'week';
+  sellingReportTab: string = 'week';
   selectedDate = [];
   selectedDateReport = [];
   today = moment().format('DD/MM/YYYY');
@@ -28,19 +28,35 @@ export class DashboardComponent implements OnInit {
   filterSaleReport = {
     start: null,
     end: null,
-    type: 'days',
+    type: 'week',
   };
+  filterGrowthReport = {
+    start: null,
+    end: null,
+    type: 'week',
+  };
+  totalCountServiceOrder = 0;
+  totalCountBookingOrder = 0;
   constructor(private apiService: ApiService) {}
   ngOnInit() {
+    this.initDate();
     // Simulate loading time
     this.fetchOverviewData();
-    this.fetchChartData();
     this.loadData();
     this.fetchGrowtChartData();
     this.generateSevenDay();
-    console.log(this.generateListMonth());
   }
-
+  initDate() {
+    const today = moment().format('YYYY-MM-DD');
+    const sevenDayAgo = moment().subtract(7, 'days').format('YYYY-MM-DD');
+    this.selectedDateReport = [sevenDayAgo, today];
+    this.selectedDate = [sevenDayAgo, today];
+    this.filterSaleReport.start = moment(sevenDayAgo).startOf('day').unix();
+    this.filterSaleReport.end = moment(today).endOf('day').unix();
+    this.filterGrowthReport.start = moment(sevenDayAgo).startOf('day').unix();
+    this.filterGrowthReport.end = moment(today).endOf('day').unix();
+    this.fetchSaleReportData();
+  }
   loadData() {
     // Simulate an asynchronous data loading operation
     setTimeout(() => {
@@ -48,9 +64,15 @@ export class DashboardComponent implements OnInit {
       this.showContent = true;
     }, 500);
   }
-  fetchChartData() {
-    this.chartOptions = { ...chartOption };
+  makeSaleReportData(data?) {
+    const { series, xaxis, ...rest } = chartOption;
+    this.chartOptions = {
+      ...rest,
+      series: data?.series || series,
+      xaxis: data?.xaxis || xaxis,
+    };
   }
+
   fetchOverviewData() {
     this.apiService.getOverviewData().subscribe((data) => {
       if (data) {
@@ -60,22 +82,28 @@ export class DashboardComponent implements OnInit {
       return;
     });
   }
+  makeGrowthData(data) {}
+
   fetchGrowtChartData() {
-    console.log(chartGrowth);
     this.chartGrowthOptions = chartGrowth.chartGrowth;
-    this.chartGrowthOptions2 = chartGrowth.chartGrowth2;
-    this.chartGrowthOptions3 = chartGrowth.chartGrowth3;
   }
   handleClick(tab: string, type): void {
     if (type === 'selling') {
       this.sellingTab = tab;
       return;
     }
-    this.sellingReportTab = tab;
+
+    this.filterSaleReport.type = tab;
+    if (tab === 'week') {
+      this.initDate();
+    }
+    if (tab === 'month') {
+      this.filterSaleReport.type = 'month';
+      this.fetchSaleReportData();
+    }
     return;
   }
   onReportDateChange(e) {
-    console.log(e.length);
     if (e.length != 2) {
       return;
     }
@@ -84,40 +112,46 @@ export class DashboardComponent implements OnInit {
       .subtract(7, 'days')
       .startOf('day')
       .unix();
-    console.log(e);
     this.selectedDateReport = e;
-
     this.filterSaleReport.start = moment(e[0], 'DD/MM/YYYY')
       .startOf('day')
       .unix();
-    this.filterSaleReport.end = moment(e[1], 'DD/MM/YYYY')
-      .startOf('day')
-      .unix();
-    console.log(this.filterSaleReport);
-    console.log(today);
-    console.log(sevenDayAgo);
+    this.filterSaleReport.end = moment(e[1], 'DD/MM/YYYY').endOf('day').unix();
     if (
       this.filterSaleReport.start != sevenDayAgo ||
       this.filterSaleReport.end != today
     ) {
       this.filterSaleReport.type = 'days';
+      this.fetchSaleReportData();
       return;
     }
     this.filterSaleReport.type = 'week';
+    this.fetchSaleReportData();
+
     return;
-    // this.fetchSaleReportData();
   }
-  onGrowthDateChange(e) {}
+  onGrowthDateChange(e) {
+    if (e.length != 2) {
+      return;
+    }
+    this.selectedDate = e;
+    this.filterGrowthReport.start = moment(e[0], 'DD/MM/YYYY')
+      .startOf('day')
+      .unix();
+    this.filterGrowthReport.end = moment(e[1], 'DD/MM/YYYY').endOf('day').unix();
+    if (this.filterGrowthReport.type === 'week') {
+      this.fetchGrowthReportData();
+      return;
+    }
+    this.fetchGrowthReportData();
+    return;
+  }
   generateListDate(start, end) {
-    console.log(start);
-    console.log(end);
     let dateList = [];
     let startDate = moment(start * 1000);
     let endDate = moment(end * 1000);
-    console.log(startDate);
-    console.log(endDate);
     while (startDate <= endDate) {
-      dateList.push(startDate.format('DD/MM/YYYY'));
+      dateList.push(startDate.format('DD-MM-YYYY'));
       startDate.add(1, 'days');
     }
     return dateList;
@@ -128,7 +162,7 @@ export class DashboardComponent implements OnInit {
     const end = moment().endOf('year');
 
     while (start.isSameOrBefore(end, 'month')) {
-      monthList.push(start.format('MM/YYYY'));
+      monthList.push(start.format('MM-YYYY'));
       start.add(1, 'month');
     }
 
@@ -142,18 +176,198 @@ export class DashboardComponent implements OnInit {
       .unix();
     const today = moment(this.today).startOf('day').unix();
     result = this.generateListDate(sevenDayAgo, today);
-    console.log(result);
     return result;
   }
 
   fetchSaleReportData() {
     const filter = this.filterSaleReport;
+    if (filter.type === 'month') {
+      this.apiService.getSaleReport(filter).subscribe((data) => {
+        if (data) {
+          const listMonths = this.generateListMonth();
+          const fullMonthData = this.insertEmptyData(data, listMonths);
+          console.log('fullMonthData', fullMonthData);
+          const { seriesData, dates } = this.transformData(fullMonthData,'report');
+          this.totalCountBookingOrder = seriesData[1]?.data.reduce(
+            (a, b) => a + b,
+            0
+          );
+          this.totalCountServiceOrder = seriesData[0]?.data.reduce(
+            (a, b) => a + b,
+            0
+          );
+          const formattedData = this.formatChartData(seriesData, listMonths);
+
+          this.makeSaleReportData(formattedData);
+          return;
+        }
+        return;
+      });
+      return;
+    }
     this.apiService.getSaleReport(filter).subscribe((data) => {
       if (data) {
-        console.log(data);
+        const listDates = this.generateListDate(filter.start, filter.end);
+        const fullDateData = this.insertEmptyData(data, listDates);
+        const { seriesData, dates } = this.transformData(fullDateData,'report');
+        this.totalCountBookingOrder = seriesData[1]?.data.reduce(
+          (a, b) => a + b,
+          0
+        );
+        this.totalCountServiceOrder = seriesData[0]?.data.reduce(
+          (a, b) => a + b,
+          0
+        );
+        const formattedData = this.formatChartData(seriesData, listDates);
+        this.makeSaleReportData(formattedData);
         return;
       }
       return;
     });
+    return;
   }
+  fetchGrowthReportData() {
+    if (this.filterGrowthReport.type === 'month') {
+      this.apiService
+        .getSaleReport(this.filterGrowthReport)
+        .subscribe((data) => {
+          if (data) {
+            const listMonths = this.generateListMonth();
+            const fullMonthData = this.insertEmptyData(data, listMonths);
+            console.log('fullMonthData', fullMonthData);
+            const { seriesData, dates } = this.transformData(fullMonthData,'growth');
+            console.log('seriesData', seriesData);
+            // const formattedData = this.formatChartData(seriesData, listMonths);
+            // this.makeGrowthData(formattedData);
+            return;
+          }
+          return;
+        });
+        return
+    }
+    this.apiService.getSaleReport(this.filterGrowthReport).subscribe((data) => {
+      if (data) {
+        const listDates = this.generateListDate(
+          this.filterGrowthReport.start,
+          this.filterGrowthReport.end
+        );
+        const fullDateData = this.insertEmptyData(data, listDates);
+        const { seriesData, dates } = this.transformData(fullDateData,'growth');
+        console.log('seriesData', seriesData);
+        // const formattedData = this.formatChartData(seriesData, listDates);
+        // this.makeGrowthData(formattedData);
+        return;
+      }
+      return;
+    })
+  }
+  insertEmptyData(data, listDates) {
+    const result = [];
+    listDates.forEach((date) => {
+      const found = data.find((item) => item.date == date);
+      if (found) {
+        const foundedData = {
+          date: found.date,
+          bookings: [
+            {
+              type: 'service',
+              orderCount: found.bookings[0]?.orderCount || 0,
+              totalAmount: found.bookings[0]?.totalAmount || 0,
+            },
+            {
+              type: 'booking',
+              orderCount: found.bookings[1]?.orderCount || 0,
+              totalAmount: found.bookings[1]?.totalAmount || 0,
+            },
+          ],
+        };
+        result.push(foundedData);
+        return;
+      }
+      result.push({
+        date: date,
+        bookings: [
+          { type: 'service', orderCount: 0, totalAmount: 0 },
+          { type: 'booking', orderCount: 0, totalAmount: 0 },
+        ],
+      });
+    });
+    return result;
+  }
+  formatChartData(seriesData, categoryData) {
+    const result = {
+      series: [
+        {
+          name: seriesData[0].name,
+          data: seriesData[0].data,
+          color: '#7811FF',
+        },
+        {
+          name: seriesData[1].name,
+          data: seriesData[1].data,
+          color: '#00AAFF',
+        },
+      ],
+      xaxis: {
+        crosshairs: {
+          show: false,
+        },
+        labels: {
+          style: {
+            colors: [
+              '#747474',
+              '#747474',
+              '#747474',
+              '#747474',
+              '#747474',
+              '#747474',
+              '#747474',
+              '#747474',
+              '#747474',
+              '#747474',
+              '#747474',
+              '#747474',
+            ],
+            fontSize: '14px',
+            fontFamily: '"Jost", sans-serif',
+            fontWeight: 400,
+            cssClass: 'apexcharts-yaxis-label',
+          },
+        },
+        categories: categoryData,
+        axisBorder: {
+          show: false,
+        },
+        axisTicks: {
+          show: false,
+        },
+        convertedCatToNumeric: true,
+      },
+    };
+    return result;
+  }
+  transformData = (data,type) => {
+    const dates = data.map((item) => item.date);
+    const groupedData = {};
+    data.forEach((item) => {
+      item.bookings.forEach((booking) => {
+        if(type === 'report'){
+          if (!groupedData[booking.type]) {
+            groupedData[booking.type] = { name: booking.type, data: [] };
+          }
+          groupedData[booking.type].data.push(booking.orderCount);
+        }
+        if(type === 'growth'){
+          if (!groupedData[booking.type]) {
+            groupedData[booking.type] = { name: booking.type, data: [] };
+          }
+          groupedData[booking.type].data.push(booking.totalAmount);
+        }
+
+      });
+    });
+    const seriesData = Object.values(groupedData) as any;
+    console.log(seriesData)
+    return { seriesData, dates };
+  };
 }
