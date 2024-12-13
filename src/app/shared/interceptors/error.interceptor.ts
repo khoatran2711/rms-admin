@@ -3,35 +3,46 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NotificationService } from '../services/notification.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
+  constructor(
+    private authService: AuthService,
+    private notificationService: NotificationService,
+    private router: Router
+  ) {}
 
-  constructor(private authService: AuthService, private notificationService: NotificationService) {}
-
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request).pipe(catchError(err => {
-
-        if(err.status === 401){
-          this.authService.logout()
-          return
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
+    return next.handle(request).pipe(
+      catchError((err) => {
+        if (err.status === 401) {
+          this.authService.logout();
+          return;
         }
-        if(err.status != 200){
+        if (err.status != 200) {
           this.notificationService.createNotification({
-            type: "error",
-            title:"Error",
+            type: 'error',
+            title: 'Error',
             message: err.error.message,
-            position:"bottomRight"
-          })
+            position: 'bottomRight',
+          });
         }
-      return throwError(err);
-
-    }));
+        if (err.status === 403) {
+          this.router.navigate(['/authentication/login-1']);
+          return;
+        }
+        return throwError(err);
+      })
+    );
   }
 }

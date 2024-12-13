@@ -185,7 +185,6 @@ const antdModule = [
         NzModalModule,
         NzInputModule,
         AngularSvgIconModule.forRoot(),
-        // BaseChartDirective,
         NgApexchartsModule,
         PerfectScrollbarModule,
         FullCalendarModule,

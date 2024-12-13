@@ -19,6 +19,11 @@ export class ApiService {
     return this.httpService.Post(Admin_URL.login,data)
   }
 
+  // fetching infomation of user
+  getInfomation(){
+    return this.httpService.Get(Admin_URL.getInfomatino)
+  }
+
   // fetching Room
   listRoom(filter){
     return this.httpService.Get(Admin_URL.listRoom,filter)
@@ -135,6 +140,9 @@ export class ApiService {
   }
   deleteRole(id){
     return this.httpService.Delete(Admin_URL.deleteRole, {id: id})
+  }
+  getPermission(data){
+    return this.httpService.Get(Admin_URL.getRolePermission,data)
   }
 
   // Report API

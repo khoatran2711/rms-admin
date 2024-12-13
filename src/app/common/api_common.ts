@@ -8,6 +8,9 @@ export const Admin_URL = {
   login: get('auth/login'),
   register: get('auth/register'),
 
+  // fetching infomation of user
+  getInfomatino: get('user/info'),
+
   // Room URL
   listRoom: get('room/list'),
   roomDetail: get('room/detail'),
@@ -51,6 +54,7 @@ export const Admin_URL = {
   createRole: get('role/create'),
   updateRole: get('role/update'),
   deleteRole: get('role/delete'),
+  getRolePermission: get('role/permisson'),
 
   //report
   overview: get('report/overview'),

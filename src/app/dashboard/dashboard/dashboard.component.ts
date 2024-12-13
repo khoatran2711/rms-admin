@@ -25,16 +25,39 @@ export class DashboardComponent implements OnInit {
   appItems = items.appItems;
   appOverviewData = overviewData;
   filteredOverviewData = [];
+  orderData = [];
   filterSaleReport = {
     start: null,
     end: null,
     type: 'week',
+  };
+  statusObject = {
+    Payment: {
+      title: 'Payment',
+      color: 'active',
+    },
+    Waitting: {
+      title: 'Waitting',
+      color: 'warning',
+    },
+    CheckOuted: {
+      title: 'Check Outed',
+      color: 'primary',
+    },
+    Canceled: {
+      title: 'Canceled',
+      color: 'danger',
+    },
   };
   filterGrowthReport = {
     start: null,
     end: null,
     type: 'week',
   };
+  filterOrderData = {
+    page: 1,
+    limit:5,
+  }
   totalCountServiceOrder = 0;
   totalCountBookingOrder = 0;
   constructor(private apiService: ApiService) {}
@@ -45,6 +68,7 @@ export class DashboardComponent implements OnInit {
     this.fetchOverviewData();
     this.loadData();
     this.generateSevenDay();
+    this.fetchOrderData()
   }
   initDate(type) {
     const today = moment().format('YYYY-MM-DD');
@@ -97,7 +121,13 @@ export class DashboardComponent implements OnInit {
       return;
     });
   }
-
+  fetchOrderData() {
+    this.apiService.listOrder(this.filterOrderData).subscribe((res) => {
+      this.orderData = res.data;
+      this.filterOrderData = { ...this.filterOrderData, ...res.pageData };
+      console.log(this.filterOrderData);
+    });
+  }
 
   handleClick(tab: string, type): void {
     if (type === 'selling') {
@@ -404,4 +434,5 @@ export class DashboardComponent implements OnInit {
     console.log(seriesData);
     return { seriesData, dates };
   };
+
 }

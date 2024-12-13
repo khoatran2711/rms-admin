@@ -55,7 +55,8 @@
           <span class="flex items-center cursor-pointer text-light whitespace-nowrap" nz-dropdown
             [nzDropdownMenu]="profile">
             <nz-avatar [nzIcon]="'user'" nzSrc="assets/images/avatars/thumbs.png"></nz-avatar>
-            <span class="me-1.5 ms-2.5 text-body dark:text-white/60 text-sm font-medium max-md:hidden">Md. Rafiq</span>
+            <span
+              class="me-1.5 ms-2.5 text-body dark:text-white/60 text-sm font-medium max-md:hidden">{{currentUser?.userName}}</span>
             <span class="[&>svg]:w-[10px] [&>svg]:h-[10px] [&>svg]:max-md:ms-[5px]" nz-icon nzType="down"
               nzTheme="outline"></span>
           </span>
@@ -66,7 +67,7 @@
                 class="flex items-center text-sm rounded-[8px] bg-section dark:bg-white/10 py-[20px] px-[25px] mb-[12px]">
                 <nz-avatar [nzIcon]="'user'" nzSrc="assets/images/avatars/thumbs.png" class="me-4"></nz-avatar>
                 <figcaption>
-                  <h1 class="text-dark dark:text-white/[.87] mb-0.5 text-sm">Md. Rafiq</h1>
+                  <h1 class="text-dark dark:text-white/[.87] mb-0.5 text-sm">{{currentUser?.userName}}</h1>
                   <p class="mb-0 text-xs text-body dark:text-white/60">UI Expert</p>
                 </figcaption>
               </figure>

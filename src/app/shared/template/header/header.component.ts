@@ -4,6 +4,7 @@ import messages from '../../../../assets/data/global/header/messages.json';
 import notification from '../../../../assets/data/global/header/notification.json';
 import authorMenu from '../../../../assets/data/global/header/author-menu.json';
 import settings from '../../../../assets/data/global/header/settings.json';
+import { ApiService } from 'src/app/shared/services/api.service';
 
 @Component({
     selector: 'app-header',
@@ -20,8 +21,8 @@ export class HeaderComponent{
     appNotification = notification.appNotification;
     appAuthorMenu = authorMenu.appAuthorMenu;
     appSettings = settings.appSettings;
-
-    constructor( private themeService: ThemeConstantService) {}
+    currentUser
+    constructor( private themeService: ThemeConstantService,private apiService:ApiService) {}
 
     signOut(): void {
       console.log('User signed out!');
@@ -30,6 +31,7 @@ export class HeaderComponent{
     ngOnInit(): void {
         this.themeService.isMenuFoldedChanges.subscribe(isFolded => this.isFolded = isFolded);
         this.themeService.isExpandChanges.subscribe(isExpand => this.isExpand = isExpand);
+        this.fetchUser()
     }
 
     toggleFold() {
@@ -50,5 +52,10 @@ export class HeaderComponent{
 
     quickViewToggle(): void {
         this.quickViewVisible = !this.quickViewVisible;
+    }
+    fetchUser() {
+      this.apiService.getInfomation().subscribe((res) => {
+        this.currentUser = res[0];
+      });
     }
 }
