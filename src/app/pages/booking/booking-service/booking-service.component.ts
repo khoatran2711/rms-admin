@@ -145,7 +145,7 @@ export class BookingServiceComponent implements OnInit {
     this.date = null;
   }
   previous() {
-    this.router.navigate(['/dashboard/booking/select-room']);
+    this.router.navigate(['/pages/booking/select-room']);
   }
   changeQuantity(e, item) {
     let cartdata = this.orderService.getProductInfo();
@@ -165,6 +165,6 @@ export class BookingServiceComponent implements OnInit {
     this.fetchCartData();
   }
   submitForm() {
-    this.router.navigate(['/dashboard/booking/confirm']);
+    this.router.navigate(['/pages/booking/confirm']);
   }
 }

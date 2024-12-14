@@ -106,7 +106,7 @@ export class SelectRoomComponent implements OnInit {
 
   submitForm() {
     this.orderService.saveRoomInfo(this.roomForm.value);
-    this.router.navigate(['/dashboard/booking/booking-service']);
+    this.router.navigate(['/pages/booking/booking-service']);
   }
   removeRoom(i) {
     this.rooms.removeAt(i);
@@ -116,6 +116,6 @@ export class SelectRoomComponent implements OnInit {
     return o1?.id === o2?.id;
   };
   toInfomation(){
-    this.router.navigate(['/dashboard/booking']);
+    this.router.navigate(['/pages/booking']);
   }
 }

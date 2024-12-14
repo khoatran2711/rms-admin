@@ -115,7 +115,7 @@ export class ConfirmBookingComponent implements OnInit {
             } order successfully`,
             position: 'bottomRight',
           });
-          this.router.navigate(['/dashboard/order']);
+          this.router.navigate(['/pages/order']);
         });
       },
     });
@@ -133,7 +133,7 @@ export class ConfirmBookingComponent implements OnInit {
           message: 'Cancel booking successfully',
           position: 'bottomRight',
         });
-        this.router.navigate(['/dashboard/booking']);
+        this.router.navigate(['/pages/booking']);
       },
     });
   }

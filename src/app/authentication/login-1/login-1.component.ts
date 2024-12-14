@@ -34,7 +34,7 @@ export class Login1Component {
     if (this.validateForm.valid) {
       this.apiService.login(this.validateForm.value).subscribe((res) => {
         this.authService.saveUser(res)
-        this.router.navigate(['/dashboard']).then(() => {
+        this.router.navigate(['/pages']).then(() => {
           window.location.reload();
         });
       });

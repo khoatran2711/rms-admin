@@ -102,6 +102,6 @@ export class OrderListComponent implements OnInit {
     });
   }
   onViewOrderDetail(id) {
-    return this.router.navigate(['dashboard/order/detail', id]);
+    return this.router.navigate(['pages/order/detail', id]);
   }
 }

@@ -67,10 +67,10 @@ export class EmployeeListComponent implements OnInit {
 
   onToUpsert(id?) {
     if (id) {
-      this.router.navigate(['dashboard/employee/upsert', id]);
+      this.router.navigate(['pages/employee/upsert', id]);
       return;
     }
-    this.router.navigate(['dashboard/employee/upsert']);
+    this.router.navigate(['pages/employee/upsert']);
   }
 
   // Checkbox

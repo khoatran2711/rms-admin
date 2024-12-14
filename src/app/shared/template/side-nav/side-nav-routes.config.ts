@@ -1,6 +1,6 @@
 export const ROUTES: any[] = [
   {
-    path: '/dashboard',
+    path: '/pages',
     title: 'Dashboard',
     iconType: 'nzIcon',
     iconTheme: 'outline',
@@ -9,7 +9,7 @@ export const ROUTES: any[] = [
     id: '1',
   },
   {
-    path: '/dashboard/room',
+    path: '/pages/room',
     title: 'Room',
     iconType: 'nzIcon',
     iconTheme: 'outline',
@@ -18,7 +18,7 @@ export const ROUTES: any[] = [
     id: '2',
   },
   {
-    path: '/dashboard/service',
+    path: '/pages/service',
     title: 'Service',
     iconType: 'nzIcon',
     iconTheme: 'outline',
@@ -27,7 +27,7 @@ export const ROUTES: any[] = [
     id: '3',
   },
   {
-    path: '/dashboard/employee',
+    path: '/pages/employee',
     title: 'Employee',
     iconType: 'nzIcon',
     iconTheme: 'outline',
@@ -43,7 +43,7 @@ export const ROUTES: any[] = [
     icon: 'shopping-cart',
     submenu: [
       {
-        path: '/dashboard/booking/booking-service',
+        path: '/pages/booking/booking-service',
         title: 'Service Booking ',
         iconType: '',
         icon: '',
@@ -52,7 +52,7 @@ export const ROUTES: any[] = [
         id: '5',
       },
       {
-        path: '/dashboard/booking',
+        path: '/pages/booking',
         title: 'Booking',
         iconType: '',
         icon: '',
@@ -64,7 +64,7 @@ export const ROUTES: any[] = [
     id: '7',
   },
   {
-    path: '/dashboard/order',
+    path: '/pages/order',
     title: 'Order',
     iconType: 'nzIcon',
     iconTheme: 'outline',

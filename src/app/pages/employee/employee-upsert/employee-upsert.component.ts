@@ -244,7 +244,7 @@ export class EmployeeUpsertComponent implements OnInit {
     }
   }
   goToEmployeeList() {
-    this.router.navigate(['dashboard/employee']);
+    this.router.navigate(['pages/employee']);
   }
   dateChange(e): void {
     const dateValue = format(e, 'dd/MM/yyyy');

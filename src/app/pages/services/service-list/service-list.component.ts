@@ -157,7 +157,7 @@ export class ServiceListComponent implements OnInit {
     this.serviceData = serviceFiltered;
   }
   onViewProduct(id) {
-    this.router.navigate(['dashboard/service/product', id]);
+    this.router.navigate(['pages/service/product', id]);
   }
   loadData() {
     // Simulate an asynchronous data loading operation
