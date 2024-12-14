@@ -32,9 +32,7 @@ export class Login1Component {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
       this.apiService.login(this.validateForm.value).subscribe((res) => {
-        console.log(res)
         this.authService.saveUser(res)
         this.router.navigate(['/dashboard']).then(() => {
           window.location.reload();

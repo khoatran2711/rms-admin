@@ -125,7 +125,6 @@ export class DashboardComponent implements OnInit {
     this.apiService.listOrder(this.filterOrderData).subscribe((res) => {
       this.orderData = res.data;
       this.filterOrderData = { ...this.filterOrderData, ...res.pageData };
-      console.log(this.filterOrderData);
     });
   }
 
@@ -237,7 +236,6 @@ export class DashboardComponent implements OnInit {
         if (data) {
           const listMonths = this.generateListMonth();
           const fullMonthData = this.insertEmptyData(data, listMonths);
-          console.log('fullMonthData', fullMonthData);
           const { seriesData, dates } = this.transformData(
             fullMonthData,
             'report'
@@ -291,13 +289,11 @@ export class DashboardComponent implements OnInit {
           if (data) {
             const listMonths = this.generateListMonth();
             const fullMonthData = this.insertEmptyData(data, listMonths);
-            console.log('fullMonthData', fullMonthData);
             const { seriesData, dates } = this.transformData(
               fullMonthData,
               'growth'
             );
             const formattedData = this.formatChartData(seriesData, listMonths);
-            console.log('seriesData', formattedData);
 
             this.makeGrowthData(formattedData);
             return;
@@ -317,9 +313,7 @@ export class DashboardComponent implements OnInit {
           fullDateData,
           'growth'
         );
-        console.log('seriesData', seriesData);
         const formattedData = this.formatChartData(seriesData, listDates);
-        console.log('formattedData', formattedData);
         this.makeGrowthData(formattedData);
         return;
       }
@@ -431,7 +425,6 @@ export class DashboardComponent implements OnInit {
       });
     });
     const seriesData = Object.values(groupedData) as any;
-    console.log(seriesData);
     return { seriesData, dates };
   };
 

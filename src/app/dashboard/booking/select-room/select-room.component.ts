@@ -52,7 +52,6 @@ export class SelectRoomComponent implements OnInit {
       subTotal: [d?.subTotal || null],
     });
 
-  console.log('roomForm', this.roomForm);
   }
   addRooms() {
     const newRoom = this.fb.group({
@@ -84,17 +83,14 @@ export class SelectRoomComponent implements OnInit {
     }
     this.apiService.availableRoom(filter).subscribe((res: any) => {
       this.roomData = res;
-      console.log('roomData', this.roomData);
     });
 
   }
   onChangeRoom(e, i) {
-    console.log('onChangeRoom', e, i);
     this.rooms.at(i).patchValue({
       totalPrice: e.price * this.countOfNight,
     });
     this.updateTotalRoom();
-    console.log('onChangeRoom', this.roomForm.value);
   }
   updateTotalRoom() {
     const totalPriceRooms = this.roomForm.value.rooms.reduce(
@@ -110,7 +106,6 @@ export class SelectRoomComponent implements OnInit {
 
   submitForm() {
     this.orderService.saveRoomInfo(this.roomForm.value);
-    console.log('submitForm', this.roomForm.value);
     this.router.navigate(['/dashboard/booking/booking-service']);
   }
   removeRoom(i) {

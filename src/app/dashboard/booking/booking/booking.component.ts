@@ -41,11 +41,8 @@ export class BookingComponent implements OnInit {
   ngOnInit() {
     this.makeOrderForm();
     const customerData = this.orderService.getCustomerInfo();
-    console.log('customerData', customerData);
     if (customerData) {
-      console.log('customerData', 'have data');
       if (customerData?.orderType == `booking`) {
-        console.log('customerData', 'booking');
         this.datePicker = [
           moment(customerData.checkInDate * 1000).format('YYYY-MM-DD HH:mm'),
           moment(customerData.checkOutDate * 1000).format('YYYY-MM-DD HH:mm'),
@@ -75,7 +72,6 @@ export class BookingComponent implements OnInit {
   }
 
   onChange(result: Date): void {
-    console.log('Selected Time: ', result);
     if (result[0]) {
       const startDateTimestamp = moment(result[0]).unix();
       this.validateForm.controls['checkInDate'].setValue(startDateTimestamp);
@@ -84,7 +80,6 @@ export class BookingComponent implements OnInit {
       const endDateTimestamp = moment(result[1]).unix();
       this.validateForm.controls['checkOutDate'].setValue(endDateTimestamp);
     }
-    console.log(this.validateForm.value);
   }
 
   loadData() {
@@ -100,9 +95,7 @@ export class BookingComponent implements OnInit {
   //Step
 
   submitForm(): void {
-    console.log('submit', this.validateForm.value);
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
       this.orderService.savedCustomerInfo(this.validateForm.value);
       this.router.navigate(['/dashboard/booking/select-room']);
     } else {

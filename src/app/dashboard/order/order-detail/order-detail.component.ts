@@ -53,7 +53,6 @@ export class OrderDetailComponent implements OnInit {
   fetchOrderDetail() {
     this.apiService.getOrder(this.orderID).subscribe((res: any) => {
       this.orderData = res[0];
-      console.log(this.orderData);
       this.usageDate = [
         moment(this.orderData.checkInDate * 1000).format('DD-MM-YYYY HH:mm'),
         moment(this.orderData.checkOutDate * 1000).format('DD-MM-YYYY HH:mm'),
@@ -71,11 +70,9 @@ export class OrderDetailComponent implements OnInit {
     });
   }
   totalRoomPrice() {
-    console.log(this.orderData);
     const totalAmount = this.orderData?.rooms.reduce((acc, room) => {
       return (acc += room.totalPrice);
     }, 0);
-    console.log(totalAmount);
     return totalAmount;
   }
   totalServicePrice() {

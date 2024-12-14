@@ -25,7 +25,6 @@ export class HeaderComponent{
     constructor( private themeService: ThemeConstantService,private apiService:ApiService) {}
 
     signOut(): void {
-      console.log('User signed out!');
     }
 
     ngOnInit(): void {

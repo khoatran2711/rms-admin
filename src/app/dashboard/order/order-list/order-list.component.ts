@@ -56,7 +56,6 @@ export class OrderListComponent implements OnInit {
     this.apiService.listOrder(this.filter).subscribe((res) => {
       this.orderData = res.data;
       this.filter = { ...this.filter, ...res.pageData };
-      console.log(this.filter);
     });
   }
 

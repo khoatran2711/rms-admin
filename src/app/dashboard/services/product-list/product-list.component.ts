@@ -62,7 +62,6 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.serviceID);
     this.getServiceData(this.serviceID);
     this.makeForm();
     this.fetchProductData();
@@ -70,7 +69,6 @@ export class ProductListComponent implements OnInit {
   getServiceData(id) {
     this.apiService.getService(id).subscribe((res) => {
       this.serviceData = res[0];
-      console.log(this.serviceData);
     });
   }
   fetchProductData() {

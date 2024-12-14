@@ -50,7 +50,6 @@ export class EmployeeListComponent implements OnInit {
       // this.originData = res['data'];
       this.employeeData = res;
       this.originData = res;
-      console.log(res);
     });
   }
   loadData() {
@@ -76,7 +75,6 @@ export class EmployeeListComponent implements OnInit {
 
   // Checkbox
   log(value: string[]): void {
-    console.log(value);
   }
 
   // Calendar
@@ -99,11 +97,9 @@ export class EmployeeListComponent implements OnInit {
     if (!open) {
       this.endDatePicker.open();
     }
-    console.log('handleStartOpenChange', open);
   }
 
   handleEndOpenChange(open: boolean): void {
-    console.log('handleEndOpenChange', open);
   }
   getImgURL(url) {
     if (url) {

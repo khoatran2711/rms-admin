@@ -51,7 +51,6 @@ export class ServiceListComponent implements OnInit {
     this.apiService.listService({}).subscribe((res) => {
       this.serviceData = res;
       this.originData = res;
-      console.log(res);
     });
   }
   submitServiceForm() {
@@ -154,7 +153,6 @@ export class ServiceListComponent implements OnInit {
     const serviceFiltered = this.originData.filter((service) => {
       return service.name.toLowerCase().includes(e.toLowerCase());
     });
-    console.log(serviceFiltered);
 
     this.serviceData = serviceFiltered;
   }

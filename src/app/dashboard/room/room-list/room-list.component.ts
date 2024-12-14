@@ -147,7 +147,6 @@ export class RoomListComponent implements OnInit {
       this.roomData = res['data'];
       this.originRoomData = res['data'];
       this.pageData = res['pageData'];
-      console.log(this.roomData);
     });
   }
   getRoomTypeData(filte?) {
@@ -168,7 +167,6 @@ export class RoomListComponent implements OnInit {
   }
   closeCreateTypeRoom() {
     this.isOpenCreateType = false;
-    console.log(this.isOpenCreateType);
   }
   onUploadImage(event) {
     let fileInput = event.target.files[0];
@@ -183,7 +181,6 @@ export class RoomListComponent implements OnInit {
   submitRoomTypeForm() {
     if (this.roomTypeForm.invalid) {
       this.submitedTypeRoom = true;
-      // console.log(this.roomTypeForm['name'].errors)
       Object.values(this.roomTypeForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();

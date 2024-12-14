@@ -143,7 +143,6 @@ export class EmployeeUpsertComponent implements OnInit {
   initData() {
     if (this.employeeID) {
       this.apiService.getEmployee(this.employeeID).subscribe((res) => {
-        console.log(res);
         this.makeForm(res[0]);
         this.avatarUrl = res[0].avatar
           ? `http://localhost:8080${res[0].avatar}`
@@ -196,7 +195,6 @@ export class EmployeeUpsertComponent implements OnInit {
 
   //avatar
   handleChange(info: { file: NzUploadFile }): void {
-    console.log('start upload');
     let formdata = new FormData();
     formdata.append('file', info.file.originFileObj as any);
     this.apiService.uploadIMG(formdata).subscribe((res) => {
@@ -250,7 +248,6 @@ export class EmployeeUpsertComponent implements OnInit {
   }
   dateChange(e): void {
     const dateValue = format(e, 'dd/MM/yyyy');
-    console.log(e);
     this.employeeForm.get('dateOfBirth').setValue(dateValue);
     return;
   }
