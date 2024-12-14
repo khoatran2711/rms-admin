@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import overviewData from '../../../assets/data/pages/demo-one/overviewData.json';
 import items from '../../../assets/data/global/dropdown.json';
-import chartOption from './chartData.json';
-import chartGrowth from './chartGrowthOptions.json';
+import chartOption from '../../pages/dashboard/chartData.json';
+import chartGrowth from '../../pages/dashboard/chartGrowthOptions.json';
 import { ApiService } from 'src/app/shared/services/api.service';
 import moment, { months } from 'moment';
 import { format } from 'date-fns';

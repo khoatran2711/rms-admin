@@ -5,7 +5,7 @@ export const CommonLayout_ROUTES: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('../../dashboard/dashboard.module').then((m) => m.DashboardModule),
+      import('../../pages/pages.module').then((m) => m.PagesModule),
   },
 
 

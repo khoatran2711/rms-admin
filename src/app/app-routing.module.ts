@@ -15,7 +15,7 @@ const appRoutes: Routes = [
       pathMatch: 'full',
   },
   {
-      path: 'dashboard',
+      path: 'pages',
       component: CommonLayoutComponent,
       children: CommonLayout_ROUTES
   },

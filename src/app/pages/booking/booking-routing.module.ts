@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookingServiceComponent } from 'src/app/dashboard/booking/booking-service/booking-service.component';
-import { BookingComponent } from 'src/app/dashboard/booking/booking/booking.component';
-import { ConfirmBookingComponent } from 'src/app/dashboard/booking/confirm-booking/confirm-booking.component';
-import { SelectRoomComponent } from 'src/app/dashboard/booking/select-room/select-room.component';
+import { BookingServiceComponent } from 'src/app/pages/booking/booking-service/booking-service.component';
+import { BookingComponent } from 'src/app/pages/booking/booking/booking.component';
+import { ConfirmBookingComponent } from 'src/app/pages/booking/confirm-booking/confirm-booking.component';
+import { SelectRoomComponent } from 'src/app/pages/booking/select-room/select-room.component';
 
 const routes: Routes = [
   {
